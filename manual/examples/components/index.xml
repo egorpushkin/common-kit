@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="../../styles/article.xsl"?>
+
+<sdk:article title="Components Module Examples" prefix="../.."
+	xmlns:sdk="http://www.standards.scientific-soft.com/xsl">	
+
+	<sdk:entry>
+		This section contains overview of several demos provided as introduction 
+		to <b>Components</b> module.
+	</sdk:entry>
+	<sdk:subsubtitle>
+		CompTest01
+	</sdk:subsubtitle>	
+	<sdk:entry>			
+		This is so called "Hello World" example of using shared components
+		(from the point of view of local client). Single call to 
+		"Components::InstantiateCommon" is required to instantiate any object 
+		located in shared library by passing unique identifier (mc::clsid).
+		The goal of this demo is focusing on the transparency of libraries 
+		load and unload mechanizms from client-side code. 
+	</sdk:entry>
+	<sdk:image path="images/ct01_001.wmf" descr="CompTest01 schema"/>
+	<sdk:subsubtitle>
+		CompTest02
+	</sdk:subsubtitle>	
+	<sdk:entry>			
+		This demo extends CompTest1 to demonstrate both containment model
+		embedded into the library and events dispatching mechanizms 
+		(with trivial support for ecent cancellation).
+	</sdk:entry>		
+	<sdk:image path="images/ct02_001.wmf" descr="CompTest02 schema"/>
+	<sdk:entry>			
+		The following schema demonstrates event spreading after invocation of 
+		internal object's method:
+	</sdk:entry>	
+	<sdk:image path="images/ct02_002.wmf" descr="CompTest02 schema"/>
+	<sdk:subsubtitle>
+		CompTest03
+	</sdk:subsubtitle>	
+	<sdk:entry>		
+		CompTest03 demonstrates client-side interaction with object supporting 
+		undo/redo mechanism. 
+	</sdk:entry>		
+	<sdk:subtitle>
+		Notes
+	</sdk:subtitle>	
+	<sdk:entry>		
+		CompTest0X is a set of client-side demonstrations. You are to acquaint 
+		yourself with the source code of "AreasLib" project to become familiar 
+		with implementing objects' hierarchies based on containment with
+		embedded dispatching and undo support. 		
+	</sdk:entry>	
+	<sdk:entry>		
+		To execute and debug examples from within Visual Studio environment 
+		you must explicitly set "Working Directory" property
+		(Configuration Properties->Debugging->Working Directory) to:
+		"../../../bin/vs2005/$(ConfigurationName)" (without quotes).
+		It is necessary to do because since MSVS 2005 this property has been 
+		moved outside of ".vcproj" to ".user" file. Files of the last type 
+		are not included into repository for security reasons.	
+	</sdk:entry>	
+
+</sdk:article>

@@ -1,0 +1,115 @@
+/* Documentation Style Sheet */ 
+/* Scientific Software 2007 */ 
+
+body { 
+	font: normal 68% verdana, arial, helvetica;
+}
+
+h1 {
+	font: normal 165% verdana, arial, helvetica;
+	margin: 5 0;
+	margin-top: 0px;
+}
+
+h2 {
+	font: bold 125% verdana, arial, helvetica;
+	margin-top: 1em; 
+	margin-bottom: 0.5em;
+} 
+
+h3 {
+	font: bold 110% verdana, arial, helvetica;
+	margin-top: 1em; 
+	margin-bottom: 0.5em;
+} 
+
+p {
+	line-height: 1.5em;
+	margin-top: 0.5em; 
+	margin-bottom: 1.0em;
+}
+
+p.ds_ref {
+	font-weight: bold;
+	margin-top: 12pt; 
+	margin-bottom: 0em;
+}
+
+ul { 
+	padding-left: 0px;
+	margin-left: 17px; 
+	margin-top: 10px; 
+	margin-bottom: 10px; 
+}
+
+ol { 
+	padding-left: 0px;
+	margin-left: 25px; 
+	margin-top: 10px; 
+	margin-bottom: 10px; 
+}
+
+ul li {
+	line-height: 120%;
+	margin-bottom: 0.5em;
+}
+
+ul li li { 
+	list-style-type: disc; 
+}
+
+ol li { 
+	margin-bottom: 0.7em; 
+}
+
+
+a:link { color:#0000ff; text-decoration:underline; cursor:hand; }
+a:visited { color:#0000ff; text-decoration:underline; cursor:hand; }
+a:hover { color:#3366ff; text-decoration:underline; cursor:hand; }
+
+div.ds_doc_body, div.ds_footer { 
+	margin-left: 10px; 
+	margin-right: 10px; 
+	margin-top: 10px; 
+}
+
+pre {
+	background: #eeeeee;
+	margin-top: 1em;	
+	margin-bottom: 1em; 
+	margin-left: 0px;
+	padding: 5pt;
+}
+
+pre.ds_code { 
+	font-size: 110% 'courier new', courier, serif; 
+}
+
+td, th { 
+	font-size: 68%;
+}
+
+table {
+	font: normal 147% verdana, arial, helvetica; 
+}
+
+table.ds_table th {
+	text-align: left; 
+	vertical-align: top;
+	background-color: #DDD;
+	padding: 2px;
+}
+
+table.ds_table td {
+	vertical-align: top;
+	background-color: #EEE;
+	padding: 2px;
+}
+
+span.ds_fmt { 
+	text-transform:lowercase
+}
+
+
+
+

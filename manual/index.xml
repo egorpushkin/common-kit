@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="styles/article.xsl"?>
+
+<sdk:article title="Common Kit" prefix="."
+	xmlns:sdk="http://www.standards.scientific-soft.com/xsl">	
+
+	<sdk:entry>
+		This is <b>Common Kit</b> project related documentation.
+	</sdk:entry>
+	<sdk:blink link="./common/using.xml">Using CommonKit</sdk:blink>
+	<sdk:entry>
+		How to use CommonKit in your applications. 
+		Includes information on library dependencies and supported platforms.
+	</sdk:entry>
+	<sdk:subtitle>
+		Tutorial
+	</sdk:subtitle>
+	<sdk:ublock>
+		<sdk:blink link="./tutorial/core/index.xml">Core module</sdk:blink>
+		<sdk:entry>
+			Provides required type definitions, error constants and tools, guids support, 
+			exteneded smart pointers support (based on Loki library) and etc.
+		</sdk:entry>
+	</sdk:ublock>		
+	
+	<sdk:subtitle>
+		Examples
+	</sdk:subtitle>
+	<sdk:ublock>
+		<sdk:blink link="./examples/components/index.xml">Components module</sdk:blink>
+		<sdk:entry>
+			Coomponents module created to provide transparent scalability support for developers. 
+			This section demonstrates several most common cases of module usage.
+		</sdk:entry>
+	</sdk:ublock>	
+	<sdk:ublock>
+		<sdk:blink link="./examples/remoting/index.xml">Networking module</sdk:blink>
+		<sdk:entry>
+			Demonstration of high-level component-based networking engine for CommonKit library.
+		</sdk:entry>
+	</sdk:ublock>		
+	<sdk:ublock>
+		<sdk:blink link="./examples/remoting/index.xml">Remoting module</sdk:blink>
+		<sdk:entry>
+			This module provides an efficient way to create distributed solutions.
+			The goal is achieved by embedding internal transaction layer ()
+		</sdk:entry>
+	</sdk:ublock>		
+	
+	<sdk:subtitle>
+		Reference
+	</sdk:subtitle>	
+	<sdk:ublock>
+		<sdk:blink link="./reference/index.htm">Reference</sdk:blink>
+		<sdk:entry>
+			Detailed class and function reference.
+		</sdk:entry>
+	</sdk:ublock>		
+	
+	<sdk:entry>
+		[ Please, note that this documentation is preliminary and is subject to change in future releases. ]
+	</sdk:entry>
+	<sdk:entry>
+		Released Monday, 24 March 2008.
+	</sdk:entry>
+	<sdk:entry>
+		Copyright (c) Egor Pushkin (<a href="mailto:egor.pushkin@scientific-soft.com">egor.pushkin@scientific-soft.com</a>)
+	</sdk:entry>
+	
+</sdk:article>
