@@ -1,0 +1,115 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AreasKit", "..\include\AreasKit\AreasKit.vs2005.vcproj", "{09791AFF-F3E6-4244-ABF1-8E289C9D85F9}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AreasSelectorKit", "..\include\AreasSelectorKit\AreasSelectorKit.vs2005.vcproj", "{B2D0619A-5EC8-45DF-B5D7-F06FB769AF5A}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonKit", "..\include\CommonKit\CommonKit.vs2005.vcproj", "{8510D17F-BC3B-446A-A18A-39A002E192D2}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QKit", "..\include\QKit\QKit.vs2005.vcproj", "{50CC6219-44F1-455B-A2A6-E9D1AD1EF5C3}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AreasLib", "..\source\Areas\AreasLib\AreasLib.vs2005.vcproj", "{40C9181B-824E-407F-9BC9-3FC6B4382765}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+	ProjectSection(ProjectDependencies) = postProject
+		{1063E0F5-584C-4CFD-969A-03CC01275CA0} = {1063E0F5-584C-4CFD-969A-03CC01275CA0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AreasSelector", "..\source\Areas\AreasSelectorCtrl\AreasSelector.vs2005.vcproj", "{967D031C-F689-493F-B37A-73DCE835CBB6}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+	ProjectSection(ProjectDependencies) = postProject
+		{1063E0F5-584C-4CFD-969A-03CC01275CA0} = {1063E0F5-584C-4CFD-969A-03CC01275CA0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AreasSelectorTool", "..\source\Areas\AreasSelectorTool\AreasSelectorTool.vs2005.vcproj", "{E8F8AD2C-A618-4017-965D-ED5EEB0D3521}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+	ProjectSection(ProjectDependencies) = postProject
+		{4C5BF850-BE20-4027-86AD-996FCBC8D42E} = {4C5BF850-BE20-4027-86AD-996FCBC8D42E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComponentLib", "..\source\Common\CoreLib\ComponentLib.vs2005.vcproj", "{1063E0F5-584C-4CFD-969A-03CC01275CA0}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreLib", "..\source\Common\CoreLib\CoreLib.vs2005.vcproj", "{4C5BF850-BE20-4027-86AD-996FCBC8D42E}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QMcWidget", "..\source\QExtension\QMcWidgetPlugin\QMcWidget.vs2005.vcproj", "{C98CF60B-0562-41F3-BC2C-E5D1A55D72F3}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QMcWidgetPlugin", "..\source\QExtension\QMcWidgetPlugin\QMcWidgetPlugin.vs2005.vcproj", "{4881428B-D2A9-475D-8051-6CBAA8EC81C4}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+EndProject
+Global
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09791AFF-F3E6-4244-ABF1-8E289C9D85F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{09791AFF-F3E6-4244-ABF1-8E289C9D85F9}.Release|Win32.ActiveCfg = Release|Win32
+		{B2D0619A-5EC8-45DF-B5D7-F06FB769AF5A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B2D0619A-5EC8-45DF-B5D7-F06FB769AF5A}.Release|Win32.ActiveCfg = Release|Win32
+		{8510D17F-BC3B-446A-A18A-39A002E192D2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8510D17F-BC3B-446A-A18A-39A002E192D2}.Release|Win32.ActiveCfg = Release|Win32
+		{50CC6219-44F1-455B-A2A6-E9D1AD1EF5C3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{50CC6219-44F1-455B-A2A6-E9D1AD1EF5C3}.Release|Win32.ActiveCfg = Release|Win32
+		{40C9181B-824E-407F-9BC9-3FC6B4382765}.Debug|Win32.ActiveCfg = Debug|Win32
+		{40C9181B-824E-407F-9BC9-3FC6B4382765}.Debug|Win32.Build.0 = Debug|Win32
+		{40C9181B-824E-407F-9BC9-3FC6B4382765}.Release|Win32.ActiveCfg = Release|Win32
+		{40C9181B-824E-407F-9BC9-3FC6B4382765}.Release|Win32.Build.0 = Release|Win32
+		{967D031C-F689-493F-B37A-73DCE835CBB6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{967D031C-F689-493F-B37A-73DCE835CBB6}.Release|Win32.ActiveCfg = Release|Win32
+		{967D031C-F689-493F-B37A-73DCE835CBB6}.Release|Win32.Build.0 = Release|Win32
+		{E8F8AD2C-A618-4017-965D-ED5EEB0D3521}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E8F8AD2C-A618-4017-965D-ED5EEB0D3521}.Release|Win32.ActiveCfg = Release|Win32
+		{E8F8AD2C-A618-4017-965D-ED5EEB0D3521}.Release|Win32.Build.0 = Release|Win32
+		{1063E0F5-584C-4CFD-969A-03CC01275CA0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1063E0F5-584C-4CFD-969A-03CC01275CA0}.Debug|Win32.Build.0 = Debug|Win32
+		{1063E0F5-584C-4CFD-969A-03CC01275CA0}.Release|Win32.ActiveCfg = Release|Win32
+		{1063E0F5-584C-4CFD-969A-03CC01275CA0}.Release|Win32.Build.0 = Release|Win32
+		{4C5BF850-BE20-4027-86AD-996FCBC8D42E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4C5BF850-BE20-4027-86AD-996FCBC8D42E}.Debug|Win32.Build.0 = Debug|Win32
+		{4C5BF850-BE20-4027-86AD-996FCBC8D42E}.Release|Win32.ActiveCfg = Release|Win32
+		{4C5BF850-BE20-4027-86AD-996FCBC8D42E}.Release|Win32.Build.0 = Release|Win32
+		{C98CF60B-0562-41F3-BC2C-E5D1A55D72F3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C98CF60B-0562-41F3-BC2C-E5D1A55D72F3}.Release|Win32.ActiveCfg = Release|Win32
+		{C98CF60B-0562-41F3-BC2C-E5D1A55D72F3}.Release|Win32.Build.0 = Release|Win32
+		{4881428B-D2A9-475D-8051-6CBAA8EC81C4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4881428B-D2A9-475D-8051-6CBAA8EC81C4}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal

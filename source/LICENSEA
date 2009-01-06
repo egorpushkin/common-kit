@@ -1,0 +1,52 @@
+          CommonKit General Redistribution and Modification Rules
+                       Version 1, 27 October 2008
+
+ Copyright (C) 2008 Scientific Software. <http://www.scientific-soft.com/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+ Note: This document not only gives users several explanations of terms and  
+ conditions of LGPL but includes several additional statements users should 
+ take into account while using or modifying CommonKit library. 
+
+  1. CommonKit usage.
+
+  You may use CommonKit library in you both proprietary and open source projects 
+of any kind. You may skip LGPL limitations applied to library linkage. But you have 
+provide both mentioning and direct link to project official site 
+(http://code.google.com/p/commonkit/) in you application (if any output is provided)
+and documentation. Reference text can be found below:
+
+      CommonKit Library 
+      Project Home : http://code.google.com/p/commonkit/
+      Copyright (C) Scientific Softwate <LIBRARY RELEASE YEAR>
+  
+  2. CommonKit modification.
+
+  After you modify CommonKit you have to publish modified version of the 
+library under LGPL. You can still use it in you proprietary projects of any
+kind.  
+
+  3. CommonKit distribution.
+
+  You may distribute packages of CommonKit as is or with any changes you make.
+In the first case you should put origiral copyright information along with 
+the package. If you modify the package you have to provide both original copyright 
+and your own. You also have to publish complete list of all changes you've made.
+
+  4. CommonKit documentation.
+
+  You may use CommonKit documentation in the following ways:
+  
+   a) Reffer to it in you documentation.
+
+   b) Distribute it (fully or partially) along with your documentation saving
+   copiright and authority notes like:
+   
+      CommonKit Library Documentation
+	  Project Home : http://code.google.com/p/commonkit/
+      Copyright (C) Scientific Softwate <DOCUMERATION RELEASE YEAR>
+
+   
+
+

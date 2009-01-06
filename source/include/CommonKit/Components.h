@@ -1,0 +1,44 @@
+#ifndef COMPONENTS_H__AGENTS__COMMONKIT__INCLUDED_
+#define COMPONENTS_H__AGENTS__COMMONKIT__INCLUDED_
+
+// External requirements
+//////////////////////////////////////////////////////////////////////////
+#include "Components/External.h"
+
+
+// Core
+//////////////////////////////////////////////////////////////////////////
+#include "Components/Interfaces/IComponent.h"
+
+
+// Jobs
+//////////////////////////////////////////////////////////////////////////
+#include "Components/Interfaces/IJobsQueue.h"
+
+
+// Component-side tools
+//////////////////////////////////////////////////////////////////////////
+#include "Components/Interfaces/IInPlaceController.h"
+#include "Components/Helpers/ObjCounter.h"
+#include "Components/Model/ComponentImpl.h"
+#include "Components/Source/Component.h"
+
+
+// Client-side tools
+//////////////////////////////////////////////////////////////////////////
+#include "Components/Interfaces/IComponentsManager.h"
+#include "Components/Interfaces/IComponentInstance.h"
+
+
+// Iids
+//////////////////////////////////////////////////////////////////////////
+#include "Components/Iids.h"
+
+// Client api
+//////////////////////////////////////////////////////////////////////////
+#include "Components/Tools/ClientApi.h"
+
+
+
+
+#endif // !COMPONENTS_H__AGENTS__COMMONKIT__INCLUDED_

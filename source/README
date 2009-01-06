@@ -1,0 +1,48 @@
+CommonKit version 0.1.0
+Released Monday, ?? ?? 2009.
+
+Cross-platform component-based C++ software development framework providing 
+ - smart pointers support for both internal and external reference counting schemas (based on Loki library), 
+ - events dispatching, 
+ - undo/redo automation, 
+ - concurrency mechanisms, 
+ - transparent support for scalability (smart shared objects loader), 
+ - high-level network interaction (based on boost::asio) and 
+ - support for distributed systems design and implementation ("Remoting" component).
+	
+The mainstream of CommonKit project development is an idea that it is possible to create portable, 
+fast and reliable programs in C++ with no extra time or human resource expenses. It means that besides 
+implementation of most commonly applied mechanisms this core software package provides the way for creating 
+lightweight and (I have to repeat it one more time) fast and reliable source code. 	
+
+Supported platforms:
+ - Win32.
+
+Dependencies:
+ - Boost libraries. You have to download Boost (http://www.boost.org/) and configure Microsoft Visual Studio.
+ - Asio library. 
+ - Loki library.
+  
+Package content:
+ - CommonKit source code. 
+ - Unittests for "Components" module (source/UnitTests/CompTest01 - CompTest03). 
+ - Unittests for "Remoting" module (source/UnitTests/NetTest02 - NetTest08).
+ - Asio 0.3.9 (released Sunday, 9 December 2007).
+ - Loki 0.1.6 (last update: Novmber 16, 2005).
+ 
+Project owner:
+ - Egor Pushkin <egor.pushkin@scientific-soft.com> Scientific Software
+     Architect, developer.
+ 
+Copyright:
+ 
+    CommonKit  Copyright (C) 2008  Scientific Software
+
+    All version of CommonKit (above 0.1.0) are released under 
+    GNU Lesser General Public License (see LICENSE file).
+	
+    There are also several additional statements you have to follow
+    (see LICENSEA file).
+	
+	
+	
