@@ -89,21 +89,21 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 
 	{
 		
-		mc::ICommon::Ptr_ common = mc::ICommon::Ptr_(new Test());
+		mc::Strong< mc::ICommon > common = mc::Strong< mc::ICommon >( new Test( ) );
 
 		{
-			mc::ICommon::Ptr_ common1;
+			mc::Strong< mc::ICommon > common1;
 
 			common1 = common;
 
-			mc::ICommon::Ptr_ common2(common);
+			mc::Strong< mc::ICommon > common2(common);
 
-			mc::ICommon::Weak_ common3(common);
+			// mc::ICommon::Weak_ common3(common);
 
 			// Cannot convert between pointers to different control interfaces with 
 			// different reference type (strong/week). At least one point (pointer or
 			// reference type) should be the same for successful conversion.
-			ITest2::Weak_ common4(common);
+/*			ITest2::Weak_ common4(common);
 
 			ITest3::Weak_ common5(common);
 
@@ -134,7 +134,7 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 
 				}
 
-			}
+			} */
 		}
 
 
@@ -149,6 +149,7 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 
 	}
 
+
 	// UnitTest X
 	//
 	// 
@@ -156,6 +157,12 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 		testId = 10;
 
 		mc::ICommon::Ptr_ common = mc::ICommon::Ptr_(new Test());
+		if ( NULL != common )
+		{
+
+		}
+
+
 		{
 			ITest2::Weak_ common1(common);
 			ITest3::Weak_ common2(common);

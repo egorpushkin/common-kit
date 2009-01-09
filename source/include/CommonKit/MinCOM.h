@@ -24,6 +24,12 @@ namespace mc = MinCOM;
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Pointers/ComPtr.h"
 
+#include "MinCOM/Pointers/DualRefCounter.h"
+#include "MinCOM/Pointers/Strong.h"
+#include "MinCOM/Pointers/Weak.h"
+#include "MinCOM/Pointers/BinaryOperators.h"
+#include "MinCOM/Pointers/StdExtensions.h"
+
 // Guids api
 //////////////////////////////////////////////////////////////////////////
 // #include "MinCOM/Guids/Guid.h"

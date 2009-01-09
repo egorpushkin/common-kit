@@ -336,11 +336,19 @@
 				Name="Pointers"
 				>
 				<File
+					RelativePath=".\MinCOM\Pointers\BinaryOperators.h"
+					>
+				</File>
+				<File
 					RelativePath=".\MinCOM\Pointers\ComPtr.h"
 					>
 				</File>
 				<File
 					RelativePath=".\MinCOM\Pointers\ComPtr_.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MinCOM\Pointers\DualRefCounter.h"
 					>
 				</File>
 				<File
@@ -353,6 +361,18 @@
 				</File>
 				<File
 					RelativePath=".\MinCOM\Pointers\ResetPolicy.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MinCOM\Pointers\StdExtensions.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MinCOM\Pointers\Strong.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MinCOM\Pointers\Weak.h"
 					>
 				</File>
 			</Filter>

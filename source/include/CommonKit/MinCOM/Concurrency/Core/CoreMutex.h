@@ -63,11 +63,48 @@ namespace MinCOM
 
 	private:
 
+		/** Copy-constructor not implemented and denied. */
+		CoreMutex( const CoreMutex & );
+
+		/** Copy-assignment operator not implemented and denied. */
+		CoreMutex & operator = ( const CoreMutex & );
+
+	private:
+
 #ifdef WIN32
 		HANDLE mutex_;
 #elif POSIX
 		pthread_mutex_t mutex_;
 #endif				
+
+	};
+
+	class CoreMutexLock
+	{
+	public:
+
+		CoreMutexLock(CoreMutex & mutex)
+			: mutex_(mutex)
+		{
+			mutex_.Lock();
+		}
+
+		~CoreMutexLock()
+		{
+			mutex_.Unlock();
+		}
+
+	private:
+
+		/** Copy-constructor not implemented and denied. */
+		CoreMutexLock( const CoreMutexLock & );
+
+		/** Copy-assignment operator not implemented and denied. */
+		CoreMutexLock & operator = ( const CoreMutexLock & );
+
+	private:
+
+		CoreMutex & mutex_;
 
 	};
 
