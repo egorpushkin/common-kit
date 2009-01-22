@@ -10,24 +10,18 @@ namespace MinCOM
 
 	typedef void* handle;
 
-	class TypeInfoCore
-	{
-	public:
-		static const Guid iid_;
-	};
-
 	template 
 	<
 		class T	
 	>
-	class TypeInfo : public TypeInfoCore
+	class TypeInfo
 	{
+		static const Guid iid_;
 	public:		
 		static RefGuid GetGuid()
 		{
 			return iid_;
 		}
-
 		static size_t Size()
 		{
 			return sizeof(T);

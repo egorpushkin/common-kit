@@ -6,7 +6,7 @@ namespace MinCOM
 	namespace Private
 	{
 
-		ICommon::Ptr_ ObjectCreatorInternal(ICommon::Ref_ common)
+		Strong<ICommon> ObjectCreatorInternal(const Strong<ICommon> & common)
 		{
 			/* IItemPtr objectItem(common, IID_IItem);
 			if ( objectItem )

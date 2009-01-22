@@ -160,6 +160,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Guids"
+				>
+				<File
+					RelativePath=".\MinCOM\Guids\Guids.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Common"

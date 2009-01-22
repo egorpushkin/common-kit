@@ -16,31 +16,34 @@ namespace MinCOM
 
 	namespace Private
 	{
-		ICommon::Ptr_ ObjectCreatorInternal(ICommon::Ref_ common);
+		/**
+		 * 
+		 */
+		Strong<ICommon> ObjectCreatorInternal(const Strong<ICommon> & common);
 	}
 
 	template< class T > 
-	ICommon::Ptr_ ObjectCreator() 
+	Strong<ICommon> ObjectCreator() 
 	{ 
-		return Private::ObjectCreatorInternal(ICommon::Ptr_(new T())); 
+		return Private::ObjectCreatorInternal(Strong<ICommon>(new T())); 
 	}	
 
 	template< class T, class T1 > 
-	ICommon::Ptr_ ObjectCreator(T1 p1) 
+	Strong<ICommon> ObjectCreator(T1 p1) 
 	{ 
-		return Private::ObjectCreatorInternal(ICommon::Ptr_(new T(p1))); 
+		return Private::ObjectCreatorInternal(Strong<ICommon>(new T(p1))); 
 	}	
 
 	template< class T, class T1, class T2 > 
-	ICommon::Ptr_ ObjectCreator(T1 p1, T2 p2) 
+	Strong<ICommon> ObjectCreator(T1 p1, T2 p2) 
 	{ 
-		return Private::ObjectCreatorInternal(ICommon::Ptr_(new T(p1, p2))); 
+		return Private::ObjectCreatorInternal(Strong<ICommon>(new T(p1, p2))); 
 	}	
 
 	template< class T, class T1, class T2, class T3 > 
-	ICommon::Ptr_ ObjectCreator(T1 p1, T2 p2, T3 p3) 
+	Strong<ICommon> ObjectCreator(T1 p1, T2 p2, T3 p3) 
 	{ 
-		return Private::ObjectCreatorInternal(ICommon::Ptr_(new T(p1, p2, p3))); 
+		return Private::ObjectCreatorInternal(Strong<ICommon>(new T(p1, p2, p3))); 
 	}	
 
 }

@@ -15,6 +15,15 @@ namespace MinCOM
 {
 
 	/**
+	 * Preliminary declaration of weak pointers.
+	 */ 
+	template
+	<
+		typename T
+	>
+	class Weak;
+
+	/**
 	 * Strong pointer intended to host pointers to native MinCOM and
 	 * inherited control interfaces. Implementation of this helper class 
 	 * provides support for MinCOM memory (life-circle) management.
@@ -59,6 +68,20 @@ namespace MinCOM
 			, refCounter_(NULL)
 		{
 			// Initialize reference counter.
+			InitCounter();
+		}
+
+		/**
+		 * Enables 'Strong<T> ptr = NULL;' syntax. Always initializes internal pointer to NULL
+		 * nomatter what argument is passed. This prevents user from mistakes like:
+		 *  Strong<T> ptr((T*)123);
+		 *  Strong<T> ptr(new T()); 
+		 */
+		Strong( T * /* p */ ) 
+			: p_(NULL)
+			, refCounter_(NULL)
+		{
+			// Init smart pointer.
 			InitCounter();
 		}
 
@@ -147,15 +170,8 @@ namespace MinCOM
 			InitStrong(rhs);
 		}	
 
-
-		
-
-
-
-
-
 		/** 
-		 * Destructor provided to maintain (decrement) external references to 
+		 * Destructor provided to maintain (decrement) references to 
 		 * contained object. 
 		 */
 		~Strong()
@@ -185,6 +201,48 @@ namespace MinCOM
 			}
 		}
 
+	// Reconstruction tools
+	public:
+		
+		/**
+		 * Provides a way to reconstruct strong pointer from weak one.
+		 */
+		Strong( const Weak< T > & rhs )
+			: p_(rhs.p_)
+			, refCounter_(rhs.refCounter_)
+		{
+			if ( rhs )
+			{
+				// Increment internal object's reference counter 
+				if ( p_ )
+				{
+					p_->IncrementReference();
+				}
+				// Increment external reference counter
+				refCounter_->IncStrongCount();
+			}
+			else
+			{
+				// Clear pointer fields.
+				p_ = NULL;
+				// Init smart pointer.
+				InitCounter();
+			}
+		}
+
+		/**
+		 * Provides a way to reconstruct strong pointer from weak one.
+		 */
+		Strong & operator = ( const Weak< T > & rhs )
+		{
+			if ( p_ != rhs.p_ )
+			{
+				Strong temp( rhs );
+				temp.Swap( *this );
+			}
+			return *this;
+		}	
+
 	// Initialization tools
 	private:
 
@@ -199,10 +257,10 @@ namespace MinCOM
 			 */
 			typename T1
 		>
-		void InitStrong( const Strong< T1 > & rhs ) 
+		void InitStrong( Strong< T1 > & rhs ) 
 		{
 			// Check whether input parameter is correct.
-			if ( NULL != rhs )
+			if ( rhs )
 			{
 				// Try to cast pointer to the type of current pointer.
 				T * p = rhs.p_->Cast< T >();
@@ -334,7 +392,7 @@ namespace MinCOM
 			return !( rhs.Equals( p_ ) );
 		}
 
-		// Enables "if ( !sp ) ..."
+		// Enables 'if ( !sp ) ...'
 		inline bool operator ! () const 
 		{
 			return ( 0 == p_ );
@@ -343,7 +401,7 @@ namespace MinCOM
 	// Tricks
 	private:
 
-		// Helper for enabling 'if (sp)'
+		// Helper for enabling 'if ( sp )'
 		struct Tester
 		{
 			Tester(int) {}
@@ -352,12 +410,9 @@ namespace MinCOM
 
 		typedef void (Tester::*unspecified_boolean_type)();
 
-		// typedef typename Loki::Select< false, Tester, unspecified_boolean_type_ >::Result
-		// 	unspecified_boolean_type;
-
 	public:
 
-		// Enables 'if (sp)'
+		// Enables 'if ( sp )'
 		operator unspecified_boolean_type() const
 		{
 			return !*this ? 0 : &Tester::dummy;
@@ -403,6 +458,11 @@ namespace MinCOM
 
 	// Data members
 	private:
+
+		// Establish friendship between all specializations of Strong to allow
+		// casting between different pointers.
+		template< class Y > friend class Strong;
+		template< class Y > friend class Weak;
 
 		/** Pointer to contained object. */
 		T * p_;
