@@ -13,7 +13,7 @@
 bool Test4()
 {
 	// 
-	mc::Strong< mc::ICommon > ptr1( mc::ObjectCreator< Test >() );
+	mc::Strong< mc::ICommon > ptr1( mc::Object< Test >::Create() );
 	assert( NULL != ptr1 );
 	
 	mc::Weak< mc::ICommon > weak1;

@@ -13,7 +13,7 @@
 bool Test3()
 {
 	// 
-	mc::Strong< mc::ICommon > ptr1( mc::ObjectCreator< Test >() );
+	mc::Strong< mc::ICommon > ptr1( mc::Object< Test >::Create() );
 	assert( NULL != ptr1 );
 
 	mc::Strong< ITest1 > test1( ptr1 );
@@ -22,7 +22,7 @@ bool Test3()
 	test1->DoStuff1();
 	
 	// 
-	mc::Strong< mc::ICommon > ptr2( mc::ObjectCreator< Test >() );
+	mc::Strong< mc::ICommon > ptr2( mc::Object< Test >::Create() );
 	assert( NULL != ptr2 );
 
 	mc::Strong< ITest1 > test2( ptr2 );

@@ -5,10 +5,6 @@ interface ITest1 : public mc::ICommon
 {
 public:
 
-	typedef mc::ComPtr< ITest1 > Ptr_;
-
-public:
-
 	virtual void DoStuff1() = 0;
 
 };
@@ -17,24 +13,12 @@ interface ITest2 : public mc::ICommon
 {
 public:
 
-	typedef mc::ComPtr< ITest2 > Ptr_;
-
-	typedef mc::ComPtr< ITest2, false > Weak_;
-
-public:
-
 	virtual void DoStuff2() = 0;
 
 };
 
 interface ITest3 : public mc::ICommon
 {
-public:
-
-	typedef mc::ComPtr< ITest3 > Ptr_;
-
-	typedef mc::ComPtr< ITest3, false > Weak_;
-
 public:
 
 	virtual void DoStuff3() = 0;

@@ -11,7 +11,7 @@
 #include <iostream>
 
 // TODO: reference additional headers your program requires here
-#include <CommonKit/MinCOM.h>
+#include <MinCOM/MinCOM.h>
 
 
 // #include <vector>
