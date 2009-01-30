@@ -29,50 +29,12 @@ namespace mc = MinCOM;
 #include "MinCOM/Pointers/BinaryOperators.h"
 #include "MinCOM/Pointers/StdExtensions.h"
 
-// Guids api
-//////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Guids/Guid.h"
-
-// Error codes and processing tools
-//////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Errors/Codes.h"
-// #include "MinCOM/Errors/Tools.h"
-
-
-// COM pointers support (with strong/weak dependencies)
-//	Based on Loki library code
-//////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Pointers/Counter.h"
-
-// #include "MinCOM/Pointers/TwoRefCounts.h"
-// #include "MinCOM/Pointers/StrongPtr.h"
-// #include "MinCOM/Pointers/ComPtr.h"
-
-
-
-// Most common declarations
-//////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Common/Common.h"
-// #include "MinCOM/Common/Strings.h"
-
-
-
-
-// Macros and helpers
-//////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Macros/OM.h"
-
-
 // Core interfaces
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Common/ICommon.h"
 // #include "MinCOM/Model/ToolsContainer.h"
-// #include "MinCOM/Interfaces/IItem.h"
-// #include "MinCOM/Interfaces/IServiceProvider.h"
 #include "MinCOM/Common/CommonImpl.h"
 #include "MinCOM/Common/Object.h"
-// #include "MinCOM/Model/ItemImpl.h"
-
 
 // Factory support
 //////////////////////////////////////////////////////////////////////////
@@ -80,34 +42,17 @@ namespace mc = MinCOM;
 // #include "MinCOM/Factory/Holder.h"
 // #include "MinCOM/Factory/Tools.h"
 
-
-// Container client library
-//////////////////////////////////////////////////////////////////////////
-// #include "ContainerClient.h"
-
-
 // Variant support for dispatching
 //////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Variant/CommonVariant.h"
-// #include "MinCOM/Variant/WrapperT.h"
-// #include "MinCOM/Variant/DispTypes.h"
+#include "MinCOM/Variant/CommonVariant.h"
+#include "MinCOM/Variant/WrapperT.h"
 
-// #include "MinCOM/Interfaces/ITypeInfo.h"
-// #include "MinCOM/Interfaces/IAgent.h"
-// #include "MinCOM/Model/AgentTImpl.h"
-// #include "MinCOM/Model/AgentImpl.h"
-
-
-// PS support
+// Events dispatching, marshaling 
 //////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Interfaces/IPtoxyStub.h"
-// #include "MinCOM/Model/ProxyStubImpl.h"
-
-
-// Agents declaration
-//////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Agents/Agents.h"
-
+#include "MinCOM/Events/Interfaces/IAccessPoint.h"
+#include "MinCOM/Events/Interfaces/IAccessProvider.h"
+#include "MinCOM/Events/Impl/AccessPointImpl.h"
+#include "MinCOM/Events/Impl/AccessProviderImpl.h"
 
 // Simple factory 
 //////////////////////////////////////////////////////////////////////////

@@ -93,6 +93,15 @@ namespace MinCOM
 			return CommonInternals::self_;
 		}
 
+		virtual result Invoke(
+			DispId /* idMember */ = AGENTID_DEFAULT/* , 
+			DispParamsRef dispParams = NULL,
+			IVariantWrapperRef result = NULL */,
+			RefIid /* iid */ = TypeInfo< ICommon >::GetGuid())
+		{
+			return _S_OK;
+		}
+
 		// IReferenceCounter section
 		virtual long IncrementReference()
 		{

@@ -16,6 +16,11 @@ const mc::Guid mc::TypeInfo< ITest1 >::iid_ =
 
 int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 {
+
+	size_t t = sizeof(mc::Variant);
+	std::cout << t << std::endl;
+
+
 	Test1();
 	Test2();
 	Test3();

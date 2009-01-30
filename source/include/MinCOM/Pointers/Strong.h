@@ -270,7 +270,7 @@ namespace MinCOM
 			 */
 			typename T1
 		>
-		void Init( Strong< T1 > & rhs ) 
+		void Init( const Strong< T1 > & rhs ) 
 		{
 			// Initialization success flag.
 			bool isInitied = false;

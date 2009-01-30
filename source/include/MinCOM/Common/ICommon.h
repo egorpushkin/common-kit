@@ -14,6 +14,12 @@
 namespace MinCOM
 {
 
+	typedef enum tagAgentIds
+	{
+		AGENTID_DEFAULT = 0x00000001
+	} 
+	AgentIds;
+
 	/**
 	 * 
 	 */
@@ -56,6 +62,15 @@ namespace MinCOM
 		 */
 		virtual Strong< ICommon > GetSelf() = 0;
 
+		/**
+		 * Provides basic support for dispatching.
+		 */
+		virtual result Invoke(
+			DispId idMember = AGENTID_DEFAULT/* , 
+			DispParamsRef dispParams = NULL,
+			IVariantWrapperRef result = NULL */,
+			RefIid iid = TypeInfo< ICommon >::GetGuid()) = 0;
+
 	protected:
 
 		virtual ~ICommon()
@@ -68,6 +83,8 @@ namespace MinCOM
 	typedef Strong< ICommon > ICommonPtr;
 	/**	. */
 	typedef const ICommonPtr& ICommonRef;
+	/**	. */
+	typedef Weak< ICommon > ICommonWeak;
 
 }
 

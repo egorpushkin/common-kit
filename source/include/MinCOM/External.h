@@ -47,9 +47,10 @@
 // Enable internal synchronization support.
 #define LOKI_OBJECT_LEVEL_THREADING
 
-#include "../../../sdk/include/loki/RefToValue.h"
-#include "../../../sdk/include/loki/TypeManip.h"
-#include "../../../sdk/include/loki/Singleton.h"
+#include "../../../sdk/include/loki/SmartPtr.h"
+// #include "../../../sdk/include/loki/RefToValue.h"
+// #include "../../../sdk/include/loki/TypeManip.h"
+// #include "../../../sdk/include/loki/Singleton.h"
 
 #ifdef _MSC_VER
 #pragma warning( pop ) 

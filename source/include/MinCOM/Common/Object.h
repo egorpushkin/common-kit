@@ -34,25 +34,53 @@ namespace MinCOM
 
 		static Strong<ICommon> Create() 
 		{ 
-			return PostInit(Strong<ICommon>(new T())); 
+			try
+			{
+				return PostInit(Strong<ICommon>(new T())); 
+			}
+			catch ( ... )
+			{
+				return NULL;
+			}
 		}	
 
 		template< class T1 > 
 		static Strong<ICommon> Create(T1 p1) 
 		{ 
-			return PostInit(Strong<ICommon>(new T(p1))); 
+			try
+			{
+				return PostInit(Strong<ICommon>(new T(p1))); 
+			}
+			catch ( ... )
+			{
+				return NULL;
+			}
 		}	
 
 		template< class T1, class T2 > 
 		static Strong<ICommon> Create(T1 p1, T2 p2) 
 		{ 
-			return PostInit(Strong<ICommon>(new T(p1, p2))); 
+			try
+			{
+				return PostInit(Strong<ICommon>(new T(p1, p2))); 
+			}
+			catch ( ... )
+			{
+				return NULL;
+			}
 		}	
 
 		template< class T1, class T2, class T3 > 
 		static Strong<ICommon> Create(T1 p1, T2 p2, T3 p3) 
 		{ 
-			return PostInit(Strong<ICommon>(new T(p1, p2, p3))); 
+			try
+			{
+				return PostInit(Strong<ICommon>(new T(p1, p2, p3))); 
+			}
+			catch ( ... )
+			{
+				return NULL;
+			}
 		}	
 
 	private:

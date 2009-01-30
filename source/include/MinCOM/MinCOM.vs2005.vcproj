@@ -212,6 +212,50 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Interfaces"
+				>
+				<File
+					RelativePath=".\Concurrency\Interfaces\IEvent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\IJobsQueue.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\IMultiSynchro.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\IMutex.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\IRunnable.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\ISemaphore.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\ISynchro.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\ISynchroHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\IThread.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\ITimer.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Pointers"
@@ -234,6 +278,46 @@
 			</File>
 			<File
 				RelativePath=".\Pointers\Weak.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Events"
+			>
+			<Filter
+				Name="Interfaces"
+				>
+				<File
+					RelativePath=".\Events\Interfaces\IAccessPoint.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Events\Interfaces\IAccessProvider.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Impl"
+				>
+				<File
+					RelativePath=".\Events\Impl\AccessPointImpl.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Events\Impl\AccessProviderImpl.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Variant"
+			>
+			<File
+				RelativePath=".\Variant\CommonVariant.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Variant\WrapperT.h"
 				>
 			</File>
 		</Filter>

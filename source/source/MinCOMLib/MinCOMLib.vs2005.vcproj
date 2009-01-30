@@ -309,6 +309,30 @@
 				</FileConfiguration>
 			</File>
 		</Filter>
+		<Filter
+			Name="Events"
+			>
+			<File
+				RelativePath=".\Events\AccessPointImpl.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Events\AccessProviderImpl.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Variant"
+			>
+			<File
+				RelativePath=".\Variant\Accessors.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Variant\Constructors.cpp"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

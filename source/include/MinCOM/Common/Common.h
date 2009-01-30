@@ -1,3 +1,13 @@
+/*
+ * File name   : Common.h
+ *
+ * Copyright (c) 2008 Scientific Software
+ *
+ * Modification History:
+ * Date        Name                Description
+ * 2008-12-14  Egor Pushkin        Initial version
+ */
+
 #ifndef COMMON_H__MINCOM__NCLUDED_
 #define COMMON_H__MINCOM__NCLUDED_
 
@@ -10,7 +20,10 @@ namespace MinCOM
 #endif
 
 	/** . */
-	typedef void* handle;
+	typedef void* Handle;
+
+	/** . */
+	typedef long DispId;
 
 	/**
 	 * Class to associate particular interface or class with iid at
