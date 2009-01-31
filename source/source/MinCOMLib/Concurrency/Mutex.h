@@ -1,45 +1,43 @@
-#ifndef MUTEX_H__MINCOM__CORELIB__INCLUDED_
-#define MUTEX_H__MINCOM__CORELIB__INCLUDED_
+#ifndef MUTEX_H__MINCOM__INCLUDED_
+#define MUTEX_H__MINCOM__INCLUDED_
 
 namespace MinCOM
 {
 
-	class MutexImpl;	
-
-	typedef Loki::SmartPtr< MutexImpl > MutexImplPtr;
-
 	class Mutex 
 		: public CommonImpl< IMutex >
-		, public CommonImpl< ISynchroHandle >
 	{
 	public:
 
 		Mutex();
-
-		// ICommon section
-		DECLARE_INTERFACE_MAP()		
+		virtual ~Mutex();
 
 		// IMutex section
-		virtual result Enter(unsigned long milliseconds = _INFINITE);
+		virtual result Create(bool obtain = false) = 0;
 
-		virtual result Leave();
+		virtual result Create(std::string name, bool obtain = false) = 0;
+
+		virtual result Open(std::string name) = 0;
+
+		virtual result Close() = 0;
+
+		virtual result Release() = 0;
 
 		// ISynchro section
-		virtual result Wait(unsigned long milliseconds = _INFINITE);
-
-		virtual result Signal();
-
-		virtual result Reset();
-
-		// ISynchroHandle section	
-		virtual result GetHandle(handle* pHandle);
+		virtual result Wait(unsigned long delay = _INFINITE);
 
 	private:
 
-		MutexImplPtr mutexImpl_;
+#ifdef WIN32
+		/** Handle for win32 environments. */
+		HANDLE mutex_;
+#elif POSIX
+		/** Handle for posix environments. */
+		
+#endif
 		
 	};
 
 }
 
-#endif // !MUTEX_H__MINCOM__CORELIB__INCLUDED_
+#endif // !MUTEX_H__MINCOM__INCLUDED_

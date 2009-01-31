@@ -125,6 +125,8 @@ namespace MinCOM
 		_E_INVALIDARG           = ((result)0x80070057L), 
 		_E_NOINTERFACE          = ((result)0x80004002L),
 		_E_NOTIMPL              = ((result)0x80004001L), 
+		_E_NOTINIT              = ((result)0x80004002L), 
+		_E_ALREADYINIT          = ((result)0x80004003L), 
 		_E_OUTOFMEMORY          = ((result)0x8007000EL),
 		_E_PENDING              = ((result)0x8000000AL), 
 		_E_POINTER              = ((result)0x80004003L), 

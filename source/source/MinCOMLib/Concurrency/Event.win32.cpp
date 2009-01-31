@@ -2,116 +2,84 @@
 
 #include "Event.h"
 
-#include "CommonKit/Platform.h"
+#include "Platforms/win32/Locale.win32.h"
+#include "Platforms/win32/Concurrent.win32.h"
 
 namespace MinCOM
 {
 
-	class Event::EventImpl_
-	{
-		
-		friend class Event;
-
-	public:
-
-		EventImpl_()
-			: event_(::CreateEvent(NULL, TRUE, FALSE, NULL))
-		{
-		}
-		
-		~EventImpl_()
-		{
-			if ( event_ )
-				::CloseHandle(event_);
-		}
-
-		void Set()
-		{		
-			::SetEvent(event_);
-		}
-
-		void Reset()
-		{
-			::ResetEvent(event_);
-		}
-
-		result Wait(unsigned long milliseconds)
-		{		
-			unsigned long waitResult = ::WaitForSingleObject(event_, milliseconds);
-			
-			if ( waitResult == WAIT_ABANDONED || waitResult == WAIT_FAILED )
-				return _E_FAIL;
-
-			if ( waitResult == WAIT_TIMEOUT )
-				return _S_FALSE;
-			
-			// waitResult == WAIT_OBJECT_0
-			return _S_OK;
-		}
-
-		void Pulse()
-		{
-			::PulseEvent(event_);
-		}
-	
-	private:
-
-		HANDLE event_;
-
-	};
-
 	Event::Event()
 		: CommonImpl< IEvent >()
-		, CommonImpl< ISynchroHandle >()
-		, eventImpl_(new EventImpl_)
+		, event_(NULL)
 	{
 	}
 
 	Event::~Event()
 	{
+		if ( event_ )
+			::CloseHandle(event_);
 	}
 
-	// ICommon section
-	BEGIN_INTERFACE_MAP(Event)
-		COMMON(IEvent)
-		INTERFACE_(IEvent, IID_IEvent)
-		INTERFACE__(IEvent, ISynchro, IID_ISynchro)
-		INTERFACE_(ISynchroHandle, IID_ISynchroHandle)
-	END_INTERFACE_MAP()	
-
 	// IEvent section
-	result Event::Pulse()
+	result Event::Create(bool manualReset /* = true */, bool initialState /* = false */)
 	{
-		eventImpl_->Pulse();
-	
+		if ( event_ )
+			return _E_ALREADYINIT;
+		event_ = ::CreateEvent(NULL, manualReset, initialState, NULL);
+		return ( event_ ) ? ( _S_OK ) : ( _E_FAIL );
+	}
+
+	result Event::Create(std::string name, bool manualReset /* = true */, bool initialState /* = false */)
+	{
+		if ( event_ )
+			return _E_ALREADYINIT;
+		event_ = ::CreateEvent(NULL, manualReset, initialState, LocaleWin32::A2W(name).c_str());
+		return ( event_ ) ? ( _S_OK ) : ( _E_FAIL );
+	}
+
+	result Event::Open(std::string name)
+	{
+		if ( event_ )
+			return _E_ALREADYINIT;
+		event_ = ::OpenEvent(EVENT_ALL_ACCESS, TRUE, LocaleWin32::A2W(name).c_str());
+		return ( event_ ) ? ( _S_OK ) : ( _E_FAIL );
+	}
+
+	result Event::Close()
+	{
+		if ( !event_ )
+			return _E_NOTINIT;
+		::CloseHandle(event_);
+		event_ = NULL;
 		return _S_OK;
 	}
 
-	// ISynchro section
-	result Event::Wait(unsigned long milliseconds /* = INFINITE */)
+	result Event::Pulse()
 	{
-		return eventImpl_->Wait(milliseconds);
+		if ( !event_ )
+			return _E_NOTINIT;
+		::PulseEvent(event_);
+		return _S_OK;
 	}
 
-	result Event::Signal()
+	result Event::Set()
 	{
-		eventImpl_->Set();
-
+		if ( !event_ )
+			return _E_NOTINIT;
+		::SetEvent(event_);
 		return _S_OK;
 	}
 
 	result Event::Reset()
 	{
-		eventImpl_->Reset();
-
+		::ResetEvent(event_);
 		return _S_OK;
 	}
 
-	// ISynchroHandle section	
-	result Event::GetHandle(handle* pHandle)
+	// ISynchro section
+	result Event::Wait(unsigned long delay /* = _INFINITE */)
 	{
-		*pHandle = eventImpl_->event_;
-		return _S_OK;
+		return ConcurrentWin32::Wait(event_, delay);
 	}
 
 }

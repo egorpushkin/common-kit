@@ -14,26 +14,21 @@
 namespace MinCOM
 {
 
-	typedef enum tagWaitDelay
-	{
-
-		_INFINITE = 0xFFFFFFFF
-
-	} tagWaitDelay;
-
 	interface ISynchro : public ICommon
 	{
 
-		virtual result Wait(unsigned long milliseconds = _INFINITE) = 0;
+		typedef enum tagConsts
+		{
+
+			_INFINITE = 0xFFFFFFFF
+
+		} Consts;
+
+		virtual result Wait(unsigned long delay = _INFINITE) = 0;
 	};
 
-	typedef ComPtr< ISynchro > ISynchroPtr;
-	typedef ComPtr< ISynchro, false > ISynchroWeak;
-
+	typedef Strong< ISynchro > ISynchroPtr;
 	typedef const ISynchroPtr& ISynchroRef;
-	typedef const ISynchroWeak& ISynchroWeakRef;
-
-
 
 }
 

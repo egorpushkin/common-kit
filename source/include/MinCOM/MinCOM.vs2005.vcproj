@@ -244,10 +244,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Concurrency\Interfaces\ISynchroHandle.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Concurrency\Interfaces\IThread.h"
 					>
 				</File>
@@ -318,6 +314,18 @@
 			</File>
 			<File
 				RelativePath=".\Variant\WrapperT.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Commands"
+			>
+			<File
+				RelativePath=".\Commands\ICommand.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Commands\ICommands.h"
 				>
 			</File>
 		</Filter>

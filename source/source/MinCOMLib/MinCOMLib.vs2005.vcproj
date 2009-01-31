@@ -333,6 +333,62 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Concurrency"
+			>
+			<File
+				RelativePath=".\Concurrency\Event.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Concurrency\Event.win32.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Concurrency\Mutex.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Concurrency\Mutex.win32.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Platforms"
+			>
+			<Filter
+				Name="win32"
+				>
+				<File
+					RelativePath=".\Platforms\win32\Concurrent.win32.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Platforms\win32\Concurrent.win32.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Platforms\win32\Locale.win32.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Platforms\win32\Locale.win32.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Commands"
+			>
+			<File
+				RelativePath=".\Commands\Commands.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Commands\Commands.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

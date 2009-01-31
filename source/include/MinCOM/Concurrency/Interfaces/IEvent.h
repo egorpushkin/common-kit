@@ -23,7 +23,7 @@ namespace MinCOM
 
 		virtual result Open(std::string name) = 0;
 
-		virtual result Open(std::string name) = 0;
+		virtual result Close() = 0;
 
 		virtual result Pulse() = 0;
 

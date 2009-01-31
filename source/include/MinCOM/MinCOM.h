@@ -62,18 +62,15 @@ namespace mc = MinCOM;
 
 // Commands engine
 //////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Interfaces/ICommand.h"
-// #include "MinCOM/Interfaces/ICommands.h"
+#include "MinCOM/Commands/ICommand.h"
+#include "MinCOM/Commands/ICommands.h"
 // #include "MinCOM/Model/CommandImpl.h"
 
-
-// Threading support
+// Basic support for concurrency
 //////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Interfaces/ISynchro.h"
-// #include "MinCOM/Interfaces/IMultiSynchro.h"
-// #include "MinCOM/Interfaces/ISynchroHandle.h"
-// #include "MinCOM/Interfaces/IEvent.h"
-// #include "MinCOM/Interfaces/IMutex.h"
+#include "MinCOM/Concurrency/Interfaces/ISynchro.h"
+#include "MinCOM/Concurrency/Interfaces/IEvent.h"
+#include "MinCOM/Concurrency/Interfaces/IMutex.h"
 // #include "MinCOM/Interfaces/ISemaphore.h"
 // #include "MinCOM/Interfaces/IThread.h"
 // #include "MinCOM/Helpers/Threading.h"
