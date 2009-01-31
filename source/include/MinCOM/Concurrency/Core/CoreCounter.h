@@ -1,12 +1,12 @@
 /*
-* File name   : CoreMutex.h
-* 
-* Copyright (c) 2008 Scientific Software 
-*
-* Modification History:
-* Date        Name                Description
-* 2008-12-29  Egor Pushkin        Initial version
-*/
+ * File name   : CoreMutex.h
+ * 
+ * Copyright (c) 2008 Scientific Software 
+ *
+ * Modification History:
+ * Date        Name                Description
+ * 2008-12-29  Egor Pushkin        Initial version
+ */
 
 #ifndef CORECOUNTER_H__MINCOM__INCLUDED_
 #define CORECOUNTER_H__MINCOM__INCLUDED_
