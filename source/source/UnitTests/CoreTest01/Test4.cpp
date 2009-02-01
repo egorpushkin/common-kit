@@ -10,10 +10,28 @@
 
 #include "stdafx.h"
 
+class Test 
+	: public mc::CommonImpl< ICommandEvents >
+{
+public:
+
+	// ICommandEvents section
+	virtual result ModifiedChanged(bool modified)
+	{
+
+	
+		return _S_OK;
+	}
+
+
+protected:
+private:
+};
+
 bool Test4()
 {
 	// 
-	mc::Strong< mc::ICommon > ptr1( mc::Object< Test >::Create() );
+/*	mc::Strong< mc::ICommon > ptr1( mc::Class< Test >::Create() );
 	assert( NULL != ptr1 );
 	
 	mc::Weak< mc::ICommon > weak1;
@@ -29,7 +47,9 @@ bool Test4()
 	if ( NULL != weak2 ) {}
 	if ( NULL == weak2 ) {}
 	if ( weak2 == NULL ) {}
-	if ( weak2 != NULL ) {}
+	if ( weak2 != NULL ) {} */
+
+	mc::ICommandsPtr commands();
 
 
 

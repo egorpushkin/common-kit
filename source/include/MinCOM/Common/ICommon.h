@@ -14,12 +14,6 @@
 namespace MinCOM
 {
 
-	typedef enum tagAgentIds
-	{
-		AGENTID_DEFAULT = 0x00000001
-	} 
-	AgentIds;
-
 	/**
 	 * 
 	 */
@@ -63,13 +57,28 @@ namespace MinCOM
 		virtual Strong< ICommon > GetSelf() = 0;
 
 		/**
-		 * Provides basic support for dispatching.
+		 * Tool to perform required initializations.
+		 * Several actions cannot be performed in constructor.
 		 */
-		virtual result Invoke(
-			DispId idMember = AGENTID_DEFAULT/* , 
-			DispParamsRef dispParams = NULL,
-			IVariantWrapperRef result = NULL */,
-			RefIid iid = TypeInfo< ICommon >::GetGuid()) = 0;
+		virtual result PostInit() = 0;
+
+		/**
+		 * Allows user to speficy helper object so current one has a chance to 
+		 * delegate certain set of its operations. Provides basic support for 
+		 * proxy/stub mechanism.
+		 */
+		virtual result SetTarget(const Strong< ICommon >& target, bool strong = true) = 0;
+
+		/**
+		 * Provides caller with the target which is currently attached.
+		 */
+		virtual Strong< ICommon > GetTarget() = 0;
+
+		/**
+		 * Allows user to make a call in raw manner. Provides basic support for 
+		 * events dispatching and remoting.
+		 */
+		virtual result Invoke(const CallData& call) = 0;
 
 	protected:
 

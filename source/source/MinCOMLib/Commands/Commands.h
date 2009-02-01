@@ -6,11 +6,14 @@ namespace MinCOM
 
 	class Commands
 		: public CommonImpl< ICommands >
- 		, public mc::APImpl
+ 		, public APImpl
 	{
 	public:
 
 		Commands();
+
+		// ICommon section
+		virtual result PostInit();
 
 		// ICommands section
 		virtual result Undo();
@@ -33,9 +36,6 @@ namespace MinCOM
 
 		// Private tools
 		void UpdateModified();
-
-		// Event dispatchers
-		mc::result OnModifiedChanged(bool modified);
 
 	private:
 
@@ -66,6 +66,10 @@ namespace MinCOM
 		bool modified_;
 
 		int unmodifiedIndex_;
+
+		/** . */
+		ICommandEventsPtr eventsListener_;
+
 	};
 
 }

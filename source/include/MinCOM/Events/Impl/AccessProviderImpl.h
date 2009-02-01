@@ -32,10 +32,18 @@ namespace MinCOM
 
 		virtual IAccessPointPtr Find(RefIid iid);
 
+		virtual result Spread(const CallData& call);
+
 		// Public events tools
 		// static result SpreadEventCore(IAccessEntriesEnumRef entries, DispSpreader& spreader);
 
 	protected:
+
+		/**
+		 * Tool provided for convenience. Use this tool if you are not going to 
+		 * override default IAccessPoint behavior.
+		 */
+		IAccessPointPtr Advise(RefIid eventsIid);
 
 		// Protected tools
 		// IAccessPointPtr GetAccessPoint(RefIid iid = mc::IID_IAgent);

@@ -25,6 +25,21 @@ namespace MinCOM
 	/** . */
 	typedef long DispId;
 
+	/** Preliminary declaration of Variant class. */
+	class CommonVariant;
+
+	/** Array of variants. Typically used to represent arguments of a call. */
+	typedef std::vector< CommonVariant > Variants;
+
+	/**
+	 * Enumeration of most common method ids.
+	 */
+	typedef enum tagMethodIds
+	{
+		METHODID_DEFAULT = 0x00000001
+	} 
+	AgentIds;
+
 	/**
 	 * Class to associate particular interface or class with iid at
 	 * compile time. This is a part of mechanism intended to avoid  

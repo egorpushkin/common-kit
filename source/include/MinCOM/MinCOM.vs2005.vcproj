@@ -173,6 +173,14 @@
 			Name="Common"
 			>
 			<File
+				RelativePath=".\Common\CallData.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Common\Class.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Common\Common.h"
 				>
 			</File>
@@ -325,7 +333,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Commands\ICommandEvents.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Commands\ICommands.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Factory"
+			>
+			<File
+				RelativePath=".\Factory\CommonHolder.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Factory\FactoryHolder.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Factory\FactoryImpl.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Factory\IFactory.h"
 				>
 			</File>
 		</Filter>

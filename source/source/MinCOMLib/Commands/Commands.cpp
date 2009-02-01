@@ -7,7 +7,7 @@ namespace MinCOM
 
 	Commands::Commands()
 		: CommonImpl< ICommands >()
-		, mc::APImpl()
+		, APImpl()
 		, lock_()
 		, undo_()
 		, redo_()
@@ -15,10 +15,30 @@ namespace MinCOM
 		, enabled_(true)
 		, modified_(false)
 		, unmodifiedIndex_(0)
+		, eventsListener_()
 	{
 	}
 
-	// IAgent section
+	// ICommon section
+
+	/** 
+	 * Additional initialization is required. Access point should be added to
+	 * spread native ICommandEvents events. Helper object for spreading events 
+	 * (eventsListener_) should be also initialized here.
+	 */
+	result Commands::PostInit()
+	{
+		// Register additional access point for events' delivery.
+		IAccessPointPtr accessPoint = APImpl::Advise( TypeInfo< ICommandEvents >::GetGuid() );
+		// Configure events listener.
+		eventsListener_ = accessPoint->CreateSpreader();
+		// Check object for integrity.
+		if ( !eventsListener_ )
+			return _E_FAIL;
+		return _S_OK;
+	}
+
+	// ICommands section
 	result Commands::Undo()
 	{
 		CoreMutexLock locker(lock_);
@@ -153,12 +173,12 @@ namespace MinCOM
 		// Update state
 		modified_ = modified;
 
-		// Remember current position if project goes to unmodified state
+		// Remember current position if project goes to unmodified state.
 		if ( !modified_ )
 			unmodifiedIndex_ = (int)undo_.size();
 		
 		// Notify all about project modification
-		OnModifiedChanged(modified_);
+		eventsListener_->ModifiedChanged(modified);
 	}
 
 	bool Commands::IsModified()
@@ -175,18 +195,7 @@ namespace MinCOM
 		modified_ = ( unmodifiedIndex_ != (int)undo_.size() );
 		
 		if ( modified != modified_ )
-			OnModifiedChanged(modified_);
-	}
-
-	// Event dispatchers
-	mc::result Commands::OnModifiedChanged(bool modified)
-	{
-		/* return mc::APImpl::SpreadBase(
-			AGENTID_MODIFIEDCHANGED, 
-			CreateParams(
-				modified)); */
-		// TODO: 
-		return _E_NOTIMPL;
+			eventsListener_->ModifiedChanged(modified);
 	}
 
 }

@@ -25,6 +25,8 @@ namespace MinCOM
 	interface IAccessPoint : public ICommon
 	{
 
+		virtual IAccessProviderPtr GetAccessProvider() = 0;
+
 		virtual Iid GetIid() = 0;
 
 		virtual result Advise(ICommonRef sink, unsigned long& cookie) = 0;
@@ -32,6 +34,10 @@ namespace MinCOM
 		virtual result Unadvise(unsigned long cookie) = 0;
 
 		virtual ICommonPtr Find(unsigned long cookie) = 0;
+
+		virtual ICommonPtr CreateSpreader() = 0;
+
+		virtual result Spread(const CallData& call) = 0;
 	};
 
 	// Smart pointers

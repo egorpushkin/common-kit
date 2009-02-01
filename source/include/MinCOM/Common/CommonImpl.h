@@ -28,6 +28,8 @@ namespace MinCOM
 			CommonInternals()
 				: numRef_(0)
 				, self_()
+				, targetS_()
+				, targetW_()
 			{
 			}
 
@@ -38,6 +40,12 @@ namespace MinCOM
 
 			/** . */
 			Weak< ICommon > self_;
+
+			/** . */
+			Weak< ICommon > targetS_;
+
+			/** . */
+			Weak< ICommon > targetW_;
 
 		};
 
@@ -57,14 +65,14 @@ namespace MinCOM
 
 	protected:
 
+		virtual ~CommonImpl() {}
+
+	public:
+
 		CommonImpl()
 			: CommonInternals()
 		{
 		}
-
-		virtual ~CommonImpl() {}
-
-	public:
 
 		// ICommon section
 		//////////////////////////////////////////////////////////////////////////
@@ -77,29 +85,45 @@ namespace MinCOM
 			return NULL;
 		}
 
-		/**
-		 * 
-		 */
 		virtual void SetSelf(const Strong< ICommon > & self)
 		{
 			CommonInternals::self_ = self;
 		}
 
-		/**
-		 * 
-		 */
 		virtual Strong< ICommon > GetSelf()
 		{
 			return CommonInternals::self_;
 		}
 
-		virtual result Invoke(
-			DispId /* idMember */ = AGENTID_DEFAULT/* , 
-			DispParamsRef dispParams = NULL,
-			IVariantWrapperRef result = NULL */,
-			RefIid /* iid */ = TypeInfo< ICommon >::GetGuid())
+		virtual result PostInit()
 		{
 			return _S_OK;
+		}
+
+		virtual result SetTarget(const Strong< ICommon >& target, bool strong = true)
+		{
+			if ( strong )
+				CommonInternals::targetS_ = target;
+			else
+				CommonInternals::targetW_ = target;
+			return _S_OK;
+		}
+
+		virtual Strong< ICommon > GetTarget()
+		{
+			if ( CommonInternals::targetS_ )
+				return CommonInternals::targetS_;
+			else if ( CommonInternals::targetW_ )
+				return CommonInternals::targetW_;
+			return NULL;
+		}
+
+		virtual result Invoke(const CallData& callData)
+		{
+			ICommonPtr target(GetTarget());
+			if ( target )
+				return target->Invoke(callData);
+			return _E_NOTINIT;
 		}
 
 		// IReferenceCounter section

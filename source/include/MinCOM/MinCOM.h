@@ -29,18 +29,21 @@ namespace mc = MinCOM;
 #include "MinCOM/Pointers/BinaryOperators.h"
 #include "MinCOM/Pointers/StdExtensions.h"
 
-// Core interfaces
+// Core object model support
 //////////////////////////////////////////////////////////////////////////
+#include "MinCOM/Common/CallData.h"
 #include "MinCOM/Common/ICommon.h"
 // #include "MinCOM/Model/ToolsContainer.h"
 #include "MinCOM/Common/CommonImpl.h"
+#include "MinCOM/Common/Class.h"
 #include "MinCOM/Common/Object.h"
 
 // Factory support
 //////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Factory/Factory.h"
-// #include "MinCOM/Factory/Holder.h"
-// #include "MinCOM/Factory/Tools.h"
+#include "MinCOM/Factory/IFactory.h"
+#include "MinCOM/Factory/FactoryImpl.h"
+#include "MinCOM/Factory/CommonHolder.h"
+#include "MinCOM/Factory/FactoryHolder.h"
 
 // Variant support for dispatching
 //////////////////////////////////////////////////////////////////////////
@@ -54,16 +57,11 @@ namespace mc = MinCOM;
 #include "MinCOM/Events/Impl/AccessPointImpl.h"
 #include "MinCOM/Events/Impl/AccessProviderImpl.h"
 
-// Simple factory 
-//////////////////////////////////////////////////////////////////////////
-// #include "MinCOM/Interfaces/IFactory.h"
-// #include "MinCOM/Model/FactoryImpl.h"
-
-
 // Commands engine
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Commands/ICommand.h"
 #include "MinCOM/Commands/ICommands.h"
+#include "MinCOM/Commands/ICommandEvents.h"
 // #include "MinCOM/Model/CommandImpl.h"
 
 // Basic support for concurrency

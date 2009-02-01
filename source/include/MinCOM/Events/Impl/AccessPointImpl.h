@@ -23,12 +23,12 @@ namespace MinCOM
 
 	public:
 
-		AccessPointImpl(RefGuid iid);
+		AccessPointImpl(IAccessProviderRef accessProvider, RefGuid iid);
 
 		// IAccessPoint section
-		virtual Iid GetIid();
-
 		virtual IAccessProviderPtr GetAccessProvider();
+
+		virtual Iid GetIid();
 
 		virtual result Advise(ICommonRef sink, unsigned long& cookie);
 
@@ -36,9 +36,19 @@ namespace MinCOM
 
 		virtual ICommonPtr Find(unsigned long cookie);
 
+		virtual ICommonPtr CreateSpreader();
+
+		virtual result Spread(const CallData& call);
+
+	protected:
+
+		result NotifySinkOnEvent(ICommonRef sink, const CallData& call);
+
 	private:
 
 		CoreMutex lock_;
+
+		IAccessProviderWeak accessProvider_;
 
 		Guid iid_;
 

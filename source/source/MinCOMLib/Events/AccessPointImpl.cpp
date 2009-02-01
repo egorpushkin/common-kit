@@ -1,10 +1,15 @@
 #include "Common/Common.h"
 
+#include "EventsSpreader.h"
+
+// TODO: Find stub at the stage of advising sink.
+
 namespace MinCOM
 {
 
-	AccessPointImpl::AccessPointImpl(RefGuid iid)
+	AccessPointImpl::AccessPointImpl(IAccessProviderRef accessProvider, RefGuid iid)
 		: CommonImpl< IAccessPoint >()
+		, accessProvider_(accessProvider)
 		, lock_()
 		, iid_(iid)
 		, accessEntries_()
@@ -12,6 +17,11 @@ namespace MinCOM
 	}
 
 	// IAccessPoint section
+	IAccessProviderPtr AccessPointImpl::GetAccessProvider()
+	{
+		return accessProvider_;
+	}
+
 	Iid AccessPointImpl::GetIid()
 	{
 		return iid_;
@@ -67,6 +77,38 @@ namespace MinCOM
 			return NULL;
 		// Sink is found. Provide caller with found sink.
 		return (*iter).second;
+	}
+
+	ICommonPtr AccessPointImpl::CreateSpreader()
+	{
+		return Class< EventsSpreader >::Create(GetAccessProvider());
+	}
+
+	result AccessPointImpl::Spread(const CallData& call)
+	{
+		CoreMutexLock locker(lock_);
+
+		// Walk throung the entire list of sinks and notify each of them on the event.
+		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter )
+		{
+			if ( Error::IsFailed(NotifySinkOnEvent((*iter).second, call)) )
+				return _E_FAIL;
+		}
+		return _S_OK;
+	}
+
+	// Protecetd tools
+	result AccessPointImpl::NotifySinkOnEvent(ICommonRef sink, const CallData& call)
+	{
+		// Create appropriate stub.
+		ICommonPtr stub(Object::CreateStub(iid_, sink, false));
+		if ( !stub )
+		{
+			// Invoke methon directly.
+			return sink->Invoke(call);
+		}
+		// Translate method with stub.
+		return stub->Invoke(call);
 	}
 
 }

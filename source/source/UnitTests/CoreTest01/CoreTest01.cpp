@@ -17,9 +17,13 @@ const mc::Guid mc::TypeInfo< ITest1 >::iid_ =
 int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 {
 
-	size_t t = sizeof(mc::Variant);
-	std::cout << t << std::endl;
+	//size_t t = sizeof(mc::Variant);
+	//std::cout << t << std::endl;
 
+	{
+		mc::ICommonPtr cmdEventsStub = mc::FactoryHolder::Instance()->Create( mc::TypeInfo< mc::ICommandEvents >::GetGuid() );
+		Loki::DeletableSingleton< mc::FactoryHolder >::GracefulDelete();
+	}
 
 	Test1();
 	Test2();

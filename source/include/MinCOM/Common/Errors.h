@@ -68,24 +68,24 @@ namespace MinCOM
 	{
 	public:
 
-		result MakeResult(result severity, result facility, result code);
+		static result MakeResult(result severity, result facility, result code);
 		
-		result ResultCode(result status); 
+		static result ResultCode(result status); 
 			// ((status) & 0xFFFF)
 		
-		result ResultFacility(result status); 
+		static result ResultFacility(result status); 
 			// (((status) >> 16) & 0xff)
 		
-		result ResultSeverity(result status); 
+		static result ResultSeverity(result status); 
 			// (((status) >> 31) & 0x1)
 		
-		bool IsError(result status); 
+		static bool IsError(result status); 
 			// ((unsigned long)(status) >> 31 == SEVERITY_ERROR)
 		
-		bool IsSucceeded(result status);
+		static bool IsSucceeded(result status);
 			// ((long)(status) >= 0)
 
-		bool IsFailed(result status);
+		static bool IsFailed(result status);
 			// ((long)(Status) < 0)
 
 	};

@@ -66,7 +66,7 @@ namespace MinCOM
 	private:
 
 		// Establish friendship with creators.
-		template< class Y > friend class Object;
+		template< class Y > friend class Class;
 
 		/**
 		 * Provides a way to init smart pointer with raw pointer to object.

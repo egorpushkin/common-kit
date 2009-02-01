@@ -68,7 +68,7 @@ namespace MinCOM
 	>
 	ICommonPtr Wrap(const T& data)
 	{
-		return Object< WrapperT< T > >::Create(data);
+		return Class< WrapperT< T > >::Create(data);
 	}
 
 	template

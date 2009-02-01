@@ -153,6 +153,10 @@
 			Name="Common"
 			>
 			<File
+				RelativePath=".\Common\CallData.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Common\Common.cpp"
 				>
 				<FileConfiguration
@@ -182,6 +186,10 @@
 			</File>
 			<File
 				RelativePath=".\Common\Guids.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Common\Object.cpp"
 				>
 			</File>
 		</Filter>
@@ -320,6 +328,14 @@
 				RelativePath=".\Events\AccessProviderImpl.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Events\EventsSpreader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Events\EventsSpreader.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Variant"
@@ -381,11 +397,31 @@
 			Name="Commands"
 			>
 			<File
+				RelativePath=".\Commands\CommandEventsStub.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Commands\CommandEventsStub.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Commands\Commands.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Commands\Commands.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Factory"
+			>
+			<File
+				RelativePath=".\Factory\FactoryHolder.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Factory\FactoryImpl.cpp"
 				>
 			</File>
 		</Filter>

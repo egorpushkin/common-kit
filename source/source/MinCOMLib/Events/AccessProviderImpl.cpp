@@ -9,9 +9,7 @@ namespace MinCOM
 		, accessPoints_()
 	{
 		// Advise default access point.
-		Advise( 
-			TypeInfo< ICommon >::GetGuid(), 
-			Object< AccessPointImpl >::Create( TypeInfo< ICommon >::GetGuid() ) );
+		Advise( TypeInfo< ICommon >::GetGuid() );
 	}
 
 	// IAccessProvider section
@@ -56,6 +54,19 @@ namespace MinCOM
 		return (*iter).second;
 	}
 
+	result AccessProviderImpl::Spread(const CallData& call)
+	{
+		CoreMutexLock locker(lock_);
+
+		// Walk throung the entire list of access points and spread the event.
+		for ( AccessPoints_::iterator iter = accessPoints_.begin() ; accessPoints_.end() != iter ; ++iter )
+		{
+			(*iter).second->Spread(call);
+		}
+
+		return _S_OK;
+	}
+
 	// Public events tools
 	/* result AccessProviderImpl::SpreadEventCore(IAccessEntriesEnumRef entries, DispSpreader& spreader)
 	{
@@ -64,9 +75,22 @@ namespace MinCOM
 
 		// Return error code
 		return spreader.GetLastError();
-	}
+	} */
 
 	// Protected tools
+	IAccessPointPtr AccessProviderImpl::Advise(RefIid eventsIid)
+	{
+		// Construct access point.
+		ICommonPtr accessPoint( Class< AccessPointImpl >::Create( 
+			CommonImpl< IAccessProvider >::GetSelf(), 
+			eventsIid ) );
+		// Register aceess point.
+		if ( Error::IsFailed(Advise(eventsIid, accessPoint)) )
+			return NULL;
+		return accessPoint;
+	}
+
+/*
 	IAccessPointPtr AccessProviderImpl::GetAccessPoint(RefIid iid)
 	{
 		IAccessPointPtr accessPoint;
