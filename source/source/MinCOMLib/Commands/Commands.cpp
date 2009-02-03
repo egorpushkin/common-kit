@@ -15,7 +15,7 @@ namespace MinCOM
 		, enabled_(true)
 		, modified_(false)
 		, unmodifiedIndex_(0)
-		, eventsListener_()
+		, eventsSpreader_()
 	{
 	}
 
@@ -28,12 +28,11 @@ namespace MinCOM
 	 */
 	result Commands::PostInit()
 	{
-		// Register additional access point for events' delivery.
-		IAccessPointPtr accessPoint = APImpl::Advise( TypeInfo< ICommandEvents >::GetGuid() );
-		// Configure events listener.
-		eventsListener_ = Object::CreateStub( TypeInfo< ICommandEvents >::GetGuid(), accessPoint->CreateSpreader(), true );
+		// Register additional access point for events' delivery and configure 
+		// events spreader.
+		eventsSpreader_ = APImpl::Advise( TypeInfo< ICommandEvents >::GetGuid() );
 		// Check object for integrity.
-		if ( !eventsListener_ )
+		if ( !eventsSpreader_ )
 			return _E_FAIL;
 		return _S_OK;
 	}
@@ -178,7 +177,7 @@ namespace MinCOM
 			unmodifiedIndex_ = (int)undo_.size();
 		
 		// Notify all about project modification
-		eventsListener_->ModifiedChanged(modified);
+		eventsSpreader_->ModifiedChanged(modified);
 	}
 
 	bool Commands::IsModified()
@@ -195,7 +194,7 @@ namespace MinCOM
 		modified_ = ( unmodifiedIndex_ != (int)undo_.size() );
 		
 		if ( modified != modified_ )
-			eventsListener_->ModifiedChanged(modified);
+			eventsSpreader_->ModifiedChanged(modified);
 	}
 
 }

@@ -13,15 +13,15 @@ namespace MinCOM
 		virtual ~Mutex();
 
 		// IMutex section
-		virtual result Create(bool obtain = false) = 0;
+		virtual result Create(bool obtain = false);
 
-		virtual result Create(std::string name, bool obtain = false) = 0;
+		virtual result Create(std::string name, bool obtain = false);
 
-		virtual result Open(std::string name) = 0;
+		virtual result Open(std::string name);
 
-		virtual result Close() = 0;
+		virtual result Close();
 
-		virtual result Release() = 0;
+		virtual result Release();
 
 		// ISynchro section
 		virtual result Wait(unsigned long delay = _INFINITE);

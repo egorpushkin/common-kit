@@ -46,8 +46,6 @@ namespace MinCOM
 
 	private:
 
-		CoreMutex lock_;
-
 		IAccessProviderWeak accessProvider_;
 
 		Guid iid_;

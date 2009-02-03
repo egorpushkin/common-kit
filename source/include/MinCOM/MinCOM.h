@@ -15,13 +15,14 @@ namespace mc = MinCOM;
 #include "MinCOM/Common/Errors.h"
 #include "MinCOM/Common/Guid.h"
 #include "MinCOM/Common/Common.h"
+#include "MinCOM/Common/ToolsMap.h"
 
 // Core concurrency
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Concurrency/Core/CoreMutex.h"
 #include "MinCOM/Concurrency/Core/CoreCounter.h"
 
-// Smart pointers (based on Loki library)
+// Smart pointers
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Pointers/DualRefCounter.h"
 #include "MinCOM/Pointers/Strong.h"
@@ -33,7 +34,6 @@ namespace mc = MinCOM;
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Common/CallData.h"
 #include "MinCOM/Common/ICommon.h"
-// #include "MinCOM/Model/ToolsContainer.h"
 #include "MinCOM/Common/CommonImpl.h"
 #include "MinCOM/Common/Class.h"
 #include "MinCOM/Common/Object.h"
@@ -44,15 +44,8 @@ namespace mc = MinCOM;
 #include "MinCOM/Container/Interfaces/IVector.h"
 #include "MinCOM/Container/Interfaces/IList.h"
 #include "MinCOM/Container/Interfaces/IMap.h"
+#include "MinCOM/Container/Interfaces/IContainerEvents.h"
 
-
-
-// Factory support
-//////////////////////////////////////////////////////////////////////////
-#include "MinCOM/Factory/IFactory.h"
-#include "MinCOM/Factory/FactoryImpl.h"
-#include "MinCOM/Factory/CommonHolder.h"
-#include "MinCOM/Factory/FactoryHolder.h"
 
 // Variant support for dispatching
 //////////////////////////////////////////////////////////////////////////
@@ -82,6 +75,14 @@ namespace mc = MinCOM;
 // #include "MinCOM/Interfaces/ISemaphore.h"
 // #include "MinCOM/Interfaces/IThread.h"
 // #include "MinCOM/Helpers/Threading.h"
+
+// Factory support
+//////////////////////////////////////////////////////////////////////////
+#include "MinCOM/Factory/IFactory.h"
+#include "MinCOM/Factory/FactoryImpl.h"
+#include "MinCOM/Factory/CommonHolder.h"
+#include "MinCOM/Factory/FactoryHolder.h"
+#include "MinCOM/Factory/Library.h"
 
 // Logging support
 //////////////////////////////////////////////////////////////////////////

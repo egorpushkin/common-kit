@@ -25,7 +25,7 @@ namespace MinCOM
 		/**
 		 * This event is fired when corresponding commands container
 		 * changes it's modification state. Application should use this
-		 * tool to propagate this information throung it's object model.
+		 * tool to propagate this information through it's object model.
 		 */
 		virtual result ModifiedChanged(bool modified) = 0;
 	};

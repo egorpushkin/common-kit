@@ -10,7 +10,6 @@ namespace MinCOM
 	AccessPointImpl::AccessPointImpl(IAccessProviderRef accessProvider, RefGuid iid)
 		: CommonImpl< IAccessPoint >()
 		, accessProvider_(accessProvider)
-		, lock_()
 		, iid_(iid)
 		, accessEntries_()
 	{
@@ -29,7 +28,7 @@ namespace MinCOM
 
 	result AccessPointImpl::Advise(ICommonRef sink, unsigned long& cookie)
 	{
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
 		// Check input arguments for correctness.
 		if ( !sink )
@@ -56,7 +55,7 @@ namespace MinCOM
 
 	result AccessPointImpl::Unadvise(unsigned long cookie)
 	{		
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
 		// Check whether sink with specified cookie exists.
 		AccessEntries_::iterator iter = accessEntries_.find(cookie);
@@ -69,7 +68,7 @@ namespace MinCOM
 
 	ICommonPtr AccessPointImpl::Find(unsigned long cookie)
 	{
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
 		// Check whether sink with specified cookie exists.
 		AccessEntries_::iterator iter = accessEntries_.find(cookie);
@@ -86,7 +85,7 @@ namespace MinCOM
 
 	result AccessPointImpl::Spread(const CallData& call)
 	{
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
 		// Walk through the entire list of sinks and notify each of them on the event.
 		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter )
@@ -97,7 +96,7 @@ namespace MinCOM
 		return _S_OK;
 	}
 
-	// Protecetd tools
+	// Protected tools
 	result AccessPointImpl::NotifySinkOnEvent(ICommonRef sink, const CallData& call)
 	{
 		// Create appropriate stub.

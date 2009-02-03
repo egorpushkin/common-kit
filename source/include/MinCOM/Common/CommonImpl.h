@@ -17,6 +17,11 @@ namespace MinCOM
 	namespace Private
 	{
 
+		/**
+		 * Internal tool intended to store common object's data fields.
+		 * CommonImpl inherit this tool virtually to prevent multiple 
+		 * instantiation of data fields in multiple inheritance.
+		 */
 		class CommonInternals
 		{
 
@@ -27,7 +32,11 @@ namespace MinCOM
 
 			CommonInternals()
 				: numRef_(0)
+				, lock_()
 				, self_()
+				, parent_()
+				, toolsS_()
+				, toolsW_()
 				, targetS_()
 				, targetW_()
 			{
@@ -35,13 +44,28 @@ namespace MinCOM
 
 		protected:
 
-			/** . */
+			/** Holds internal reference counter. */
 			long numRef_;
 
-			/** . */
+			/** Used to synchronize basic operations. */
+			CoreMutex lock_;
+
+			/** 
+			 * Holds weak reference to the object. This field is initialized
+			 * after object constructor is done but before call to PostInit.
+			 */
 			Weak< ICommon > self_;
 
-			/** . */
+			/** Holds weak reference to parent. */
+			Weak< ICommon > parent_;
+
+			/** Container to store child objects by strong link. */
+			ToolsMap< ICommonPtr > toolsS_;
+
+			/** Container to store child objects by weak link. */
+			ToolsMap< ICommonWeak > toolsW_;
+
+			/** Tool to redirect . */
 			Strong< ICommon > targetS_;
 
 			/** . */
@@ -95,6 +119,54 @@ namespace MinCOM
 			return CommonInternals::self_;
 		}
 
+		virtual result SetParent(const Strong< ICommon >& parent)
+		{
+			CoreMutexLock locker(CommonInternals::lock_);
+			CommonInternals::parent_ = parent;
+			return _S_OK;
+		}
+
+		virtual Strong< ICommon > GetParent()
+		{
+			CoreMutexLock locker(CommonInternals::lock_);
+			return CommonInternals::parent_;
+		}
+
+		virtual result Attach(RefIid toolId, ICommonRef tool, bool strong = true) 
+		{
+			CoreMutexLock locker(CommonInternals::lock_);
+			if ( strong )
+			{
+				CommonInternals::toolsS_.Attach(toolId, tool);
+				CommonInternals::toolsW_.Remit(toolId);
+			}
+			else
+			{
+				CommonInternals::toolsW_.Attach(toolId, tool);
+				CommonInternals::toolsS_.Remit(toolId);
+			}
+			return _S_OK;
+		}
+
+		virtual result Remit(RefIid toolId)
+		{
+			CommonInternals::toolsS_.Remit(toolId);
+			CommonInternals::toolsW_.Remit(toolId);
+			return _S_OK;
+		}
+
+		virtual ICommonPtr Acquire(RefIid toolId)
+		{
+			CoreMutexLock locker(CommonInternals::lock_);
+			ICommonPtr tool = CommonInternals::toolsS_.Acquire(toolId);
+			if ( tool )
+				return tool;
+			tool = CommonInternals::toolsW_.Acquire(toolId);
+			if ( tool )
+				return tool;
+			return AcquireFromParent(toolId);
+		}
+
 		virtual result PostInit()
 		{
 			return _S_OK;
@@ -102,6 +174,7 @@ namespace MinCOM
 
 		virtual result SetTarget(const Strong< ICommon >& target, bool strong = true)
 		{
+			CoreMutexLock locker(CommonInternals::lock_);
 			if ( strong )
 				CommonInternals::targetS_ = target;
 			else
@@ -111,6 +184,7 @@ namespace MinCOM
 
 		virtual Strong< ICommon > GetTarget()
 		{
+			CoreMutexLock locker(CommonInternals::lock_);
 			if ( CommonInternals::targetS_ )
 				return CommonInternals::targetS_;
 			else if ( CommonInternals::targetW_ )
@@ -135,15 +209,37 @@ namespace MinCOM
 		virtual long DecrementReference()
 		{
 			CoreCounter::Decrement(CommonInternals::numRef_);
-
 			if ( CoreCounter::TestZero(CommonInternals::numRef_) )
 			{
 				delete this;
 				return 0;
 			}
-
 			return CommonInternals::numRef_;
 		}
+
+	protected:
+
+		/** 
+		 * Tries to acquire tool from parent object.
+		 */
+		ICommonPtr AcquireFromParent(RefIid toolId)
+		{
+			// Check whether parent is specified.
+			ICommonPtr parent(GetParent());
+			if ( !parent )
+				return NULL;
+			// Try to acquire required object from parent's collection.
+			return parent->Acquire(toolId);
+		}
+
+		/**
+		 * Provides access to internally hosted mutex. 
+		 */
+		CoreMutex& GetLock()
+		{
+			return CommonInternals::lock_;
+		}
+
 	};
 
 }

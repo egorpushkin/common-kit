@@ -34,17 +34,18 @@ namespace MinCOM
 
 		virtual result Spread(const CallData& call);
 
-		protected:
+	protected:
 
 		/**
 		 * Tool provided for convenience. Use this tool if you are not going to 
 		 * override default IAccessPoint behavior.
+		 *
+		 * @return Returns reference to events spreader associated with newly 
+		 * created access point.
 		 */
-		IAccessPointPtr Advise(RefIid eventsIid);
+		ICommonPtr Advise(RefIid eventsIid);
 
 	private:
-		
-		CoreMutex lock_;
 
 		AccessPoints_ accessPoints_;
 

@@ -331,6 +331,22 @@
 					RelativePath=".\MinCOM\Errors\Tools.h"
 					>
 				</File>
+				<Filter
+					Name="Factory"
+					>
+					<File
+						RelativePath=".\MinCOM\Factory\Factory.h"
+						>
+					</File>
+					<File
+						RelativePath=".\MinCOM\Factory\Holder.h"
+						>
+					</File>
+					<File
+						RelativePath=".\MinCOM\Factory\Tools.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Pointers"
@@ -381,22 +397,6 @@
 				>
 				<File
 					RelativePath=".\MinCOM\Macros\OM.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Factory"
-				>
-				<File
-					RelativePath=".\MinCOM\Factory\Factory.h"
-					>
-				</File>
-				<File
-					RelativePath=".\MinCOM\Factory\Holder.h"
-					>
-				</File>
-				<File
-					RelativePath=".\MinCOM\Factory\Tools.h"
 					>
 				</File>
 			</Filter>

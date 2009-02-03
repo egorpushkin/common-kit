@@ -57,6 +57,31 @@ namespace MinCOM
 		virtual Strong< ICommon > GetSelf() = 0;
 
 		/**
+		 *
+		 */
+		virtual result SetParent(const Strong< ICommon >& parent) = 0;
+
+		/**
+		 *
+		 */
+		virtual Strong< ICommon > GetParent() = 0;
+
+		/**
+		 *
+		 */
+		virtual result Attach(RefIid toolId, const Strong< ICommon >& tool, bool strong = true) = 0;
+
+		/**
+		 *
+		 */
+		virtual result Remit(RefIid toolId) = 0;
+
+		/**
+		 *
+		 */
+		virtual Strong< ICommon > Acquire(RefIid toolId) = 0;
+
+		/**
 		 * Tool to perform required initializations.
 		 * Several actions cannot be performed in constructor.
 		 */

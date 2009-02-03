@@ -432,10 +432,38 @@
 				RelativePath=".\Factory\FactoryImpl.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Factory\Library.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Container"
 			>
+			<File
+				RelativePath=".\Container\IPrivateIterator.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Container\Iterator.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Container\List.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Container\List.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Container\Vector.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Container\Vector.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

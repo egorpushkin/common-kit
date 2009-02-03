@@ -204,6 +204,10 @@
 				RelativePath=".\Common\Object.h"
 				>
 			</File>
+			<File
+				RelativePath=".\Common\ToolsMap.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Concurrency"
@@ -364,6 +368,10 @@
 				RelativePath=".\Factory\IFactory.h"
 				>
 			</File>
+			<File
+				RelativePath=".\Factory\Library.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Container"
@@ -371,6 +379,10 @@
 			<Filter
 				Name="Interfaces"
 				>
+				<File
+					RelativePath=".\Container\Interfaces\IContainerEvents.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Container\Interfaces\IIterator.h"
 					>

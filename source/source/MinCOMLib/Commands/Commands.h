@@ -12,9 +12,6 @@ namespace MinCOM
 
 		Commands();
 
-		// ICommon section
-		virtual result PostInit();
-
 		// ICommands section
 		virtual result Undo();
 
@@ -31,6 +28,9 @@ namespace MinCOM
 		virtual void SetModified(bool modified);
 
 		virtual bool IsModified();
+
+		// ICommon section
+		virtual result PostInit();
 
 	private:
 
@@ -68,7 +68,7 @@ namespace MinCOM
 		int unmodifiedIndex_;
 
 		/** . */
-		ICommandEventsPtr eventsListener_;
+		ICommandEventsPtr eventsSpreader_;
 
 	};
 

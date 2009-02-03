@@ -29,6 +29,7 @@ private:
  
 bool Test4()
 {
+
 	
 	{
 		// Construct commands container.

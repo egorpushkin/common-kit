@@ -5,7 +5,6 @@ namespace MinCOM
 
 	AccessProviderImpl::AccessProviderImpl()
 		: CommonImpl< IAccessProvider >()
-		, lock_()
 		, accessPoints_()
 	{
 		// Advise default access point.
@@ -15,7 +14,7 @@ namespace MinCOM
 	// IAccessProvider section
 	result AccessProviderImpl::Advise(RefIid iid, IAccessPointRef accessPoint)
 	{
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessProvider >::GetLock());
 
 		// Check input arguments for correctness.
 		if ( !accessPoint )
@@ -31,7 +30,7 @@ namespace MinCOM
 
 	result AccessProviderImpl::Unadvise(RefIid iid)
 	{
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessProvider >::GetLock());
 
 		// Check whether sink with specified cookie exists.
 		AccessPoints_::iterator iter = accessPoints_.find(iid);
@@ -44,7 +43,7 @@ namespace MinCOM
 
 	IAccessPointPtr AccessProviderImpl::Find(RefIid iid)
 	{
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessProvider >::GetLock());
 
 		// Check whether sink with specified cookie exists.
 		AccessPoints_::iterator iter = accessPoints_.find(iid);
@@ -56,7 +55,7 @@ namespace MinCOM
 
 	result AccessProviderImpl::Spread(const CallData& call)
 	{
-		CoreMutexLock locker(lock_);
+		CoreMutexLock locker(CommonImpl< IAccessProvider >::GetLock());
 
 		// Walk through the entire list of access points and spread the event.
 		for ( AccessPoints_::iterator iter = accessPoints_.begin() ; accessPoints_.end() != iter ; ++iter )
@@ -67,27 +66,22 @@ namespace MinCOM
 		return _S_OK;
 	}
 
-	// Public events tools
-	/* result AccessProviderImpl::SpreadEventCore(IAccessEntriesEnumRef entries, DispSpreader& spreader)
-	{
-		// Spread event
-		ForEach(entries, spreader);
-
-		// Return error code
-		return spreader.GetLastError();
-	} */
-
 	// Protected tools
-	IAccessPointPtr AccessProviderImpl::Advise(RefIid eventsIid)
+	ICommonPtr AccessProviderImpl::Advise(RefIid eventsIid)
 	{
 		// Construct access point.
-		ICommonPtr accessPoint( Class< AccessPointImpl >::Create( 
-			CommonImpl< IAccessProvider >::GetSelf(), 
-			eventsIid ) );
-		// Register aceess point.
+		IAccessPointPtr accessPoint( Class< AccessPointImpl >::Create( 
+			CommonImpl< IAccessProvider >::GetSelf(), eventsIid ) );
+		if ( !accessPoint )
+			return NULL;
+		// Produce corresponding events spreader.
+		ICommonPtr eventsSpreader_ = Object::CreateStub( TypeInfo< ICommandEvents >::GetGuid(), accessPoint->CreateSpreader(), true );
+		if ( !eventsSpreader_ )
+			return NULL;		
+		// Register access point.
 		if ( Error::IsFailed(Advise(eventsIid, accessPoint)) )
 			return NULL;
-		return accessPoint;
+		return eventsSpreader_;
 	}
 
 }
