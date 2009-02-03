@@ -10,6 +10,11 @@ namespace MinCOM
 	{
 	}
 
+	void CallData::SetMethod(RefIid methodIid) const
+	{
+		methodIid_ = methodIid;
+	}
+
 	RefIid CallData::GetMethod() const
 	{
 		return methodIid_;

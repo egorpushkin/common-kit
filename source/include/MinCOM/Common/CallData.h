@@ -24,6 +24,8 @@ namespace MinCOM
 
 		CallData();
 
+		void SetMethod(RefIid methodIid) const;
+
 		RefIid GetMethod() const;
 
 		Variants& GetArguments() const;

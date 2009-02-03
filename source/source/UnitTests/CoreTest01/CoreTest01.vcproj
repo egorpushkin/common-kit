@@ -61,7 +61,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="MinCOMLib.lib"
 				OutputFile="../../../bin/vs2005/$(ConfigurationName)/$(ProjectName).exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../lib/vs2005/debug"

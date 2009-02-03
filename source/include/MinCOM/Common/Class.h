@@ -32,12 +32,6 @@ namespace MinCOM
 	{
 	public:
 
-		/**
-		 * Common tool to create locally registred object and instantiate 
-		 * shared component.
-		 */ 
-		static Strong<ICommon> Instantiate(RefClsid clsid);
-
 		static Strong<ICommon> Create() 
 		{ 
 			try
@@ -87,7 +81,19 @@ namespace MinCOM
 			{
 				return NULL;
 			}
-		}	
+		}
+
+		/**
+		 * Tool to provide client with class identifier.
+		 */
+		static Clsid DefaultClsid()
+		{
+			return clsid_;
+		}
+
+	private:
+
+		static const Clsid clsid_;
 
 	private:
 
@@ -95,7 +101,7 @@ namespace MinCOM
 		{
 			// Configure object.
 			common->SetSelf(common);
-			// Perform postinitialization.
+			// Perform post initialization.
 			if ( mc::Error::IsFailed(common->PostInit()) )
 				return NULL;
 			// Return correctly initialized object.

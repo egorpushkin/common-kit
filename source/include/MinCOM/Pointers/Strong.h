@@ -63,7 +63,7 @@ namespace MinCOM
 	class Strong
 	{
 	// Initialization section.
-	private:
+	public: // Must be private
 
 		// Establish friendship with creators.
 		template< class Y > friend class Class;

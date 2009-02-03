@@ -22,7 +22,7 @@ namespace MinCOM
 			return _E_INVALIDARG;
 		// Check whether access point with specified id already advised.
 		AccessPoints_::iterator iter = accessPoints_.find(iid);
-		if ( accessPoints_.end() == iter )
+		if ( accessPoints_.end() != iter )
 			return _E_FAIL;
 		// Register access point after all checks are passed.
 		accessPoints_.insert(AccessPoints_::value_type(iid, accessPoint));
@@ -36,7 +36,7 @@ namespace MinCOM
 		// Check whether sink with specified cookie exists.
 		AccessPoints_::iterator iter = accessPoints_.find(iid);
 		if ( iter == accessPoints_.end() )
-			return mc::_S_FALSE;
+			return _E_FAIL;
 		// Remove access point from map.
 		accessPoints_.erase(iter);
 		return _S_OK;
@@ -58,7 +58,7 @@ namespace MinCOM
 	{
 		CoreMutexLock locker(lock_);
 
-		// Walk throung the entire list of access points and spread the event.
+		// Walk through the entire list of access points and spread the event.
 		for ( AccessPoints_::iterator iter = accessPoints_.begin() ; accessPoints_.end() != iter ; ++iter )
 		{
 			(*iter).second->Spread(call);
@@ -89,39 +89,5 @@ namespace MinCOM
 			return NULL;
 		return accessPoint;
 	}
-
-/*
-	IAccessPointPtr AccessProviderImpl::GetAccessPoint(RefIid iid)
-	{
-		IAccessPointPtr accessPoint;
-		
-		if ( FindAccessPoint(iid, accessPoint) != _S_OK )
-			return NULL;
-
-		return accessPoint;
-	}
-
-	IAccessEntriesEnumPtr AccessProviderImpl::GetAccessEntries(RefIid iid)
-	{
-		IAccessPointPtr accessPoint = GetAccessPoint(iid);
-		if ( !accessPoint )
-			return NULL;
-		
-		return accessPoint->GetPointsEnum();
-	}
-
-	result AccessProviderImpl::RegisterAccessPoint(RefIid iid, bool replace)
-	{
-		return AdviseAccessPoint(
-			iid, 
-			IAccessPointPtr(mc::ObjectCreator< AccessPointImpl >(), IID_IAccessPoint), 
-			replace);
-	}
-
-	// Protected events tools
-	result AccessProviderImpl::SpreadBase(DispId id, mc::DispParamsRef params, RefIid iid /* = mc::IID_IAgent *)
-	{
-		return SpreadEvent< DispSpreader >(id, params, iid);
-	} */
 
 }

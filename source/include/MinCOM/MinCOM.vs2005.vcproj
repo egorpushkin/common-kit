@@ -292,6 +292,10 @@
 				Name="Interfaces"
 				>
 				<File
+					RelativePath=".\Events\Interfaces\Events.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Events\Interfaces\IAccessPoint.h"
 					>
 				</File>
@@ -360,6 +364,30 @@
 				RelativePath=".\Factory\IFactory.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Container"
+			>
+			<Filter
+				Name="Interfaces"
+				>
+				<File
+					RelativePath=".\Container\Interfaces\IIterator.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Container\Interfaces\IList.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Container\Interfaces\IMap.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Container\Interfaces\IVector.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\External.h"

@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Common\Defaults.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Common\Errors.cpp"
 				>
 			</File>
@@ -329,6 +333,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Events\Events.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Events\EventsSpreader.cpp"
 				>
 			</File>
@@ -424,6 +432,10 @@
 				RelativePath=".\Factory\FactoryImpl.cpp"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Container"
+			>
 		</Filter>
 	</Files>
 	<Globals>

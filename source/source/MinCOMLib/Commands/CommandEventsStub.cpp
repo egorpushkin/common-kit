@@ -24,9 +24,12 @@ namespace MinCOM
 			return _E_NOTINIT;
 
 		CallData call;
+		call.SetMethod( TypeInfo< pfnModifiedChanged >::GetGuid() );
 		call.GetArguments().push_back(modified);
 		events->Invoke(call);		
-		return call.GetResults().at(0).toLong();
+		if ( call.GetResults().size() > 0 )
+			return call.GetResults().at(0).toLong();
+		return _S_OK;
 	}
 
 	// ICommon section

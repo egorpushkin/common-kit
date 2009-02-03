@@ -31,7 +31,7 @@ namespace MinCOM
 		// Register additional access point for events' delivery.
 		IAccessPointPtr accessPoint = APImpl::Advise( TypeInfo< ICommandEvents >::GetGuid() );
 		// Configure events listener.
-		eventsListener_ = accessPoint->CreateSpreader();
+		eventsListener_ = Object::CreateStub( TypeInfo< ICommandEvents >::GetGuid(), accessPoint->CreateSpreader(), true );
 		// Check object for integrity.
 		if ( !eventsListener_ )
 			return _E_FAIL;

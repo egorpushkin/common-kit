@@ -42,7 +42,7 @@ namespace MinCOM
 			Weak< ICommon > self_;
 
 			/** . */
-			Weak< ICommon > targetS_;
+			Strong< ICommon > targetS_;
 
 			/** . */
 			Weak< ICommon > targetW_;

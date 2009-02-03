@@ -158,8 +158,15 @@ namespace MinCOM
 
 	private:
 
-		/** Thread dependent errors storage. */
-		static std::map< long, result > errorCode_;
+		/**
+		 * Thread dependent errors storage. 
+		 * This member should not be static due to the fact that this brings 
+		 * to its instantiation each time when Errrs.obj/.a is included into
+		 * an assembly. This causes fake memory leak if leak detection tool 
+		 * performs check at the end of main() routine, because static objects
+		 * are not yet removeb by that time.
+		 */
+		// static std::map< long, result > errorCode_;
 
 	};
 

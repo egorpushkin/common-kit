@@ -34,36 +34,13 @@ namespace MinCOM
 
 		virtual result Spread(const CallData& call);
 
-		// Public events tools
-		// static result SpreadEventCore(IAccessEntriesEnumRef entries, DispSpreader& spreader);
-
-	protected:
+		protected:
 
 		/**
 		 * Tool provided for convenience. Use this tool if you are not going to 
 		 * override default IAccessPoint behavior.
 		 */
 		IAccessPointPtr Advise(RefIid eventsIid);
-
-		// Protected tools
-		// IAccessPointPtr GetAccessPoint(RefIid iid = mc::IID_IAgent);
-		
-		// IAccessEntriesEnumPtr GetAccessEntries(RefIid iid = mc::IID_IAgent);
-
-		// result RegisterAccessPoint(RefIid iid, bool replace = true);
-
-	protected:
-
-		// Protected events tools
-		/* template 
-		< typename Spreader >
-		result SpreadEvent(DispId id, mc::DispParamsRef params, RefIid iid = mc::IID_IAgent)
-		{
-			Spreader spreader(id, params);
-			return SpreadEventCore(GetAccessEntries(iid), spreader);	
-		}
-
-		result SpreadBase(DispId id, mc::DispParamsRef params, RefIid iid = mc::IID_IAgent); */
 
 	private:
 		

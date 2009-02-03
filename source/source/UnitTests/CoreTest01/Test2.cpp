@@ -1,5 +1,5 @@
 /*
- * File name   : Test1.cpp
+ * File name   : Test2.cpp
  *
  * Copyright (c) 2008 Scientific Software
  *
@@ -12,7 +12,7 @@
 
 bool Test2()
 {
-	// 
+	//
 	mc::Strong< mc::ICommon > ptr1( mc::Class< Test >::Create() );
 	assert( NULL != ptr1 );
 

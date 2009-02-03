@@ -88,7 +88,7 @@ namespace MinCOM
 	{
 		CoreMutexLock locker(lock_);
 
-		// Walk throung the entire list of sinks and notify each of them on the event.
+		// Walk through the entire list of sinks and notify each of them on the event.
 		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter )
 		{
 			if ( Error::IsFailed(NotifySinkOnEvent((*iter).second, call)) )

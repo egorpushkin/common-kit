@@ -60,6 +60,7 @@ namespace MinCOM
 	>
 	class TypeInfo
 	{
+	private:
 		static const Guid iid_;
 	public:		
 		static RefGuid GetGuid()

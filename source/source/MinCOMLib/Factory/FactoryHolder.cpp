@@ -1,5 +1,6 @@
 #include "Common/Common.h"
 
+#include "Commands/Commands.h"
 #include "Commands/CommandEventsStub.h"
 
 namespace MinCOM
@@ -20,6 +21,7 @@ namespace MinCOM
 	
 		// Register commands engine stub.
 		factory->Register( TypeInfo< ICommandEvents >::GetGuid(), Class< CommandEventsStub >::Create );
+		factory->Register( TypeInfo< Commands >::GetGuid(), Class< Commands >::Create );
 
 
 

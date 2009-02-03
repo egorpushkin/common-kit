@@ -39,7 +39,8 @@ namespace MinCOM
 		return ((long)(status) < 0);
 	}
 
-	std::map< long, result > LastError::errorCode_ = std::map< long, result >();
+	// See member declaration for details. 
+	// std::map< long, result > LastError::errorCode_ = std::map< long, result >();
 
 	/**
 	 * Gets error code.

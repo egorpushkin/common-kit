@@ -38,6 +38,15 @@ namespace mc = MinCOM;
 #include "MinCOM/Common/Class.h"
 #include "MinCOM/Common/Object.h"
 
+// Container component
+//////////////////////////////////////////////////////////////////////////
+#include "MinCOM/Container/Interfaces/IIterator.h"
+#include "MinCOM/Container/Interfaces/IVector.h"
+#include "MinCOM/Container/Interfaces/IList.h"
+#include "MinCOM/Container/Interfaces/IMap.h"
+
+
+
 // Factory support
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Factory/IFactory.h"
@@ -54,6 +63,7 @@ namespace mc = MinCOM;
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Events/Interfaces/IAccessPoint.h"
 #include "MinCOM/Events/Interfaces/IAccessProvider.h"
+#include "MinCOM/Events/Interfaces/Events.h"
 #include "MinCOM/Events/Impl/AccessPointImpl.h"
 #include "MinCOM/Events/Impl/AccessProviderImpl.h"
 

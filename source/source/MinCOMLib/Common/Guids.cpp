@@ -1,5 +1,7 @@
 #include "Common/Common.h"
 
+#include "Commands/Commands.h"
+
 namespace MinCOM
 {
 
@@ -38,6 +40,10 @@ namespace MinCOM
 	// {6c047399-208b-48ca-9b48-cabd6bf999af} 
 	const Guid TypeInfo< ICommands >::iid_ = 
 		{ 0x6c047399, 0x208b, 0x48ca, 0x9b, 0x48, 0xca, 0xbd, 0x6b, 0xf9, 0x99, 0xaf };
+
+	// {B6797FE8-F11D-423c-ADD5-5A8D35D09316}
+	const Guid TypeInfo< Commands >::iid_ = 
+		{ 0xb6797fe8, 0xf11d, 0x423c, 0xad, 0xd5, 0x5a, 0x8d, 0x35, 0xd0, 0x93, 0x16 };
 
 	// {FB75E71B-E1B0-41ab-8F66-FDAD4CF6FFEE}
 	const Guid TypeInfo< ICommandEvents >::iid_ = 
