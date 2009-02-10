@@ -192,11 +192,11 @@ namespace MinCOM
 			return NULL;
 		}
 
-		virtual result Invoke(const CallData& callData)
+		virtual result Invoke(const Call& call)
 		{
 			ICommonPtr target(GetTarget());
 			if ( target )
-				return target->Invoke(callData);
+				return target->Invoke(call);
 			return _E_NOTINIT;
 		}
 

@@ -12,7 +12,7 @@ namespace MinCOM
 		EventsSpreader(IAccessProviderRef accessProvider);
 
 		// ICommon section
-		virtual result Invoke(const CallData& call);
+		virtual result Invoke(const Call& call);
 
 	private:
 

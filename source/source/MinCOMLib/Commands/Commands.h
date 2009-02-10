@@ -68,7 +68,7 @@ namespace MinCOM
 		int unmodifiedIndex_;
 
 		/** . */
-		ICommandEventsPtr eventsSpreader_;
+		DCommandsPtr eventsSpreader_;
 
 	};
 

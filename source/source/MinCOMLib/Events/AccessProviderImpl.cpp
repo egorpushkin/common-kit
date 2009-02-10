@@ -53,7 +53,7 @@ namespace MinCOM
 		return (*iter).second;
 	}
 
-	result AccessProviderImpl::Spread(const CallData& call)
+	result AccessProviderImpl::Spread(const Call& call)
 	{
 		CoreMutexLock locker(CommonImpl< IAccessProvider >::GetLock());
 
@@ -67,6 +67,8 @@ namespace MinCOM
 	}
 
 	// Protected tools
+	//////////////////////////////////////////////////////////////////////////
+
 	ICommonPtr AccessProviderImpl::Advise(RefIid eventsIid)
 	{
 		// Construct access point.
@@ -75,13 +77,24 @@ namespace MinCOM
 		if ( !accessPoint )
 			return NULL;
 		// Produce corresponding events spreader.
-		ICommonPtr eventsSpreader_ = Object::CreateStub( TypeInfo< ICommandEvents >::GetGuid(), accessPoint->CreateSpreader(), true );
+		ICommonPtr eventsSpreader_ = Object::CreateStub( TypeInfo< DCommands >::GetGuid(), accessPoint->CreateSpreader(), true );
 		if ( !eventsSpreader_ )
 			return NULL;		
 		// Register access point.
 		if ( Error::IsFailed(Advise(eventsIid, accessPoint)) )
 			return NULL;
 		return eventsSpreader_;
+	}
+
+	ICommonPtr AccessProviderImpl::AdviseAndThrow(RefIid eventsIid)
+	{
+		ICommonPtr eventsSpreader = this->Advise(eventsIid);
+		if ( !eventsSpreader )
+		{
+			// TODO: Add mo details to generated exception here.
+			throw std::exception();
+		}
+		return eventsSpreader;
 	}
 
 }

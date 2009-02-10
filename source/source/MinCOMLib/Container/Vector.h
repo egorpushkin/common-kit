@@ -11,6 +11,8 @@ namespace MinCOM
 		: public CommonImpl< IVector >
 		, public APImpl
 	{
+	public:
+
 		typedef IPrivateIterator< std::vector< ICommonPtr >, Vector > IPrivateIterator_;
 		typedef Strong< IPrivateIterator_ > IPrivateIteratorPtr_;
 		typedef Iterator< std::vector< ICommonPtr >, Vector > Iterator_;
@@ -42,7 +44,7 @@ namespace MinCOM
 		std::vector< ICommonPtr > stdVector_;
 
 		/** . */
-		IContainerEventsPtr eventsSpreader_;
+		DContainerPtr eventsSpreader_;
 
 	};
 

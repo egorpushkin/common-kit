@@ -103,7 +103,7 @@ namespace MinCOM
 		 * Allows user to make a call in raw manner. Provides basic support for 
 		 * events dispatching and remoting.
 		 */
-		virtual result Invoke(const CallData& call) = 0;
+		virtual result Invoke(const Call& call) = 0;
 
 	protected:
 

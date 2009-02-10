@@ -88,7 +88,7 @@ namespace MinCOM
 			if ( NULL != p1 )
 			{
 				// Try to cast raw pointer to the type of current pointer.
-				//T * p = dynamic_cast< T* >( p1 );
+				// T * p = dynamic_cast< T* >( p1 );
 				T * p = p1->Cast< T >();
 				if ( p )
 				{

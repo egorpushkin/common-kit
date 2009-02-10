@@ -80,7 +80,7 @@ namespace MinCOM
 	{
 		// Register additional access point for events' delivery and configure 
 		// events spreader.
-		eventsSpreader_ = APImpl::Advise( TypeInfo< ICommandEvents >::GetGuid() );
+		eventsSpreader_ = APImpl::Advise( TypeInfo< DCommands >::GetGuid() );
 		// Check object for integrity.
 		if ( !eventsSpreader_ )
 			return _E_FAIL;

@@ -14,6 +14,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinCOMLib", "..\source\MinC
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreLib", "..\source\Common\CoreLib\CoreLib.vs2005.vcproj", "{4C5BF850-BE20-4027-86AD-996FCBC8D42E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetTest01", "..\source\UnitTests\NetTest01\NetTest01.vcproj", "{DD3A5858-BDDB-47AB-9794-D7EEFFC212B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C5EF621D-A7D6-4E75-997C-2CC84FD76674} = {C5EF621D-A7D6-4E75-997C-2CC84FD76674}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -36,6 +41,10 @@ Global
 		{4C5BF850-BE20-4027-86AD-996FCBC8D42E}.Debug|Win32.ActiveCfg = Debug|Win32
 		{4C5BF850-BE20-4027-86AD-996FCBC8D42E}.Release|Win32.ActiveCfg = Release|Win32
 		{4C5BF850-BE20-4027-86AD-996FCBC8D42E}.Release|Win32.Build.0 = Release|Win32
+		{DD3A5858-BDDB-47AB-9794-D7EEFFC212B2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DD3A5858-BDDB-47AB-9794-D7EEFFC212B2}.Debug|Win32.Build.0 = Debug|Win32
+		{DD3A5858-BDDB-47AB-9794-D7EEFFC212B2}.Release|Win32.ActiveCfg = Release|Win32
+		{DD3A5858-BDDB-47AB-9794-D7EEFFC212B2}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

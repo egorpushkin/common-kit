@@ -44,7 +44,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="Common/Common.h"
 				WarningLevel="4"
@@ -153,7 +153,7 @@
 			Name="Common"
 			>
 			<File
-				RelativePath=".\Common\CallData.cpp"
+				RelativePath=".\Common\Call.cpp"
 				>
 			</File>
 			<File
@@ -190,6 +190,10 @@
 			</File>
 			<File
 				RelativePath=".\Common\Guids.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Common\GuidsInternal.cpp"
 				>
 			</File>
 			<File
@@ -405,19 +409,19 @@
 			Name="Commands"
 			>
 			<File
-				RelativePath=".\Commands\CommandEventsStub.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Commands\CommandEventsStub.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Commands\Commands.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Commands\Commands.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Commands\DCommandsStub.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Commands\DCommandsStub.h"
 				>
 			</File>
 		</Filter>
@@ -464,6 +468,42 @@
 				RelativePath=".\Container\Vector.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Network"
+			>
+			<Filter
+				Name="Source"
+				>
+				<File
+					RelativePath=".\Network\Source\Service.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Source\Service.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Source\TCPConnection.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Source\TCPConnection.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Events"
+				>
+				<File
+					RelativePath=".\Network\Events\DRawDataStub.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Events\DRawDataStub.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

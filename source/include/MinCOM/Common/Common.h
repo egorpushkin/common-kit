@@ -28,6 +28,9 @@ namespace MinCOM
 	/** Preliminary declaration of Variant class. */
 	class CommonVariant;
 
+	/** Short name for Variant class. */
+	typedef CommonVariant Variant;
+
 	/** Array of variants. Typically used to represent arguments of a call. */
 	typedef std::vector< CommonVariant > Variants;
 
@@ -50,6 +53,7 @@ namespace MinCOM
 	 * \code 
 	 *     const Guid TypeInfo< ICommon >::iid_ = 
 	 *         {0x3d24c25d, 0x2c73, 0x4a47, 0x92, 0x64, 0xa5, 0xd5, 0xb1, 0xbf, 0xdf, 0x75};
+	 * \endcode
 	 */ 
 	template 
 	<

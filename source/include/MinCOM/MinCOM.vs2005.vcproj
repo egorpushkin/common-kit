@@ -173,7 +173,7 @@
 			Name="Common"
 			>
 			<File
-				RelativePath=".\Common\CallData.h"
+				RelativePath=".\Common\Call.h"
 				>
 			</File>
 			<File
@@ -337,11 +337,11 @@
 			Name="Commands"
 			>
 			<File
-				RelativePath=".\Commands\ICommand.h"
+				RelativePath=".\Commands\DCommands.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Commands\ICommandEvents.h"
+				RelativePath=".\Commands\ICommand.h"
 				>
 			</File>
 			<File
@@ -380,7 +380,7 @@
 				Name="Interfaces"
 				>
 				<File
-					RelativePath=".\Container\Interfaces\IContainerEvents.h"
+					RelativePath=".\Container\Interfaces\DContainer.h"
 					>
 				</File>
 				<File
@@ -399,6 +399,50 @@
 					RelativePath=".\Container\Interfaces\IVector.h"
 					>
 				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Network"
+			>
+			<Filter
+				Name="Interfaces"
+				>
+				<File
+					RelativePath=".\Network\Interfaces\IConnection.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Interfaces\IHost.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Interfaces\IMessage.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Interfaces\IProtocol.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Interfaces\IServer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Interfaces\IService.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Events"
+				>
+				<File
+					RelativePath=".\Network\Events\DRawData.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Impl"
+				>
 			</Filter>
 		</Filter>
 		<File

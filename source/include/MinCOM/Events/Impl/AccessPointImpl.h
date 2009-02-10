@@ -38,11 +38,11 @@ namespace MinCOM
 
 		virtual ICommonPtr CreateSpreader();
 
-		virtual result Spread(const CallData& call);
+		virtual result Spread(const Call& call);
 
 	protected:
 
-		result NotifySinkOnEvent(ICommonRef sink, const CallData& call);
+		result NotifySinkOnEvent(ICommonRef sink, const Call& call);
 
 	private:
 

@@ -1,7 +1,8 @@
 #include "Common/Common.h"
 
 #include "Commands/Commands.h"
-#include "Commands/CommandEventsStub.h"
+#include "Commands/DCommandsStub.h"
+#include "Network/Events/DRawDataStub.h"
 
 namespace MinCOM
 {
@@ -20,8 +21,10 @@ namespace MinCOM
 		factory->Register( TypeInfo< ICommon >::GetGuid(), Class< CommonImpl< ICommon > >::Create );
 	
 		// Register commands engine stub.
-		factory->Register( TypeInfo< ICommandEvents >::GetGuid(), Class< CommandEventsStub >::Create );
-		factory->Register( TypeInfo< Commands >::GetGuid(), Class< Commands >::Create );
+		factory->Register( TypeInfo< DCommands >::GetGuid(), Class< DCommandsStub >::Create );
+
+		// Register network engine stubs.
+		factory->Register( TypeInfo< DRawData >::GetGuid(), Class< DRawDataStub >::Create );
 
 
 

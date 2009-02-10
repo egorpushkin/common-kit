@@ -1,5 +1,5 @@
 /*
- * File name   : ICommandEvents.h
+ * File name   : DCommands.h
  *
  * Copyright (c) 2009 Scientific Software
  *
@@ -8,8 +8,8 @@
  * 2009-02-01  Egor Pushkin        Initial version
  */
 
-#ifndef ICOMMANDEVENTS_H__MINCOM__INCLUDED_
-#define ICOMMANDEVENTS_H__MINCOM__INCLUDED_
+#ifndef DCOMMANDS_H__MINCOM__INCLUDED_
+#define DCOMMANDS_H__MINCOM__INCLUDED_
 
 namespace MinCOM
 {
@@ -20,7 +20,7 @@ namespace MinCOM
 	 * Each CLSID_Commands compatible object provides a way to subscribe on
 	 * such events.
 	 */
-	interface ICommandEvents : public ICommon
+	interface DCommands : public ICommon
 	{	
 		/**
 		 * This event is fired when corresponding commands container
@@ -30,9 +30,9 @@ namespace MinCOM
 		virtual result ModifiedChanged(bool modified) = 0;
 	};
 
-	typedef Strong< ICommandEvents > ICommandEventsPtr;
-	typedef const ICommandEventsPtr& ICommandEventsRef;
+	typedef Strong< DCommands > DCommandsPtr;
+	typedef const DCommandsPtr& DCommandsRef;
 
 }
 
-#endif // !ICOMMANDEVENTS_H__MINCOM__INCLUDED_
+#endif // !DCOMMANDS_H__MINCOM__INCLUDED_

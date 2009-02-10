@@ -11,7 +11,7 @@
 #include "stdafx.h"
 
 class TestEvent 
-	: public mc::CommonImpl< mc::ICommandEvents >
+	: public mc::CommonImpl< mc::DCommands >
 {
 public:
 
@@ -29,7 +29,6 @@ private:
  
 bool Test4()
 {
-
 	
 	{
 		// Construct commands container.
@@ -38,11 +37,10 @@ bool Test4()
 		mc::ICommonPtr eventsListener( mc::Class< TestEvent >::Create() );
 		// Subscribe on events.
 		unsigned long cookie;
-		mc::Events::Advise(commands, eventsListener, cookie, mc::TypeInfo< mc::ICommandEvents >::GetGuid() );	
+		mc::Events::Advise(commands, eventsListener, cookie, mc::TypeInfo< mc::DCommands >::GetGuid() );	
 
 		
 		commands->SetModified(true);
-
 
  		Loki::DeletableSingleton< mc::FactoryHolder >::GracefulDelete();
 	}

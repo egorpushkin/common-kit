@@ -11,7 +11,7 @@ namespace MinCOM
 	}
 
 	// ICommon section
-	result EventsSpreader::Invoke(const CallData& call)
+	result EventsSpreader::Invoke(const Call& call)
 	{
 		// Reconstruct pointer.
 		IAccessProviderPtr accessProvider(accessProvider_);

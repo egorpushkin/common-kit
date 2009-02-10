@@ -130,7 +130,11 @@ namespace MinCOM
 		_E_OUTOFMEMORY          = ((result)0x8007000EL),
 		_E_PENDING              = ((result)0x8000000AL), 
 		_E_POINTER              = ((result)0x80004003L), 
-		_E_UNEXPECTED           = ((result)0x8000FFFFL), 
+		_E_UNEXPECTED           = ((result)0x8000FFFFL),
+
+		/** Invalid call target is specified. */
+		_E_CALLNOTARGET         = ((result)0x81000001L),
+
 		_S_FALSE                = ((result)0x00000001L), 
 		_S_OK                   = ((result)0x00000000L),
 		_E_CANCELED             = ((result)0x80004FF1L)

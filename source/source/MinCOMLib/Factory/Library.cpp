@@ -5,6 +5,8 @@
 #include "Container/List.h"
 #include "Concurrency/Event.h"
 #include "Concurrency/Mutex.h"
+#include "Network/Source/Service.h"
+#include "Network/Source/TCPConnection.h"
 
 namespace MinCOM
 {
@@ -34,5 +36,14 @@ namespace MinCOM
 		return Class< mc::Mutex >::Create();
 	}
 
+	IServicePtr Library::Service()
+	{
+		return Class< mc::Service >::Create(); 
+	}
+	
+	IConnectionPtr Library::TCPConnection(IServiceRef service)
+	{
+		return Class< mc::TCPConnection >::Create(service);
+	}
 
 }

@@ -83,7 +83,7 @@ namespace MinCOM
 		return Class< EventsSpreader >::Create(GetAccessProvider());
 	}
 
-	result AccessPointImpl::Spread(const CallData& call)
+	result AccessPointImpl::Spread(const Call& call)
 	{
 		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
@@ -97,7 +97,7 @@ namespace MinCOM
 	}
 
 	// Protected tools
-	result AccessPointImpl::NotifySinkOnEvent(ICommonRef sink, const CallData& call)
+	result AccessPointImpl::NotifySinkOnEvent(ICommonRef sink, const Call& call)
 	{
 		// Create appropriate stub.
 		ICommonPtr stub(Object::CreateStub(iid_, sink, false));

@@ -16,6 +16,12 @@ namespace MinCOM
 		return accessPoint->Advise(connector, cookie);
 	}
 
+	result Events::Advise(ICommonRef connectee, ICommonRef connector, RefIid apIid)
+	{
+		unsigned long cookie;
+		return Advise(connectee, connector, cookie, apIid);
+	}
+
 	result Events::Unadvise(ICommonRef connectee, unsigned long cookie, RefIid apIid)
 	{
 		mc::IAccessProviderPtr accessProvider(connectee);

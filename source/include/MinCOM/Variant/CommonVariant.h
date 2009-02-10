@@ -189,11 +189,7 @@ namespace MinCOM
 
 	}; 
 
-	typedef CommonVariant Variant;
 	typedef CommonVariant::Type_ VariantType;
-
-	/** Array of variants. Typically used to represent arguments of a call. */
-	typedef std::vector< Variant > Variants;
 
 }
 

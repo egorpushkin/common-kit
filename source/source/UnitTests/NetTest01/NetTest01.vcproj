@@ -17,8 +17,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="../../../compiled/vs2005/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="../../../compiled/vs2005/$(ProjectName)/$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -40,11 +40,11 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../include"
+				AdditionalIncludeDirectories="../../../include;../../../sdk/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="2"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="true"
@@ -61,7 +61,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="CoreLib.lib"
+				AdditionalDependencies="MinCOMLib.lib"
+				OutputFile="../../../bin/vs2005/$(ConfigurationName)/$(ProjectName).exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../lib/vs2005/$(ConfigurationName)"
 				GenerateDebugInformation="true"
@@ -95,8 +96,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="../../../compiled/vs2005/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory="../../../compiled/vs2005/$(ProjectName)/$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -118,9 +119,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../../include"
+				AdditionalIncludeDirectories="../../../include;../../../sdk/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="2"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="true"
@@ -137,7 +138,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="CoreLib.lib"
+				AdditionalDependencies="MinCOMLib.lib"
+				OutputFile="../../../bin/vs2005/$(ConfigurationName)/$(ProjectName).exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../../lib/vs2005/$(ConfigurationName)"
 				GenerateDebugInformation="true"

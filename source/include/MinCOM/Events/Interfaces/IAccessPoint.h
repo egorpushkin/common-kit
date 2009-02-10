@@ -37,7 +37,7 @@ namespace MinCOM
 
 		virtual ICommonPtr CreateSpreader() = 0;
 
-		virtual result Spread(const CallData& call) = 0;
+		virtual result Spread(const Call& call) = 0;
 	};
 
 	// Smart pointers

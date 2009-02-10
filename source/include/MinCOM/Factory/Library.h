@@ -19,8 +19,10 @@ namespace MinCOM
 	 * MinCOM objects. Each method of this tool finally makes the following
 	 * call:
 	 *
+	 * \code
 	 *     mc::FactoryHolder::Instance()->Create( 
 	 *         mc::Class< mc::ISomeInterface >::DefaultClsid() );
+	 * \endcode
 	 *
 	 * This is caused by the fact that most implementations are not publicitly 
 	 * visible due to architectural aspects. So this tool just simplifies 
@@ -39,6 +41,10 @@ namespace MinCOM
 		static IEventPtr Event();
 
 		static IMutexPtr Mutex();
+
+		static IServicePtr Service();
+
+		static IConnectionPtr TCPConnection(IServiceRef service);
 
 
 	};

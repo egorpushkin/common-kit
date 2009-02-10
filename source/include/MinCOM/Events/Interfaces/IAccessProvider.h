@@ -26,7 +26,7 @@ namespace MinCOM
 
 		virtual IAccessPointPtr Find(RefIid iid) = 0;
 
-		virtual result Spread(const CallData& call) = 0;
+		virtual result Spread(const Call& call) = 0;
 	};
 
 	typedef Strong< IAccessProvider > IAccessProviderPtr;

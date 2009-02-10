@@ -32,7 +32,7 @@ namespace MinCOM
 
 		virtual IAccessPointPtr Find(RefIid iid);
 
-		virtual result Spread(const CallData& call);
+		virtual result Spread(const Call& call);
 
 	protected:
 
@@ -44,6 +44,16 @@ namespace MinCOM
 		 * created access point.
 		 */
 		ICommonPtr Advise(RefIid eventsIid);
+
+		/**
+		 * Wraps call to Advise tool and throws exception if the operation fails.
+		 * The need of this tool is caused by desire to make PostInit call simpler
+		 * and to avoid additional checks. Developer should not explicitly perform
+		 * exception handling because this is done by MinCOM (see Class.h for
+		 * details).
+		 */
+		ICommonPtr AdviseAndThrow(RefIid eventsIid);
+
 
 	private:
 

@@ -5,5 +5,10 @@
 namespace MinCOM
 {
 
+	List::List()
+		: CommonImpl< IList >()
+	{
+	}
+
 
 }
