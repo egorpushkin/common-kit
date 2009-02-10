@@ -17,12 +17,7 @@ namespace MinCOM
 	interface ISynchro : public ICommon
 	{
 
-		typedef enum tagConsts
-		{
-
-			_INFINITE = 0xFFFFFFFF
-
-		} Consts;
+		static const unsigned long _INFINITE = 0xFFFFFFFF;
 
 		virtual result Wait(unsigned long delay = _INFINITE) = 0;
 	};

@@ -380,6 +380,14 @@
 				RelativePath=".\Concurrency\Mutex.win32.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Concurrency\Thread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Concurrency\Thread.win32.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Platforms"

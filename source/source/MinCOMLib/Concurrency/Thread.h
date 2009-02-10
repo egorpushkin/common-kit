@@ -1,5 +1,5 @@
-#ifndef THREAD_H__MINCOM__CORELIB__INCLUDED_
-#define THREAD_H__MINCOM__CORELIB__INCLUDED_
+#ifndef THREAD_H__MINCOMLIB__INCLUDED_
+#define THREAD_H__MINCOMLIB__INCLUDED_
 
 namespace MinCOM
 {
@@ -9,67 +9,64 @@ namespace MinCOM
 		, public CommonImpl< ISynchro >
 	{
 		
-		friend unsigned long mc_stdcall ThreadWorkingRoutine(void*);
+		// friend unsigned int mc_stdcall _ThreadWorkingRoutine(void*);
+
+		/**
+		 * Thread entry point.
+		 */
+		static unsigned int mc_stdcall _ThreadWorkingRoutine(void*);
+
+		/**
+		 * Executes context of particular thread.
+		 */
+		static unsigned int _ThreadExecutor(Thread * thread);
 
 	public:
 
 		Thread();
 		virtual ~Thread();
 
-		// ICommon section
-		DECLARE_INTERFACE_MAP()		
-
 		// IThread section
-		virtual result SetContext(IAgentRef context, DispParamsRef params = NULL);
+		virtual result SetContext(IRunnableRef context) = 0;
 
-		virtual result SetPriority(int priority);
+		virtual result Start() = 0;
 
-		virtual result Start();
-
-		virtual result Suspend();
-
-		virtual result Resume();
-
-		virtual result Terminate();		
-
-		virtual result GetExitCode();
-
-		virtual result Join();
+		virtual result Join() = 0;
 
 		// ISynchro section
-		virtual result Wait(unsigned long milliseconds = INFINITE);
+		virtual result Wait(unsigned long milliseconds = _INFINITE);
 
-		virtual result Signal();
+	protected:
 
-		virtual result Reset();
+		bool IsStarted();
+
+		/**
+		 * Tool to provide working routine with thread context.
+		 */ 
+		IRunnablePtr GetContext();
+
+		/**
+		 * Thread working routine calls this method to indicate that
+		 * the job is done. 
+		 * This tool should be designed to be called from ~Thread as well.
+		 */ 
+		void Finalize();
 
 	private:
 
-		// ThreadWorkingRoutine tools
-		void Finilize();
+#ifdef WIN32
+		/** Handle for win32 environments. */
+		HANDLE thread_;
+#elif POSIX
+		/** Handle for posix environments. */
+		
+#endif
 
-	private:
-
-		IAgentPtr context_;
-
-		DispParamsPtr params_;
-
-		int priority_;
-
-		class ThreadImpl_;	
-
-		typedef Loki::SmartPtr< ThreadImpl_ > ThreadImplPtr_;
-
-		ThreadImplPtr_ threadImpl_;
-
-		IMutexPtr lock_;
-
-		bool started_;
-
-		result exitCode_;
+		/** Thread context. */
+		IRunnablePtr context_;
 
 	};
 
 }
 
-#endif // !THREAD_H__MINCOM__CORELIB__INCLUDED_
+#endif // !THREAD_H__MINCOMLIB__INCLUDED_

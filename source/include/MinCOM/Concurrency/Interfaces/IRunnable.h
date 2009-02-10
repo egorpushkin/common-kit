@@ -15,7 +15,7 @@ namespace MinCOM
 {
 
 	/**
-	 * Interface to represent common executable operation.
+	 * Provides interface for any executable operation.
 	 */
 	interface IRunnable : public ICommon
 	{

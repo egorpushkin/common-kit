@@ -25,8 +25,8 @@ namespace MinCOM
 	//////////////////////////////////////////////////////////////////////////
 
 	// {c76d8df5-1dab-4375-b1f2-f532b4300185} 
-	// const Guid TypeInfo< IThread >::iid_ =  
-	//	0xc76d8df5, 0x1dab, 0x4375, 0xb1, 0xf2, 0xf5, 0x32, 0xb4, 0x30, 0x01, 0x85);
+	const Guid TypeInfo< IThread >::iid_ =  
+		{ 0xc76d8df5, 0x1dab, 0x4375, 0xb1, 0xf2, 0xf5, 0x32, 0xb4, 0x30, 0x01, 0x85 };
 
 	// {e137a6ce-1daa-4e7f-b157-eb9be83d3256} 
 	const Guid TypeInfo< IEvent >::iid_ = 

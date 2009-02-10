@@ -73,7 +73,8 @@ namespace mc = MinCOM;
 #include "MinCOM/Concurrency/Interfaces/IEvent.h"
 #include "MinCOM/Concurrency/Interfaces/IMutex.h"
 // #include "MinCOM/Interfaces/ISemaphore.h"
-// #include "MinCOM/Interfaces/IThread.h"
+#include "MinCOM/Concurrency/Interfaces/IRunnable.h"
+#include "MinCOM/Concurrency/Interfaces/IThread.h"
 // #include "MinCOM/Helpers/Threading.h"
 
 // Factory support

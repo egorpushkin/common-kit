@@ -1,7 +1,15 @@
-
+/*
+ * File name   : IThread.h
+ *
+ * Copyright (c) 2009 Scientific Software
+ *
+ * Modification History:
+ * Date        Name                Description
+ * 2009-02-10  Egor Pushkin        Initial version
+ */
 
 #ifndef ITHREAD_H__MINCOM__INCLUDED_
-#define ITHREAD_H__MINCOM__COMMONKIT__INCLUDED_
+#define ITHREAD_H__MINCOM__INCLUDED_
 
 namespace MinCOM
 {
@@ -14,23 +22,20 @@ namespace MinCOM
 
 		virtual result SetContext(IRunnableRef context) = 0;
 
-		virtual result SetPriority(int priority) = 0;
-
 		virtual result Start() = 0;
-
-		virtual result Suspend() = 0;
-
-		virtual result Resume() = 0;
-
-		virtual result Terminate() = 0;		
-
-		virtual long GetExitCode() = 0;
 
 		virtual result Join() = 0;
 
+		// Static context
+		//////////////////////////////////////////////////////////////////////////
+		
+		static unsigned int GetCores();
+
+		static void Sleep(unsigned long delay);
+
 	};
 
-	typedef ComPtr< IThread > IThreadPtr;
+	typedef Strong< IThread > IThreadPtr;
 	typedef const IThreadPtr& IThreadRef;
 
 	/*
@@ -59,8 +64,6 @@ namespace MinCOM
 	} ThreadPriority;
 	*/
 
-	IThreadPtr InstantiateThread();
-
 }
 
-#endif // !ITHREAD_H__MINCOM__COMMONKIT__INCLUDED_
+#endif // !ITHREAD_H__MINCOM__INCLUDED_
