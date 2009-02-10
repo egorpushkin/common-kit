@@ -168,7 +168,7 @@ namespace MinCOM
 		 * to its instantiation each time when Errrs.obj/.a is included into
 		 * an assembly. This causes fake memory leak if leak detection tool 
 		 * performs check at the end of main() routine, because static objects
-		 * are not yet removeb by that time.
+		 * are not yet removed by that time.
 		 */
 		// static std::map< long, result > errorCode_;
 

@@ -35,11 +35,24 @@ namespace MinCOM
 		virtual void ReadAsync(std::size_t minimum = 1) = 0;
 
 		/**
-		 * Use this tool only to produce your own std::istream and std::ostream
-		 * objects. Note that lifetime of these objects must not exceed the lifetime
+		 * Synchronously writes the entire  contents of internal output buffer 
+		 * to a stream.
+		 */
+		virtual void Write() = 0;
+
+		/**
+		 * Use this tool only to produce your own std::istream objects. 
+		 * Note that lifetime of these objects must not exceed the lifetime
 		 * of object implementing IConnection.
 		 */ 
-		virtual std::streambuf& GetStream() = 0;
+		virtual std::streambuf& GetIStreamBuf() = 0;
+
+		/**
+		 * Use this tool only to produce your own std::ostream objects. 
+		 * Note that lifetime of these objects must not exceed the lifetime
+		 * of object implementing IConnection.
+		 */ 
+		virtual std::streambuf& GetOStreamBuf() = 0;
 	};
 
 	typedef Strong< IConnection > IConnectionPtr;

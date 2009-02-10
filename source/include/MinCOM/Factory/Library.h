@@ -42,6 +42,8 @@ namespace MinCOM
 
 		static IMutexPtr Mutex();
 
+		static IThreadPtr Thread();
+
 		static IServicePtr Service();
 
 		static IConnectionPtr TCPConnection(IServiceRef service);

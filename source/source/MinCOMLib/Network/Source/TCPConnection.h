@@ -21,7 +21,11 @@ namespace MinCOM
 
 		virtual void TCPConnection::ReadAsync(std::size_t minimum = 1);
 
-		virtual std::streambuf& GetStream();
+		virtual void Write();
+
+		virtual std::streambuf& GetIStreamBuf();
+
+		virtual std::streambuf& GetOStreamBuf();
 
 		// ICommon section
 		//////////////////////////////////////////////////////////////////////////
@@ -55,7 +59,10 @@ namespace MinCOM
 		Socket_ socket_;
 
 		/** Buffer to hold received data. */
-		boost::asio::streambuf buffer_;
+		boost::asio::streambuf ibuffer_;
+
+		/** Buffer to hold data to be sent. */
+		boost::asio::streambuf obuffer_;
 
 		/** Connection events spreader. */
 		DRawDataPtr events_;

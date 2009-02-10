@@ -10,7 +10,7 @@ namespace MinCOM
 	}
 
 	// IFactory section
-	ICommonPtr FactoryImpl::Create(Key_ id)
+	ICommonPtr FactoryImpl::Create(KeyRef_ id)
 	{
 		CreatorsCIter_ iter = creators_.find(id);
 		if ( iter == creators_.end() )
@@ -19,14 +19,14 @@ namespace MinCOM
 		return (*((*iter).second))();
 	}
 
-	result FactoryImpl::Register(Key_ id, Creator_ creator)
+	result FactoryImpl::Register(KeyRef_ id, Creator_ creator)
 	{
 		creators_.insert(CreatorPair_(id, creator));
 
 		return _S_OK;
 	}
 
-	result FactoryImpl::Unregister(Key_ id)
+	result FactoryImpl::Unregister(KeyRef_ id)
 	{
 		if ( creators_.find(id) == creators_.end() )
 			return _S_FALSE;
@@ -36,7 +36,7 @@ namespace MinCOM
 		return _S_OK;
 	}
 
-	bool FactoryImpl::IsSupported(Key_ id)
+	bool FactoryImpl::IsSupported(KeyRef_ id)
 	{
 		CreatorsCIter_ iter = creators_.find(id);
 

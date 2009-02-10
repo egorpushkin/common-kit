@@ -27,11 +27,11 @@ namespace MinCOM
 		virtual ~Thread();
 
 		// IThread section
-		virtual result SetContext(IRunnableRef context) = 0;
+		virtual result SetContext(IRunnableRef context);
 
-		virtual result Start() = 0;
+		virtual result Start();
 
-		virtual result Join() = 0;
+		virtual result Join();
 
 		// ISynchro section
 		virtual result Wait(unsigned long milliseconds = _INFINITE);

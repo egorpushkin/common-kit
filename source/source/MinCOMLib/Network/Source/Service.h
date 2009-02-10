@@ -13,7 +13,10 @@ namespace MinCOM
 
 		// IService section
 		virtual void Run();
+
 		virtual void Stop();
+
+		virtual void Work();
 
 	protected:
 

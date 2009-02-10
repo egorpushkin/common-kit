@@ -26,7 +26,7 @@ namespace MinCOM
 	result DRawDataStub::Connected(IConnectionRef connection)
 	{
 		return Call::Make(
-			CommonImpl< DRawData >::GetTarget(),
+			CommonImpl< DRawData >::GetSelf(),
 			ConnectedFnIid,
 			connection).toLong();
 	}
@@ -34,7 +34,7 @@ namespace MinCOM
 	result DRawDataStub::DataReceived(IConnectionRef connection)
 	{
 		return Call::Make(
-			CommonImpl< DRawData >::GetTarget(),
+			CommonImpl< DRawData >::GetSelf(),
 			DataReceivedFnIid,
 			connection).toLong();
 	}
@@ -42,7 +42,7 @@ namespace MinCOM
 	result DRawDataStub::Disconnected(IConnectionRef connection)
 	{
 		return Call::Make(
-			CommonImpl< DRawData >::GetTarget(),
+			CommonImpl< DRawData >::GetSelf(),
 			DisconnectedFnIid,
 			connection).toLong();
 	}

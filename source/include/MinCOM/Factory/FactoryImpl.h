@@ -22,13 +22,13 @@ namespace MinCOM
 		FactoryImpl();
 
 		// IFactory section
-		virtual ICommonPtr Create(Key_ id);
+		virtual ICommonPtr Create(KeyRef_ id);
 
-		virtual result Register(Key_ id, Creator_ creator);
+		virtual result Register(KeyRef_ id, Creator_ creator);
 
-		virtual result Unregister(Key_ id);
+		virtual result Unregister(KeyRef_ id);
 
-		virtual bool IsSupported(Key_ id);
+		virtual bool IsSupported(KeyRef_ id);
 
 	private:
 

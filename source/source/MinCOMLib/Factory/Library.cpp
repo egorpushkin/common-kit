@@ -5,6 +5,7 @@
 #include "Container/List.h"
 #include "Concurrency/Event.h"
 #include "Concurrency/Mutex.h"
+#include "Concurrency/Thread.h"
 #include "Network/Source/Service.h"
 #include "Network/Source/TCPConnection.h"
 
@@ -34,6 +35,11 @@ namespace MinCOM
 	IMutexPtr Library::Mutex()
 	{
 		return Class< mc::Mutex >::Create();
+	}
+
+	IThreadPtr Library::Thread()
+	{
+		return Class< mc::Thread >::Create();
 	}
 
 	IServicePtr Library::Service()

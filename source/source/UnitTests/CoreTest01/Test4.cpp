@@ -22,9 +22,6 @@ public:
 		return mc::_S_OK;
 	}
 
-
-protected:
-private:
 };
  
 bool Test4()
@@ -32,12 +29,11 @@ bool Test4()
 	
 	{
 		// Construct commands container.
-		mc::ICommandsPtr commands( mc::FactoryHolder::Instance()->Create( mc::Class< mc::ICommands >::DefaultClsid() ) );
+		mc::ICommandsPtr commands( mc::Library::Commands() );
 		// Construct events listener.
 		mc::ICommonPtr eventsListener( mc::Class< TestEvent >::Create() );
 		// Subscribe on events.
-		unsigned long cookie;
-		mc::Events::Advise(commands, eventsListener, cookie, mc::TypeInfo< mc::DCommands >::GetGuid() );	
+		mc::Events::Advise(commands, eventsListener, mc::TypeInfo< mc::DCommands >::GetGuid() );	
 
 		
 		commands->SetModified(true);

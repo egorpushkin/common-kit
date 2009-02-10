@@ -373,6 +373,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Concurrency\IThread.win32.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Concurrency\Mutex.h"
 				>
 			</File>

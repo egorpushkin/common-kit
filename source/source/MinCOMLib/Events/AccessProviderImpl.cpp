@@ -77,7 +77,8 @@ namespace MinCOM
 		if ( !accessPoint )
 			return NULL;
 		// Produce corresponding events spreader.
-		ICommonPtr eventsSpreader_ = Object::CreateStub( TypeInfo< DCommands >::GetGuid(), accessPoint->CreateSpreader(), true );
+		ICommonPtr eventsSpreader_ = Object::CreateStub( 
+			eventsIid, accessPoint->CreateSpreader(), true );
 		if ( !eventsSpreader_ )
 			return NULL;		
 		// Register access point.

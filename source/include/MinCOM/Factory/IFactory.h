@@ -20,14 +20,15 @@ namespace MinCOM
 		typedef ICommonPtr (*Creator_)();
 
 		typedef Guid Key_;
+		typedef const Key_& KeyRef_;
 
-		virtual ICommonPtr Create(Key_ id) = 0;
+		virtual ICommonPtr Create(KeyRef_ id) = 0;
 
-		virtual result Register(Key_ id, Creator_ creator) = 0;
+		virtual result Register(KeyRef_ id, Creator_ creator) = 0;
 
-		virtual result Unregister(Key_ id) = 0;
+		virtual result Unregister(KeyRef_ id) = 0;
 
-		virtual bool IsSupported(Key_ id) = 0;
+		virtual bool IsSupported(KeyRef_ id) = 0;
 
 	};
 

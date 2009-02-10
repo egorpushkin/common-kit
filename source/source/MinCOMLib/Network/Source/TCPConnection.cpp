@@ -12,7 +12,8 @@ namespace MinCOM
 		, mc::APImpl()
 		, service_(service)
 		, socket_( Strong< Service >(service_)->GetService() )
-		, buffer_()
+		, ibuffer_()
+		, obuffer_()
 		, events_()
 	{
 	}
@@ -26,6 +27,10 @@ namespace MinCOM
 
 		try
 		{
+			// Flush buffers.
+			ibuffer_.consume(ibuffer_.size());
+			obuffer_.consume(obuffer_.size());
+
 			// Establish new one.
 			boost::asio::ip::tcp::resolver resolver(Strong< Service >(service_)->GetService());
 			boost::asio::ip::tcp::resolver::query query(host, service);
@@ -62,15 +67,29 @@ namespace MinCOM
 
 		boost::asio::async_read(
 			socket_, 
-			buffer_, 
+			ibuffer_, 
 			boost::asio::transfer_at_least(minimum),
 			boost::bind(&TCPConnection::HandleRead, this, boost::asio::placeholders::error));
 	}
 
-	std::streambuf& TCPConnection::GetStream()
+	void TCPConnection::Write()
+	{
+		boost::asio::write(
+			socket_, 
+			obuffer_,
+			boost::asio::transfer_all()); 
+	}
+
+	std::streambuf& TCPConnection::GetIStreamBuf()
 	{
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
-		return buffer_;
+		return ibuffer_;
+	}
+
+	std::streambuf& TCPConnection::GetOStreamBuf()
+	{
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
+		return obuffer_;
 	}
 
 	// ICommon section
@@ -80,7 +99,7 @@ namespace MinCOM
 	{
 		// Register additional access point for events' delivery and configure 
 		// events spreader.
-		events_ = APImpl::Advise( TypeInfo< DCommands >::GetGuid() );
+		events_ = APImpl::Advise( TypeInfo< DRawData >::GetGuid() );
 		return _S_OK;
 	}
 
@@ -100,6 +119,15 @@ namespace MinCOM
 		
 		// Spread event to subscribers.
 		events_->DataReceived( CommonImpl< IConnection >::GetSelf() );		
+	}
+
+	void a()
+	{
+		boost::asio::streambuf s;
+
+		std::stringbuf ss;
+
+
 	}
 	
 	// IClient section
