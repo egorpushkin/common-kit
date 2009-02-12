@@ -116,6 +116,10 @@ namespace MinCOM
     template<> const Guid TypeInfo< IProtocol >::iid_ = 
 		{ 0xfd3fec5e, 0x51b4, 0x4dd3, 0x91, 0x3e, 0x1b, 0x59, 0xde, 0x3d, 0x0f, 0xb4 };
 
+	// {9481DCC0-DD41-4b48-A070-EEE404DD181A}
+	template<> const Guid TypeInfo< DProtocol >::iid_ = 
+		{ 0x9481dcc0, 0xdd41, 0x4b48, 0xa0, 0x70, 0xee, 0xe4, 0x4, 0xdd, 0x18, 0x1a };
+
 	// Containers
 	//////////////////////////////////////////////////////////////////////////
 
