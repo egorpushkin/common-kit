@@ -29,6 +29,15 @@ namespace MinCOM
 	interface ICommon;
 
 	/**
+	 * Preliminary declaration of default ICommon implementation.
+	 */     
+    template
+	<
+        class T
+	>
+	class CommonImpl;
+
+	/**
 	 * Strong pointer intended to host pointers to native MinCOM and
 	 * inherited control interfaces. Implementation of this helper class 
 	 * provides support for MinCOM memory (life-circle) management.
@@ -88,8 +97,7 @@ namespace MinCOM
 			if ( NULL != p1 )
 			{
 				// Try to cast raw pointer to the type of current pointer.
-				// T * p = dynamic_cast< T* >( p1 );
-				T * p = p1->Cast< T >();
+				T * p = dynamic_cast< T* >( dynamic_cast< CommonImpl< T >* >( p1 ) );
 				if ( p )
 				{
 					// Init internal pointer only if casting succeeded.
@@ -364,7 +372,7 @@ namespace MinCOM
 		{
 			if ( !p_ )
 			{
-				throw std::exception("Pointer is not initialized");
+				throw std::exception();
 			}
 			return p_;
 		}
@@ -376,7 +384,7 @@ namespace MinCOM
 		{
 			if ( !p_ )
 			{
-				throw std::exception("Pointer is not initialized");
+				throw std::exception();
 			}
 			return *p_;
 		}
@@ -388,7 +396,7 @@ namespace MinCOM
 		{
 			if ( !p_ )
 			{
-				throw std::exception("Pointer is not initialized");
+				throw std::exception();
 			}
 			return *p_;
 		}

@@ -22,41 +22,41 @@ namespace MinCOM
 	public:
 
 		CoreMutex()
-#ifdef WIN32
+#if defined(WIN32)
 			: mutex_(::CreateMutex(NULL, FALSE, NULL))
-#elif POSIX
+#elif defined(POSIX)
 			: mutex_()
 #endif
 		{
-#ifdef WIN32
-#elif POSIX
+#if defined(WIN32)
+#elif defined(POSIX)
 			pthread_mutex_init(&mutex_, NULL);
 #endif
 		}
 
 		~CoreMutex()
 		{
-#ifdef WIN32
+#if defined(WIN32)
 			::CloseHandle(mutex_);
-#elif POSIX
+#elif defined(POSIX)
 			pthread_mutex_destroy(&mutex_);
 #endif			
 		}
 
 		bool Lock()
 		{
-#ifdef WIN32
+#if defined(WIN32)
 			return SUCCEEDED(::WaitForSingleObject(mutex_, INFINITE));
-#elif POSIX
+#elif defined(POSIX)
 			return pthread_mutex_lock(&mutex_);
 #endif				
 		}
 
 		void Unlock()
 		{
-#ifdef WIN32
+#if defined(WIN32)
 			::ReleaseMutex(mutex_);
-#elif POSIX
+#elif defined(POSIX)
 			pthread_mutex_unlock(&mutex_);
 #endif		
 		}
@@ -65,15 +65,15 @@ namespace MinCOM
 
 		/** Copy-constructor not implemented and denied. */
 		CoreMutex( const CoreMutex & );
-
+        
 		/** Copy-assignment operator not implemented and denied. */
 		CoreMutex & operator = ( const CoreMutex & );
 
 	private:
 
-#ifdef WIN32
+#if defined(WIN32)
 		HANDLE mutex_;
-#elif POSIX
+#elif defined(POSIX)
 		pthread_mutex_t mutex_;
 #endif				
 

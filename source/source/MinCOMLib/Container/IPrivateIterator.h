@@ -31,11 +31,15 @@ namespace MinCOM
 	>
 	interface IPrivateIterator : public ICommon
 	{
-	// This prevents from accessing by unauthorized tools.
+#if defined(_MSC_VER)
+    // This prevents from accessing by unauthorized tools.
 	private:
-
+#endif
+        
 		// Only specified container is allowed to use this tool.
+#if defined(_MSC_VER)
 		friend TMCContainer;
+#endif
 
 		/** 
 		 * Provides access to raw std iterator.

@@ -1,13 +1,19 @@
 #ifndef EXTERNAL_H__MINCOM__COMMONKIT__INCLUDED_
 #define EXTERNAL_H__MINCOM__COMMONKIT__INCLUDED_
 
+// Include it to determine platform correctly.
+#include <stddef.h>
+
 // Platform dependencies
 //////////////////////////////////////////////////////////////////////////
-#ifdef WIN32
-#define WIN32_LEAN_AND_MEAN	
-#include <Windows.h>
-#elif POSIX
-#include <pthread.h>
+#if defined(WIN32)
+ #define WIN32_LEAN_AND_MEAN	
+ #include <Windows.h>
+#elif defined(__GNUC__)
+ #ifndef POSIX
+  #define POSIX 0
+ #endif
+ #include <pthread.h>
 #endif
 
 // Standard library requirements
@@ -33,6 +39,7 @@
 #include <set>
 #include <stack>
 #include <queue>
+#include <istream>
 
 // Loki library dependencies.
 //////////////////////////////////////////////////////////////////////////
@@ -47,7 +54,7 @@
 // Enable internal synchronization support.
 #define LOKI_OBJECT_LEVEL_THREADING
 
-#include "../../../sdk/include/loki/SmartPtr.h"
+#include "loki/SmartPtr.h"
 // #include "../../../sdk/include/loki/RefToValue.h"
 // #include "../../../sdk/include/loki/TypeManip.h"
 // #include "../../../sdk/include/loki/Singleton.h"

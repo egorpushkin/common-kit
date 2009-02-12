@@ -4,6 +4,10 @@
 // Boost ASIO 
 //////////////////////////////////////////////////////////////////////////
 
+// Disable RegEx and DateTime libraries
+#define BOOST_REGEX_NO_LIB
+#define BOOST_DATE_TIME_NO_LIB
+
 #ifdef WIN32
 // Required by Windows headers.
 #define _WIN32_WINNT 0x0501

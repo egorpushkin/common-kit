@@ -194,4 +194,3 @@ namespace MinCOM
 }
 
 #endif // !COMMONVARIANT_H__MINCOM__INCLUDED_
-

@@ -23,28 +23,31 @@ namespace MinCOM
 
 		static bool TestZero(long & value)
 		{
-#ifdef WIN32
+#if defined(WIN32)
 			return ( 0 == ::InterlockedCompareExchange(&value, value, 0) );
-#elif POSIX
-
+#elif defined(POSIX)
+            // TODO: Implement this in thread safe manner.
+            return ( 0 == value );
 #endif
 		}
 
 		static long Increment(long & value)
 		{
-#ifdef WIN32
+#if defined(WIN32)
 			return ::InterlockedIncrement(&value);
-#elif POSIX
-
+#elif defined(POSIX)
+            // TODO: Implement this in thread safe manner.
+            return ++value;
 #endif
 		}
 
 		static long Decrement(long & value)
 		{
-#ifdef WIN32
+#if defined(WIN32)
 			return ::InterlockedDecrement(&value);
-#elif POSIX
-
+#elif defined(POSIX)
+            // TODO: Implement this in thread safe manner.
+            return --value;
 #endif
 		}
 	};

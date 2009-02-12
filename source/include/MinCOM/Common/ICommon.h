@@ -22,20 +22,6 @@ namespace MinCOM
 	public:
 
 		/**
-		 * Method to cast pointer to any object's control interface to
-		 * pointer to another interface which is potentially supported by 
-		 * the object.
-		 */
-		template
-		<
-			class T1
-		>
-		T1 * Cast()
-		{
-			return dynamic_cast< T1* >(this);
-		}
-
-		/**
 		 * Tool to power interchangeable (object specific) casting mechanism.
 		 * This tool should check whether current object support target 
 		 * interface with specified iid or figure out what to do otherwise.

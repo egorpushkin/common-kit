@@ -5,6 +5,6 @@
 namespace MinCOM
 {
 
-	const Guid Class< ICommands >::clsid_ = TypeInfo< Commands >::GetGuid();
+    template<> const Guid Class< ICommands >::clsid_ = TypeInfo< Commands >::GetGuid();
 
 }
