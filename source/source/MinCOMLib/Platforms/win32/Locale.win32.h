@@ -8,6 +8,7 @@ namespace MinCOM
 	{
 	public:
 
+		// Intertnal tools
 		static std::wstring A2W(const std::string& str);
 
 	};

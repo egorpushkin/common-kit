@@ -17,14 +17,6 @@ namespace MinCOM
 	interface IEvent : public ISynchro
 	{
 
-		virtual result Create(bool manualReset = true, bool initialState = false) = 0;
-
-		virtual result Create(std::string name, bool manualReset = true, bool initialState = false) = 0;
-
-		virtual result Open(std::string name) = 0;
-
-		virtual result Close() = 0;
-
 		virtual result Pulse() = 0;
 
 		virtual result Set() = 0;

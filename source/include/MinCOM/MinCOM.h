@@ -46,7 +46,6 @@ namespace mc = MinCOM;
 #include "MinCOM/Container/Interfaces/IMap.h"
 #include "MinCOM/Container/Interfaces/DContainer.h"
 
-
 // Variant support for dispatching
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Variant/CommonVariant.h"
@@ -72,9 +71,10 @@ namespace mc = MinCOM;
 #include "MinCOM/Concurrency/Interfaces/ISynchro.h"
 #include "MinCOM/Concurrency/Interfaces/IEvent.h"
 #include "MinCOM/Concurrency/Interfaces/IMutex.h"
-// #include "MinCOM/Interfaces/ISemaphore.h"
+#include "MinCOM/Concurrency/Interfaces/ISemaphore.h"
 #include "MinCOM/Concurrency/Interfaces/IRunnable.h"
 #include "MinCOM/Concurrency/Interfaces/IThread.h"
+#include "MinCOM/Concurrency/Interfaces/IJobsQueue.h"
 // #include "MinCOM/Helpers/Threading.h"
 
 // Factory support
@@ -86,13 +86,15 @@ namespace mc = MinCOM;
 
 // Networking support
 //////////////////////////////////////////////////////////////////////////
-#include "MinCOM/Network/Interfaces/IHost.h"
-#include "MinCOM/Network/Interfaces/IConnection.h"
-#include "MinCOM/Network/Interfaces/IServer.h"
-#include "MinCOM/Network/Interfaces/IService.h"
-#include "MinCOM/Network/Events/DRawData.h"
-
-
+#include "MinCOM/Network/Core/IHost.h"
+#include "MinCOM/Network/Core/IConnection.h"
+#include "MinCOM/Network/Core/IServer.h"
+#include "MinCOM/Network/Core/IService.h"
+#include "MinCOM/Network/Core/DRawData.h"
+#include "MinCOM/Network/Protocol/IMessage.h"
+#include "MinCOM/Network/Protocol/IProtocol.h"
+#include "MinCOM/Network/Protocol/DProtocol.h"
+#include "MinCOM/Network/Protocol/MessageImpl.h"
 
 // Local MinCOM registry of tools for fast and convenient access
 #include "MinCOM/Factory/Library.h"

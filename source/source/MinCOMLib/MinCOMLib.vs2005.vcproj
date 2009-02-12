@@ -364,34 +364,106 @@
 		<Filter
 			Name="Concurrency"
 			>
-			<File
-				RelativePath=".\Concurrency\Event.h"
+			<Filter
+				Name="Core"
 				>
-			</File>
-			<File
-				RelativePath=".\Concurrency\Event.win32.cpp"
+				<File
+					RelativePath=".\Concurrency\Core\Event.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Event.win32.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\IThread.win32.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Mutex.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Mutex.win32.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Mutex.win32.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Semaphore.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Semaphore.win32.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Thread.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Core\Thread.win32.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Jobs"
 				>
-			</File>
-			<File
-				RelativePath=".\Concurrency\IThread.win32.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Concurrency\Mutex.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Concurrency\Mutex.win32.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Concurrency\Thread.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Concurrency\Thread.win32.cpp"
-				>
-			</File>
+				<File
+					RelativePath=".\Concurrency\Jobs\JobsContext.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Jobs\JobsContext.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Jobs\JobsQueue.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Jobs\JobsQueue.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Platforms"
@@ -485,34 +557,46 @@
 			Name="Network"
 			>
 			<Filter
-				Name="Source"
+				Name="Core"
 				>
 				<File
-					RelativePath=".\Network\Source\Service.cpp"
+					RelativePath=".\Network\Core\DRawDataStub.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Source\Service.h"
+					RelativePath=".\Network\Core\DRawDataStub.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Source\TCPConnection.cpp"
+					RelativePath=".\Network\Core\Service.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Source\TCPConnection.h"
+					RelativePath=".\Network\Core\Service.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Core\TCPConnection.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Core\TCPConnection.h"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Events"
+				Name="Protocol"
 				>
 				<File
-					RelativePath=".\Network\Events\DRawDataStub.cpp"
+					RelativePath=".\Network\Protocol\MessageImpl.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Events\DRawDataStub.h"
+					RelativePath=".\Network\Protocol\Protocol.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Protocol\Protocol.h"
 					>
 				</File>
 			</Filter>

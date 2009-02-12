@@ -32,12 +32,6 @@ namespace MinCOM
 		 */
 		virtual void Stop() = 0;
 
-		/**
-		 * Informs the service that it has work to do.
-		 * Blocking call. Use IService->Stop to effect a shutdown.
-		 */
-		virtual void Work() = 0;
-
 	};
 
 	typedef Strong< IService > IServicePtr;

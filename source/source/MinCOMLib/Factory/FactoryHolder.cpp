@@ -2,7 +2,7 @@
 
 #include "Commands/Commands.h"
 #include "Commands/DCommandsStub.h"
-#include "Network/Events/DRawDataStub.h"
+#include "Network/Core/DRawDataStub.h"
 
 namespace MinCOM
 {

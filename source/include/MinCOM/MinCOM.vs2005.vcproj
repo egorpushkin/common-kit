@@ -236,10 +236,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Concurrency\Interfaces\IMultiSynchro.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Concurrency\Interfaces\IMutex.h"
 					>
 				</File>
@@ -257,10 +253,6 @@
 				</File>
 				<File
 					RelativePath=".\Concurrency\Interfaces\IThread.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Concurrency\Interfaces\ITimer.h"
 					>
 				</File>
 			</Filter>
@@ -405,44 +397,48 @@
 			Name="Network"
 			>
 			<Filter
-				Name="Interfaces"
+				Name="Core"
 				>
 				<File
-					RelativePath=".\Network\Interfaces\IConnection.h"
+					RelativePath=".\Network\Core\DRawData.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Interfaces\IHost.h"
+					RelativePath=".\Network\Core\IConnection.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Interfaces\IMessage.h"
+					RelativePath=".\Network\Core\IHost.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Interfaces\IProtocol.h"
+					RelativePath=".\Network\Core\IServer.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Network\Interfaces\IServer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Network\Interfaces\IService.h"
+					RelativePath=".\Network\Core\IService.h"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Events"
+				Name="Protocol"
 				>
 				<File
-					RelativePath=".\Network\Events\DRawData.h"
+					RelativePath=".\Network\Protocol\DProtocol.h"
 					>
 				</File>
-			</Filter>
-			<Filter
-				Name="Impl"
-				>
+				<File
+					RelativePath=".\Network\Protocol\IMessage.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Protocol\IProtocol.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Protocol\MessageImpl.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<File

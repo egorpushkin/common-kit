@@ -1,0 +1,51 @@
+#ifndef JOBQUEUE_H__MINCOMLIB__INCLUDED_
+#define JOBQUEUE_H__MINCOMLIB__INCLUDED_
+
+namespace MinCOM
+{
+
+	class JobsQueue 
+		: public mc::CommonImpl< IJobsQueue >
+		, public mc::CommonImpl< ISynchro >
+	{
+	public:
+
+		JobsQueue();
+		virtual ~JobsQueue();
+
+		// IJobsQueue section
+		virtual result Run();
+
+		virtual result Stop();
+
+		virtual result Push(IRunnableRef job);
+
+		virtual result Execute();
+
+		virtual bool ContinueExecution();
+
+		// ISynchro section
+		virtual result Wait(unsigned long delay = _INFINITE);
+
+	protected:
+
+		// Internal tools
+		IRunnablePtr Pop();
+
+	private:
+
+		IMutexPtr lockQueue_;
+
+		IThreadPtr workingThread_;
+
+		IEventPtr newJobSignal_;
+
+		std::queue< IRunnablePtr > jobs_;
+
+		bool continueExecution_;
+
+	};
+
+}
+
+#endif // !JOBQUEUE_H__MINCOMLIB__INCLUDED_

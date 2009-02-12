@@ -1,32 +1,36 @@
+/*
+ * File name   : IJobsQueue.h
+ *
+ * Copyright (c) 2009 Scientific Software
+ *
+ * Modification History:
+ * Date        Name                Description
+ * 2009-02-11  Egor Pushkin        Initial version
+ */
+
 #ifndef IJOBSQUEUE_H__MINCOM__INCLUDED_
 #define IJOBSQUEUE_H__MINCOM__INCLUDED_
 
-namespace Components
+namespace MinCOM
 {
 
 	interface IJobsQueue : public ICommon
 	{
 
-		virtual mc::result Start() = 0;
+		virtual result Run() = 0;
 
-		virtual mc::result Stop() = 0;
+		virtual result Stop() = 0;
 
-		virtual mc::result Push(IRunnableRef job) = 0;
+		virtual result Push(IRunnableRef job) = 0;
 
-		virtual mc::result Execute() = 0;
+		virtual result Execute() = 0;
 
 		virtual bool ContinueExecution() = 0;
 
 	};
 
-	typedef mc::ComPtr< IJobsQueue > IJobsQueuePtr;
+	typedef Strong< IJobsQueue > IJobsQueuePtr;
 	typedef const IJobsQueuePtr& IJobsQueueRef;
-
-	// {6fc2e099-3f36-4675-8233-1d45180309cf} 
-	MC_DEFINE_GUID(IID_IJobsQueue, 
-	0x6fc2e099, 0x3f36, 0x4675, 0x82, 0x33, 0x1d, 0x45, 0x18, 0x03, 0x09, 0xcf);
-
-	IJobsQueuePtr InstantiateJobsQueue();
 
 }
 

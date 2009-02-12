@@ -1,7 +1,7 @@
 #include "Common/Common.h"
 
 #include "Commands/Commands.h"
-#include "Network/Source/Service.h"
+#include "Network/Core/Service.h"
 #include "Container/Vector.h"
 
 namespace MinCOM

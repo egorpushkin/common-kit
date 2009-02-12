@@ -17,14 +17,6 @@ namespace MinCOM
 	interface IMutex : public ISynchro
 	{
 
-		virtual result Create(bool obtain = false) = 0;
-
-		virtual result Create(std::string name, bool obtain = false) = 0;
-
-		virtual result Open(std::string name) = 0;
-
-		virtual result Close() = 0;
-
 		virtual result Release() = 0;
 	};
 

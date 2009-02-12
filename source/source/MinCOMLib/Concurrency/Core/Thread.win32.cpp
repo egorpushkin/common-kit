@@ -39,6 +39,7 @@ namespace MinCOM
 		if ( !thread )
 			return 1;
 
+		// Get context for execution.
 		IRunnablePtr context = thread->GetContext();
 		if ( !context )
 		{
@@ -46,11 +47,11 @@ namespace MinCOM
 			return 1;
 		}
 
+		// Run context.
 		context->Run();
 
-		// 
+		// Notify thread object on completion.
 		thread->Finalize();
-
 
 		return 0;
 	}

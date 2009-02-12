@@ -22,11 +22,6 @@ namespace MinCOM
 		service_.stop();
 	}
 
-	void Service::Work()
-	{
-		boost::asio::io_service::work work(service_);
-	}
-
 	boost::asio::io_service& Service::GetService()
 	{
 		return service_;

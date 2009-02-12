@@ -16,8 +16,6 @@ namespace MinCOM
 
 		virtual void Stop();
 
-		virtual void Work();
-
 	protected:
 
 		friend class TCPConnection;

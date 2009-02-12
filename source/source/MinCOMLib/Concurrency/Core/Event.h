@@ -9,18 +9,13 @@ namespace MinCOM
 	{
 	public:
 
-		Event();
+		Event(bool manualReset, bool initialState, const std::string& name);
+
+		Event(const std::string& name);
+
 		virtual ~Event();
 
 		// IEvent section
-		virtual result Create(bool manualReset = true, bool initialState = false);
-
-		virtual result Create(std::string name, bool manualReset = true, bool initialState = false);
-
-		virtual result Open(std::string name);
-
-		virtual result Close();
-
 		virtual result Pulse();
 
 		virtual result Set();
@@ -31,7 +26,11 @@ namespace MinCOM
 		virtual result Wait(unsigned long delay = _INFINITE);
 
 	private:
-		
+
+		const wchar_t* PrepareName(const std::string& name);
+
+	private:
+
 #ifdef WIN32
 		/** Handle for win32 environments. */
 		HANDLE event_;

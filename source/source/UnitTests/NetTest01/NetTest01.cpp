@@ -105,7 +105,8 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 		// service->Work();
 		// for ( ;; )
 		{
-			service->Run();
+			// service->Work();
+			// service->Run();
 		}
 
 		// mc::IThread::Sleep(100*1000);

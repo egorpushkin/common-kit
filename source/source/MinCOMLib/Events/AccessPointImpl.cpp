@@ -99,11 +99,14 @@ namespace MinCOM
 	// Protected tools
 	result AccessPointImpl::NotifySinkOnEvent(ICommonRef sink, const Call& call)
 	{
+		// Check whether sink is still alive.
+		if ( !sink )
+			return _S_FALSE;
 		// Create appropriate stub.
 		ICommonPtr stub(Object::CreateStub(iid_, sink, false));
 		if ( !stub )
 		{
-			// Invoke methon directly.
+			// Invoke method directly.
 			return sink->Invoke(call);
 		}
 		// Translate method with stub.

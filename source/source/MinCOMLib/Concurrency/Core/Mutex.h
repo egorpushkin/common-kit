@@ -9,22 +9,21 @@ namespace MinCOM
 	{
 	public:
 
-		Mutex();
+		Mutex(bool obtain, const std::string& name);
+
+		Mutex(const std::string& name);
+
 		virtual ~Mutex();
 
 		// IMutex section
-		virtual result Create(bool obtain = false);
-
-		virtual result Create(std::string name, bool obtain = false);
-
-		virtual result Open(std::string name);
-
-		virtual result Close();
-
 		virtual result Release();
 
 		// ISynchro section
 		virtual result Wait(unsigned long delay = _INFINITE);
+
+	private:
+
+		const wchar_t* PrepareName(const std::string& name);
 
 	private:
 

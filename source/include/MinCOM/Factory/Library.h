@@ -20,8 +20,7 @@ namespace MinCOM
 	 * call:
 	 *
 	 * \code
-	 *     mc::FactoryHolder::Instance()->Create( 
-	 *         mc::Class< mc::ISomeInterface >::DefaultClsid() );
+	 *     Class< mc::SomeObject >::Create( arguments_if_any );
 	 * \endcode
 	 *
 	 * This is caused by the fact that most implementations are not publicitly 
@@ -38,16 +37,36 @@ namespace MinCOM
 
 		static IListPtr List();
 
-		static IEventPtr Event();
+		// Events
+		//////////////////////////////////////////////////////////////////////////
 
-		static IMutexPtr Mutex();
+		static IEventPtr Event(bool manualReset = true, bool initialState = false, const std::string& name = std::string());
+
+		static IEventPtr EventOpen(const std::string& name);
+
+		// Mutexes
+		//////////////////////////////////////////////////////////////////////////
+
+		static IMutexPtr Mutex(bool obtain = false, const std::string& name = std::string());
+
+		static IMutexPtr MutexOpen(const std::string& name);
+
+		// Semaphores
+		//////////////////////////////////////////////////////////////////////////
+
+		static ISemaphorePtr Semaphore(long initial, long maximum, const std::string& name = std::string());
+
+		static ISemaphorePtr SemaphoreOpen(const std::string& name);
 
 		static IThreadPtr Thread();
+
+		static IJobsQueuePtr JobsQueue();
 
 		static IServicePtr Service();
 
 		static IConnectionPtr TCPConnection(IServiceRef service);
 
+		static IFactoryPtr Factory();
 
 	};
 
