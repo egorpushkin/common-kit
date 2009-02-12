@@ -27,12 +27,12 @@ namespace MinCOM
 
 	private:
 
-#ifdef WIN32
+#if defined(WIN32)
 		/** Handle for win32 environments. */
 		HANDLE mutex_;
-#elif POSIX
+#elif defined(POSIX)
 		/** Handle for posix environments. */
-		
+		pthread_mutex_t mutex_;
 #endif
 		
 	};

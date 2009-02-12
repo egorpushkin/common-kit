@@ -31,12 +31,12 @@ namespace MinCOM
 
 	private:
 
-#ifdef WIN32
+#if defined(WIN32)
 		/** Handle for win32 environments. */
 		HANDLE event_;
-#elif POSIX
+#elif defined(POSIX)
 		/** Handle for posix environments. */
-		
+	
 #endif
 		
 	};

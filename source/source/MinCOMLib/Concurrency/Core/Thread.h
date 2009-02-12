@@ -14,8 +14,12 @@ namespace MinCOM
 		/**
 		 * Thread entry point.
 		 */
+#if defined(WIN32)        
 		static unsigned int mc_stdcall _ThreadWorkingRoutine(void*);
-
+#elif defined(POSIX)        
+        static void * _ThreadWorkingRoutine(void*);
+#endif
+        
 		/**
 		 * Executes context of particular thread.
 		 */
@@ -54,12 +58,14 @@ namespace MinCOM
 
 	private:
 
-#ifdef WIN32
+#if defined(WIN32)
 		/** Handle for win32 environments. */
 		HANDLE thread_;
-#elif POSIX
+#elif defined(POSIX)
 		/** Handle for posix environments. */
-		
+		pthread_t thread_;
+        /** Indicates whether thread is still running. */
+        bool running_;
 #endif
 
 		/** Thread context. */

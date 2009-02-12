@@ -1,6 +1,10 @@
 #ifndef SEMAPHORE_H__MINCOMLIB__INCLUDED_
 #define SEMAPHORE_H__MINCOMLIB__INCLUDED_
 
+#if defined(POSIX)
+#include <semaphore.h>
+#endif
+
 namespace MinCOM
 {
 
@@ -9,9 +13,9 @@ namespace MinCOM
 	{
 	public:
 
-		Semaphore(long initial, long maximum, const std::string& anme);
+		Semaphore(long initial, long maximum, const std::string& name);
 		
-		Semaphore(const std::string& anme);
+		Semaphore(const std::string& name);
 		
 		virtual ~Semaphore();
 
@@ -27,12 +31,12 @@ namespace MinCOM
 
 	private:
 		
-#ifdef WIN32
+#if defined(WIN32)
 		/** Handle for win32 environments. */
 		HANDLE semaphore_;
-#elif POSIX
+#elif defined(POSIX)
 		/** Handle for posix environments. */
-		
+		sem_t semaphore_;
 #endif
 		
 	};
