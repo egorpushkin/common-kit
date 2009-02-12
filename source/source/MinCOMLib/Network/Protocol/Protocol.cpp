@@ -2,9 +2,8 @@
 
 #include "Protocol.h"
 
-#include <limits>
-
-#undef max
+// Required for std::numeric_limits< T >::max() to work.
+#undef max 
 
 namespace MinCOM
 {

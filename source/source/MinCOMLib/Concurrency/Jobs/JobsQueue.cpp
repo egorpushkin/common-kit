@@ -3,15 +3,16 @@
 #include "JobsQueue.h"
 #include "JobsContext.h"
 
+// Required for std::numeric_limits< T >::max() to work.
+#undef max
+
 namespace MinCOM
 {
 
 	JobsQueue::JobsQueue()
 		: mc::CommonImpl< IJobsQueue >()
 		, mc::CommonImpl< ISynchro >()
-		, lockQueue_(Library::Mutex())
 		, workingThread_()
-		, newJobSignal_(Library::Event())
 		, jobs_()
 		, continueExecution_(false)
 	{
@@ -31,7 +32,7 @@ namespace MinCOM
 			return mc::_E_ALREADYINIT;
 
 		// Initially flush signals
-		newJobSignal_->Reset();
+		jobsCounter_ = Library::Semaphore(0, std::numeric_limits< long >::max());
 
 		// Initialize termination criterion
 		continueExecution_ = true;
@@ -39,7 +40,7 @@ namespace MinCOM
 		// Configure and start jobs' processing thread
 		workingThread_ = Library::Thread();
 		workingThread_->SetContext(
-			Class< JobsContext >::Create(CommonImpl< IJobsQueue >::GetSelf(), newJobSignal_) );
+			Class< JobsContext >::Create(CommonImpl< IJobsQueue >::GetSelf(), jobsCounter_) );
 		workingThread_->Start();
 
 		return mc::_S_OK;
@@ -56,7 +57,7 @@ namespace MinCOM
 		continueExecution_ = false;
 
 		// Signal on fake job 
-		newJobSignal_->Set();
+		jobsCounter_->Release(1);
 
 		// Waiting for thread termination
 		workingThread_->Join();
@@ -79,7 +80,7 @@ namespace MinCOM
 		jobs_.push(job);
 
 		// Notify processing thread
-		newJobSignal_->Set();
+		jobsCounter_->Release(1);
 	
 		return mc::_S_OK;
 	}

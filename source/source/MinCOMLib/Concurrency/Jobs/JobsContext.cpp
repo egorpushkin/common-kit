@@ -5,43 +5,33 @@
 namespace MinCOM
 {
 
-	JobsContext::JobsContext(IJobsQueueRef jobsQueue, IEventRef newJobSignal)
+	JobsContext::JobsContext(IJobsQueueRef jobsQueue, ISemaphoreRef jobsCounter)
 		: CommonImpl< IRunnable >()
 		, jobsQueue_(jobsQueue)
-		, newJobSignal_(newJobSignal)
+		, jobsCounter_(jobsCounter)
 	{
 	}
 
 	// IAgent section
 	result JobsContext::Run()
 	{		
-		if ( !jobsQueue_ || !newJobSignal_ )
+		if ( !jobsQueue_ || !jobsCounter_ )
 			return _E_FAIL;			
 
 		bool forever = true;
 		while ( forever )
 		{
-			if ( Error::IsFailed(newJobSignal_->Wait()) )
+			// Wait until any job arrives.
+			if ( Error::IsFailed(jobsCounter_->Wait()) )
 				return _E_FAIL;
+	
+			// Execute a job.
+			jobsQueue_->Execute();			
 
-			newJobSignal_->Reset();
-
-			// Process pending jobs
-			if ( Error::IsFailed(DoJobs(jobsQueue_)) )
-			{
-				// Stop execution if internal processing routine has failed 
-				break;
-			}
-
+			// Check whether additional processing is required.
 			forever = jobsQueue_->ContinueExecution();
 		}
 
-		return _S_OK;
-	}
-
-	mc::result JobsContext::DoJobs(IJobsQueueRef jobsQueue)
-	{
-		while ( Error::IsSucceeded(jobsQueue->Execute()) );
 		return _S_OK;
 	}
 

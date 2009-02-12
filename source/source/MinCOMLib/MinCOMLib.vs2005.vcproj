@@ -388,10 +388,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Concurrency\Core\Mutex.win32.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Concurrency\Core\Semaphore.h"
 					>
 				</File>

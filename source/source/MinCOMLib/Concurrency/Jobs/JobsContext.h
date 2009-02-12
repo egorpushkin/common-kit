@@ -9,20 +9,16 @@ namespace MinCOM
 	{
 	public:
 
-		JobsContext(IJobsQueueRef jobsQueue, IEventRef newJobSignal);
+		JobsContext(IJobsQueueRef jobsQueue, ISemaphoreRef jobsCounter);
 
 		// IRunnable section
 		virtual result Run();
 
 	private:
 
-		result DoJobs(IJobsQueueRef jobsQueue);
-
-	private:
-
-		IJobsQueueRef jobsQueue_;
+		IJobsQueuePtr jobsQueue_;
 		
-		IEventRef newJobSignal_;
+		ISemaphorePtr jobsCounter_;
 
 	};
 

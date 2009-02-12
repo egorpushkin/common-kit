@@ -34,11 +34,9 @@ namespace MinCOM
 
 	private:
 
-		IMutexPtr lockQueue_;
-
 		IThreadPtr workingThread_;
 
-		IEventPtr newJobSignal_;
+		ISemaphorePtr jobsCounter_;
 
 		std::queue< IRunnablePtr > jobs_;
 
