@@ -43,8 +43,15 @@ namespace MinCOM
 	// {6E8FF0F1-C592-405f-B646-B0681ADB6392}
     template<> const Guid TypeInfo< IRunnable >::iid_ = 
 		{ 0x6e8ff0f1, 0xc592, 0x405f, 0xb6, 0x46, 0xb0, 0x68, 0x1a, 0xdb, 0x63, 0x92 };
-
-
+    
+	// {6fc2e099-3f36-4675-8233-1d45180309cf} 
+    template<> const Guid TypeInfo< IJobsQueue >::iid_ = 
+        { 0x6fc2e099, 0x3f36, 0x4675, 0x82, 0x33, 0x1d, 0x45, 0x18, 0x03, 0x09, 0xcf };
+    
+	// {df043049-1d54-4a3e-99fd-8184561cf9da} 
+    template<> const Guid TypeInfo< ISemaphore >::iid_ = 
+        { 0xdf043049, 0x1d54, 0x4a3e, 0x99, 0xfd, 0x81, 0x84, 0x56, 0x1c, 0xf9, 0xda };    
+    
 	// Commands
 	//////////////////////////////////////////////////////////////////////////
 
@@ -108,14 +115,6 @@ namespace MinCOM
 	// {fd3fec5e-51b4-4dd3-913e-1b59de3d0fb4} 
     template<> const Guid TypeInfo< IProtocol >::iid_ = 
 		{ 0xfd3fec5e, 0x51b4, 0x4dd3, 0x91, 0x3e, 0x1b, 0x59, 0xde, 0x3d, 0x0f, 0xb4 };
-
-	// {6fc2e099-3f36-4675-8233-1d45180309cf} 
-    template<> const Guid TypeInfo< IJobsQueue >::iid_ = 
-		{ 0x6fc2e099, 0x3f36, 0x4675, 0x82, 0x33, 0x1d, 0x45, 0x18, 0x03, 0x09, 0xcf };
-
-	// {df043049-1d54-4a3e-99fd-8184561cf9da} 
-    template<> const Guid TypeInfo< ISemaphore >::iid_ = 
-		{ 0xdf043049, 0x1d54, 0x4a3e, 0x99, 0xfd, 0x81, 0x84, 0x56, 0x1c, 0xf9, 0xda };
 
 	// Containers
 	//////////////////////////////////////////////////////////////////////////

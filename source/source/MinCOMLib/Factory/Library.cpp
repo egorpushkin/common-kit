@@ -32,10 +32,10 @@ namespace MinCOM
 	// Events
 	//////////////////////////////////////////////////////////////////////////
 
-	IEventPtr Library::Event(bool manualReset /* = true */, bool initialState /* = false */, const std::string& name /* = std::string() */)
+/*	IEventPtr Library::Event(bool manualReset /* = true *, bool initialState /* = false *, const std::string& name /* = std::string() *)
 	{
 		return Class< mc::Event >::Create(manualReset, initialState, name);
-	}
+	} */
 
 	IEventPtr EventOpen(const std::string& name)
 	{
@@ -56,6 +56,8 @@ namespace MinCOM
 	}
 
 	// Semaphores
+    //////////////////////////////////////////////////////////////////////////
+    
 	ISemaphorePtr Library::Semaphore(long initial, long maximum, const std::string& name /* = std::string() */)
 	{
 		return Class< mc::Semaphore >::Create(initial, maximum, name);
