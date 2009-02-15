@@ -35,18 +35,9 @@ namespace MinCOM
 
 		virtual Variant& GetProperty(Property_ property) = 0;
 
-/*		virtual result Write(std::ostream& stream) = 0;
+		virtual result Write(std::ostream& stream) = 0;
 
-		virtual result Write(asio::streambuf& stream) = 0; */
-
-		virtual result Write(IConnectionRef connection) = 0;
-
-//		virtual result Read(std::istream& stream) = 0;
-
-//		virtual result Read(asio::streambuf& stream) = 0;
-
-		virtual result Read(IConnectionRef connection) = 0;
-
+		virtual result Read(std::istream& stream) = 0;
 	};
 
 	typedef Strong< IMessage > IMessagePtr;

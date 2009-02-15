@@ -86,10 +86,20 @@ namespace MinCOM
 		return ibuffer_;
 	}
 
+	size_t TCPConnection::GetISize()
+	{
+		return ibuffer_.size();
+	}
+
 	std::streambuf& TCPConnection::GetOStreamBuf()
 	{
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 		return obuffer_;
+	}
+
+	size_t TCPConnection::GetOSize()
+	{
+		return obuffer_.size();
 	}
 
 	// ICommon section

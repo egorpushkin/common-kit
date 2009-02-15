@@ -47,12 +47,16 @@ namespace MinCOM
 		 */ 
 		virtual std::streambuf& GetIStreamBuf() = 0;
 
+		virtual size_t GetISize() = 0;
+
 		/**
 		 * Use this tool only to produce your own std::ostream objects. 
 		 * Note that lifetime of these objects must not exceed the lifetime
 		 * of object implementing IConnection.
 		 */ 
 		virtual std::streambuf& GetOStreamBuf() = 0;
+
+		virtual size_t GetOSize() = 0;
 	};
 
 	typedef Strong< IConnection > IConnectionPtr;

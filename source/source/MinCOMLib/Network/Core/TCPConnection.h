@@ -25,7 +25,11 @@ namespace MinCOM
 
 		virtual std::streambuf& GetIStreamBuf();
 
+		virtual size_t GetISize();
+
 		virtual std::streambuf& GetOStreamBuf();
+
+		virtual size_t GetOSize();
 
 		// ICommon section
 		//////////////////////////////////////////////////////////////////////////

@@ -103,7 +103,8 @@ namespace MinCOM
 		if ( !message || !connection_ )
 			return _E_FAIL;
 
-		return message->Write(connection_);
+		std::ostream stream( &connection_->GetOStreamBuf() );
+		return message->Write(stream);
 	}
 
 	void Protocol::SetMessagesMap(IFactoryRef messagesMap)
@@ -172,18 +173,18 @@ namespace MinCOM
 		if ( !connection_ )
 			return NULL;	
 
-		std::istream buffer(&connection_->GetIStreamBuf());
+		std::istream stream(&connection_->GetIStreamBuf());
 
-/*		if ( ST_WAITING_HEADER == state_ )
+		if ( ST_WAITING_HEADER == state_ )
 		{
-			if ( buffer.size() < MessageImpl::GetHeaderSize() )
+			if ( connection_->GetISize() < MessageImpl::GetHeaderSize() )
 				return NULL;
 
 			// Read message header
-			if ( !msgHeader_.Read(buffer) )
+			if ( !msgHeader_.Read(stream) )
 			{
 				// Clear buffer
-				buffer.consume(buffer.size());				
+				// buffer.consume(buffer.size());				
 				return NULL;
 			}
 
@@ -193,25 +194,25 @@ namespace MinCOM
 		}
 		else if ( ST_HEADER_PARSED == state_ )
 		{
-			if ( !MessageImpl::IsMsgBodyReady(buffer.size(), msgHeader_) )
+			if ( !MessageImpl::IsMsgBodyReady(connection_->GetISize(), msgHeader_) )
 				return NULL;
 
 			state_ = ST_WAITING_HEADER;
 
-			// Construct message from msgHeader_.code_ and serialize it from stream
-			IMessagePtr msg(messagesMap_->Create(msgHeader_.GetCode()), IID_IMessage);
+			// Construct message from msgHeader_.code_ and serialize it from stream.
+			IMessagePtr msg(messagesMap_->Create(msgHeader_.GetCode()));
 			if ( !msg )
 			{
 				// Remove message from buffer
-				buffer.consume(msgHeader_.GetSize() - MessageImpl::GetHeaderSize());		
+				// buffer.consume(msgHeader_.GetSize() - MessageImpl::GetHeaderSize());		
 				return NULL;
 			}
 
-			if ( mc::IsFailed(msg->Read(buffer)) )
+			if ( Error::IsFailed(msg->Read(stream)) )
 				return NULL;
 
 			return msg;
-		} */
+		} 
 
 		return NULL;
 	}
