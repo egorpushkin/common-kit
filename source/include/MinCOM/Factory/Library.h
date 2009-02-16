@@ -62,11 +62,16 @@ namespace MinCOM
 
 		static IJobsQueuePtr JobsQueue();
 
+		static IFactoryPtr Factory();
+
+		// Networking
+		//////////////////////////////////////////////////////////////////////////
+
 		static IServicePtr Service();
 
 		static IConnectionPtr TCPConnection(IServiceRef service);
 
-		static IFactoryPtr Factory();
+		static IServerPtr TCPServer(IServiceRef service);
 
 	};
 

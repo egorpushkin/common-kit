@@ -10,6 +10,7 @@
 #include "Concurrency/Jobs/JobsQueue.h"
 #include "Network/Core/Service.h"
 #include "Network/Core/TCPConnection.h"
+#include "Network/Core/TCPServer.h"
 
 namespace MinCOM
 {
@@ -91,6 +92,11 @@ namespace MinCOM
 	IFactoryPtr Library::Factory()
 	{
 		return Class< mc::FactoryImpl >::Create();
+	}
+
+	IServerPtr Library::TCPServer(IServiceRef service)
+	{
+		return Class< mc::TCPServer >::Create(service);
 	}
 
 }
