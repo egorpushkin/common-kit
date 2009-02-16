@@ -81,7 +81,7 @@ namespace MinCOM
 	>
 	class CommonImpl
 		: virtual public Private::CommonInternals
-		, public T
+		, virtual public T
 	{
 
 		CommonImpl(const CommonImpl&);

@@ -21,6 +21,15 @@ namespace MinCOM
 	{
 	public:
 
+		template
+		<
+			class Y
+		>
+		Y * Cast()
+		{
+			return dynamic_cast< Y* >( this );
+		}
+
 		/**
 		 * Tool to power interchangeable (object specific) casting mechanism.
 		 * This tool should check whether current object support target 

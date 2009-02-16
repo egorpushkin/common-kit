@@ -12,7 +12,7 @@ namespace MinCOM
 	{
 	}
 
-	// IAgent section
+	// IRunnable section
 	result JobsContext::Run()
 	{		
 		if ( !jobsQueue_ || !jobsCounter_ )

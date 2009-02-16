@@ -97,7 +97,8 @@ namespace MinCOM
 			if ( NULL != p1 )
 			{
 				// Try to cast raw pointer to the type of current pointer.
-				T * p = dynamic_cast< T* >( dynamic_cast< CommonImpl< T >* >( p1 ) );
+				// T * p = dynamic_cast< T* >( dynamic_cast< CommonImpl< T >* >( p1 ) );
+				T * p = p1->Cast< T >();
 				if ( p )
 				{
 					// Init internal pointer only if casting succeeded.
