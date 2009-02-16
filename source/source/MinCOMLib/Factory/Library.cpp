@@ -11,6 +11,7 @@
 #include "Network/Core/Service.h"
 #include "Network/Core/TCPConnection.h"
 #include "Network/Core/TCPServer.h"
+#include "Network/Protocol/Protocol.h"
 
 namespace MinCOM
 {
@@ -98,5 +99,10 @@ namespace MinCOM
 	{
 		return Class< mc::TCPServer >::Create(service);
 	}
+    
+    IProtocolPtr Library::Protocol()
+    {
+        return Class< mc::Protocol >::Create();
+    }    
 
 }

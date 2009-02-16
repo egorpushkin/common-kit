@@ -72,6 +72,8 @@ namespace MinCOM
 		static IConnectionPtr TCPConnection(IServiceRef service);
 
 		static IServerPtr TCPServer(IServiceRef service);
+        
+		static IProtocolPtr Protocol();        
 
 	};
 
