@@ -10,8 +10,19 @@ namespace MinCOM
 	TCPConnection::TCPConnection(IServiceRef service)
 		: mc::CommonImpl< IConnection >()
 		, mc::APImpl()
-		, service_(service)
-		, socket_( Strong< Service >(service_)->GetService() )
+		, service_( service )
+		, socket_( new Socket_( Strong< Service >(service_)->GetService() ) )
+		, ibuffer_()
+		, obuffer_()
+		, events_()
+	{
+	}
+
+	TCPConnection::TCPConnection(IServiceRef service, const SocketPtr_& socket)
+		: mc::CommonImpl< IConnection >()
+		, mc::APImpl()
+		, service_( service )
+		, socket_( socket )
 		, ibuffer_()
 		, obuffer_()
 		, events_()
@@ -41,8 +52,8 @@ namespace MinCOM
 			boost::system::error_code error = boost::asio::error::host_not_found;
 			while ( error && endpointIterator != end )
 			{
-				socket_.close();
-				socket_.connect(*endpointIterator++, error);
+				socket_->close();
+				socket_->connect(*endpointIterator++, error);
 			}
 
 			if ( error )
@@ -66,7 +77,7 @@ namespace MinCOM
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 
 		boost::asio::async_read(
-			socket_, 
+			*socket_, 
 			ibuffer_, 
 			boost::asio::transfer_at_least(minimum),
 			boost::bind(&TCPConnection::HandleRead, this, boost::asio::placeholders::error));
@@ -75,7 +86,7 @@ namespace MinCOM
 	void TCPConnection::Write()
 	{
 		boost::asio::write(
-			socket_, 
+			*socket_, 
 			obuffer_,
 			boost::asio::transfer_all()); 
 	}
@@ -109,7 +120,7 @@ namespace MinCOM
 	{
 		// Register additional access point for events' delivery and configure 
 		// events spreader.
-		events_ = APImpl::Advise( TypeInfo< DRawData >::GetGuid() );
+		events_ = APImpl::AdviseAndThrow( TypeInfo< DRawData >::GetGuid() );
 		return _S_OK;
 	}
 
@@ -130,54 +141,5 @@ namespace MinCOM
 		// Spread event to subscribers.
 		events_->DataReceived( CommonImpl< IConnection >::GetSelf() );		
 	}
-
-	void a()
-	{
-		boost::asio::streambuf s;
-
-		std::stringbuf ss;
-
-
-	}
-	
-	// IClient section
-	/* mc::result Client::Write(asio::streambuf& buffer)
-	{
-		asio::write(
-			session_->socket(), 
-			buffer);
-
-		return mc::_S_OK;
-	}
-
-	std::size_t Client::Read(const mc::StringA& delimiter)
-	{
-		asio::error_code error = asio::error::bad_descriptor;
-		std::size_t actually_read = asio::read_until(
-			session_->socket(), 
-			buffer_,
-			delimiter, 
-			error);
-
-		if ( error )
-			return 0;
-
-		return actually_read;
-	}
-
-	std::size_t Client::Read(std::size_t minimum)
-	{
-		asio::error_code error = asio::error::bad_descriptor;
-		std::size_t actually_read = asio::read(
-			session_->socket(), 
-			buffer_,
-			asio::transfer_at_least(minimum), 
-			error);
-
-		if ( error )
-			return 0;
-
-		return actually_read;
-	} */
 
 }

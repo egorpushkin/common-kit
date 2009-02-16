@@ -564,6 +564,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Network\Core\DServerStub.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Core\DServerStub.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Network\Core\Service.cpp"
 					>
 				</File>
@@ -579,10 +587,26 @@
 					RelativePath=".\Network\Core\TCPConnection.h"
 					>
 				</File>
+				<File
+					RelativePath=".\Network\Core\TCPServer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Core\TCPServer.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Protocol"
 				>
+				<File
+					RelativePath=".\Network\Protocol\DProtocolStub.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Network\Protocol\DProtocolStub.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Network\Protocol\MessageImpl.cpp"
 					>

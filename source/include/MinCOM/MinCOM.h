@@ -91,6 +91,7 @@ namespace mc = MinCOM;
 #include "MinCOM/Network/Core/IServer.h"
 #include "MinCOM/Network/Core/IService.h"
 #include "MinCOM/Network/Core/DRawData.h"
+#include "MinCOM/Network/Core/DServer.h"
 #include "MinCOM/Network/Protocol/IMessage.h"
 #include "MinCOM/Network/Protocol/IProtocol.h"
 #include "MinCOM/Network/Protocol/DProtocol.h"

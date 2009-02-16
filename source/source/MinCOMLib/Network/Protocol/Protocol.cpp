@@ -26,7 +26,7 @@ namespace MinCOM
 
 	Protocol::~Protocol()
 	{
-		// TODO: Must unsubscribe from connection events.
+		// TODO: Must unsubscribe itself from connection events.
 	}
 
 	// IProtocol section

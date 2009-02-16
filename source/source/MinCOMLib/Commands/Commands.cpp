@@ -30,7 +30,7 @@ namespace MinCOM
 	{
 		// Register additional access point for events' delivery and configure 
 		// events spreader.
-		eventsSpreader_ = APImpl::Advise( TypeInfo< DCommands >::GetGuid() );
+		eventsSpreader_ = APImpl::AdviseAndThrow( TypeInfo< DCommands >::GetGuid() );
 		return _S_OK;
 	}
 

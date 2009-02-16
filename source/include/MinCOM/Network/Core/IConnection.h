@@ -17,8 +17,6 @@ namespace MinCOM
 	interface IConnection : public ICommon
 	{
 
-		// typedef unsigned long Id_;
-
 		virtual result Establish(const std::string& host, const std::string& service) = 0;
 
 		virtual result Establish(IHostRef host) = 0;

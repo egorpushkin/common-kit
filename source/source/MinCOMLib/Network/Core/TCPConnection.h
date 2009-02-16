@@ -10,7 +10,21 @@ namespace MinCOM
 	{
 	public:
 
+		/**
+	 	 * Typedef for socket entity to be used by classes from TCP family.
+		 */ 
+		typedef boost::asio::ip::tcp::socket Socket_;
+
+		/**
+		* Pointer wrapping TCP socket.
+		*/ 
+		typedef boost::shared_ptr< Socket_ > SocketPtr_;
+
+	public:
+
 		TCPConnection(IServiceRef service);
+
+		TCPConnection(IServiceRef service, const SocketPtr_& socket);
 
 		// ITCPConnection section
 		//////////////////////////////////////////////////////////////////////////
@@ -49,18 +63,11 @@ namespace MinCOM
 
 	private:
 
-		/**
-		 * Typedef for socket entity to be used inbound of the class.
-		 */ 
-		typedef boost::asio::ip::tcp::socket Socket_;
-
-	private:
-
 		/** . */
 		IServicePtr service_;
 
 		/** . */
-		Socket_ socket_;
+		SocketPtr_ socket_;
 
 		/** Buffer to hold received data. */
 		boost::asio::streambuf ibuffer_;

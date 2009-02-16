@@ -19,6 +19,7 @@ namespace MinCOM
 	protected:
 
 		friend class TCPConnection;
+		friend class TCPServer;
 
 		boost::asio::io_service& GetService();
 

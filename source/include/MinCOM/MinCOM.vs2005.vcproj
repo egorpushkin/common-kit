@@ -404,6 +404,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Network\Core\DServer.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Network\Core\IConnection.h"
 					>
 				</File>

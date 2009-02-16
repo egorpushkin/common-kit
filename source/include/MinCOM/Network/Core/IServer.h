@@ -17,9 +17,7 @@ namespace MinCOM
 	interface IServer : public ICommon
 	{
 		
-		virtual result AsyncAccept(short port) = 0;
-
-		virtual result AsyncAccept(const std::string& port) = 0;
+		virtual result AsyncAccept(const std::string& service) = 0;
 
 		virtual void Run() = 0;
 

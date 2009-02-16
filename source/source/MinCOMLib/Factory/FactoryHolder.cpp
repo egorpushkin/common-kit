@@ -3,6 +3,8 @@
 #include "Commands/Commands.h"
 #include "Commands/DCommandsStub.h"
 #include "Network/Core/DRawDataStub.h"
+#include "Network/Core/DServerStub.h"
+#include "Network/Protocol/DProtocolStub.h"
 
 namespace MinCOM
 {
@@ -25,8 +27,8 @@ namespace MinCOM
 
 		// Register network engine stubs.
 		factory->Register( TypeInfo< DRawData >::GetGuid(), Class< DRawDataStub >::Create );
-
-
+		factory->Register( TypeInfo< DServer >::GetGuid(), Class< DServerStub >::Create );
+		factory->Register( TypeInfo< DProtocol >::GetGuid(), Class< DProtocolStub >::Create );
 
 	}
 
