@@ -129,12 +129,16 @@ namespace MinCOM
 
 	void TCPConnection::HandleRead(const boost::system::error_code& error)
 	{
-		if ( error )
+		if ( boost::asio::error::eof == error )
 		{
-			// TODO: Handle this situation correctly.
-			// This cause is potentially influenced by disconnection.
-			// All local references should be NULLed and corresponding 
-			// (DRawData->Disconnected) event should be spread.
+			// Connection closed cleanly by peer.
+			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+			return;
+		}
+		else if ( error )
+		{
+			// Some other error occured.
+			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
 			return;
 		}
 		

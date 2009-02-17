@@ -21,13 +21,19 @@ public:
 
 		std::getline(data_stream, data_buffer, '\x0');
 		
-		std::cout << data_buffer;
+		std::cout << data_buffer << std::endl;
+
+		connection->ReadAsync();
 
 		return mc::_S_OK;
 	}
 
 	virtual mc::result Disconnected(mc::IConnectionRef connection)
 	{
+		std::cout << "Disconnected!" << std::endl;
+
+		mc::result code = connection->Establish("google.com", "80");
+
 		return mc::_S_OK;
 	}
 
@@ -106,7 +112,7 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 		// for ( ;; )
 		{
 			// service->Work();
-			// service->Run();
+			service->Run();
 		}
 
 		// mc::IThread::Sleep(100*1000);
