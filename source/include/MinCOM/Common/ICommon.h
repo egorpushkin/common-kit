@@ -15,7 +15,7 @@ namespace MinCOM
 {
 
 	/**
-	 * 
+	 * Class hierarchy root. 
 	 */
 	interface ICommon : public IReferenceCounter
 	{

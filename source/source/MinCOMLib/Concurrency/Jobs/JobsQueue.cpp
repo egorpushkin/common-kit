@@ -109,7 +109,7 @@ namespace MinCOM
 	}
 
 	// ISynchro section
-	result JobsQueue::Wait(unsigned long delay /* = _INFINITE */)
+	result JobsQueue::Wait(unsigned long /* delay *//* = _INFINITE */)
 	{
 		// Do not block this method to prevent self blocking.
 
