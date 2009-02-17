@@ -58,6 +58,9 @@ namespace MinCOM
 
 			if ( error )
 				return mc::_E_FAIL;
+
+			// Spread good news.
+			events_->Connected( CommonImpl< IConnection >::GetSelf() );
 		}
 		catch( ... )
 		{
@@ -85,10 +88,16 @@ namespace MinCOM
 
 	void TCPConnection::Write()
 	{
+		boost::system::error_code error;
 		boost::asio::write(
 			*socket_, 
 			obuffer_,
-			boost::asio::transfer_all()); 
+			boost::asio::transfer_all(),
+			error);
+
+		HandleError(error);
+		// There is no sense to handle return value. This routine should exit 
+		// in any case.
 	}
 
 	std::streambuf& TCPConnection::GetIStreamBuf()
@@ -129,21 +138,36 @@ namespace MinCOM
 
 	void TCPConnection::HandleRead(const boost::system::error_code& error)
 	{
-		if ( boost::asio::error::eof == error )
+		if ( !HandleError(error) )
 		{
-			// Connection closed cleanly by peer.
-			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-			return;
-		}
-		else if ( error )
-		{
-			// Some other error occured.
-			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+			// Error was detected, handled and dispatched. Required cleanup 
+			// was also performed. So.. nothing else should be done here.
 			return;
 		}
 		
 		// Spread event to subscribers.
 		events_->DataReceived( CommonImpl< IConnection >::GetSelf() );		
+	}
+
+	// Internal helpers
+	//////////////////////////////////////////////////////////////////////////
+
+	bool TCPConnection::HandleError(const boost::system::error_code& error)
+	{
+		if ( boost::asio::error::eof == error )
+		{
+			// Connection closed cleanly by peer.
+			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+			return false;
+		}
+		else if ( error )
+		{
+			// Some other error occured.
+			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+			return false;
+		}		
+
+		return true;
 	}
 
 }

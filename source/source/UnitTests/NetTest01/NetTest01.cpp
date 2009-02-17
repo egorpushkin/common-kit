@@ -11,6 +11,21 @@ public:
 	// DRawData section
 	virtual mc::result Connected(mc::IConnectionRef connection)
 	{
+		std::cout << "Connected!" << std::endl;
+
+		std::string url("/");
+		std::string host("www.google.com");
+
+		std::ostream request_stream(&connection->GetOStreamBuf());
+		request_stream << "GET " << url << " HTTP/1.0\r\n";
+		request_stream << "Host: " << host << "\r\n";
+		request_stream << "Accept: */*\r\n";
+		request_stream << "Connection: close\r\n\r\n";
+
+		connection->Write();
+
+		connection->ReadAsync(1);
+
 		return mc::_S_OK;
 	}
 
@@ -75,6 +90,10 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 
 		mc::IConnectionPtr connection = mc::Library::TCPConnection(service);
 
+		mc::ICommonPtr dataReceiver( mc::Class< DataReceiver >::Create() );
+		mc::Events::Advise(connection, dataReceiver, mc::TypeInfo< mc::DRawData >::GetGuid() );
+
+
 		mc::result code = connection->Establish("google.com", "80");
 		if ( mc::Error::IsSucceeded( code ) )
 		{
@@ -84,32 +103,10 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 		{
 			std::cout << "Failed to connect!";	
 			return 0;
-		}
-
-		std::string url("/");
-		std::string host("www.google.com");
-
-		
-		mc::ICommonPtr dataReceiver( mc::Class< DataReceiver >::Create() );
-		mc::Events::Advise(connection, dataReceiver, mc::TypeInfo< mc::DRawData >::GetGuid() );
-
-
-		std::ostream request_stream(&connection->GetOStreamBuf());
-		request_stream << "GET " << url << " HTTP/1.0\r\n";
-		request_stream << "Host: " << host << "\r\n";
-		request_stream << "Accept: */*\r\n";
-		request_stream << "Connection: close\r\n\r\n";
-
-		connection->Write();
-
-		connection->ReadAsync(1);
-
-
-		// Run service in background
-		// mc::IThreadPtr thread = mc::Library::Thread();
+		} 
 
 		// service->Work();
-		// for ( ;; )
+		for ( ;; )
 		{
 			// service->Work();
 			service->Run();
