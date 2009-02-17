@@ -8,8 +8,10 @@ namespace MinCOM
 		: public CommonImpl< ICommands >
  		, public APImpl
 	{
+        using CommonImpl< ICommands >::__Cast;
+        
 	public:
-
+        
 		Commands();
 
 		// ICommands section

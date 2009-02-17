@@ -9,8 +9,10 @@ namespace MinCOM
 		, public CommonImpl< DRawData >
 		, APImpl
 	{
+        using CommonImpl< IProtocol >::__Cast;
+        
 	public:
-
+        
 		Protocol();
 		virtual ~Protocol();
 

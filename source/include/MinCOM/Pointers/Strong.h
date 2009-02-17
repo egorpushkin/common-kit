@@ -36,6 +36,15 @@ namespace MinCOM
         class T
 	>
 	class CommonImpl;
+    
+    /**
+     * Preliminary declaration of objects instantiator.
+     */
+    template
+    <
+        class T
+    >
+    class Class;
 
 	/**
 	 * Strong pointer intended to host pointers to native MinCOM and
@@ -72,15 +81,18 @@ namespace MinCOM
 	class Strong
 	{
 	// Initialization section.
-	public: // Must be private
+	private:
 
-		// Establish friendship with creators.
-		template< class Y > friend class Class;
+		/** Establish friendship with creators. */
+		template< class Y > friend class mc::Class;
 
 		/**
 		 * Provides a way to init smart pointer with raw pointer to object.
 		 * Client cannot perform this operation directly as there should be no way
 		 * to construct object by means of native 'new' operator.
+         * That is why this tool is private. The only tool responsible for
+         * Strong pointers intialization is Class template, which builds objects 
+         * taking into account all specific MinCOM rules and idioms.
 		 */
 		template
 		<
@@ -97,8 +109,7 @@ namespace MinCOM
 			if ( NULL != p1 )
 			{
 				// Try to cast raw pointer to the type of current pointer.
-				// T * p = dynamic_cast< T* >( dynamic_cast< CommonImpl< T >* >( p1 ) );
-				T * p = p1->Cast< T >();
+				T * p = p1->__Cast();  
 				if ( p )
 				{
 					// Init internal pointer only if casting succeeded.
@@ -109,9 +120,8 @@ namespace MinCOM
 			}
 			// Init smart pointer.
 			InitCounter();
-		}
-
-
+		} 
+        
 	// Constructors and destructors.
 	public:
 		

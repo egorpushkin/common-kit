@@ -29,7 +29,7 @@ namespace MinCOM
 			CommonInternals& operator =(const CommonInternals&);
 
 		protected:
-
+                        
 			CommonInternals()
 				: numRef_(0)
 				, lock_()
@@ -81,7 +81,7 @@ namespace MinCOM
 	>
 	class CommonImpl
 		: virtual public Private::CommonInternals
-		, virtual public T
+		, public T
 	{
 
 		CommonImpl(const CommonImpl&);
@@ -239,6 +239,33 @@ namespace MinCOM
 		{
 			return CommonInternals::lock_;
 		}
+        
+    protected:
+        
+        /** Establish friendship with strong pointers to . */
+        template < class Y > friend class Strong;
+        
+        /** 
+         * Provides Strong with object's root. This requires additional statements to be made
+         * at the declaration of complex objects (derived from more than one CommonImpl 
+         * specialization).
+         *
+         * \code
+         * class TCPConnection
+         *     : public CommonImpl< IConnection >
+         *     , public CommonImpl< IAccessProvider >
+         * {        
+         *     using CommonImpl< IConnection >::Cast;   
+         *     // ...
+         * };
+         * \endcode    
+         *
+         * Caution. You should never use __Cast directly in your code.
+         */
+        ICommon * __Cast()
+        {
+            return static_cast< ICommon* >( this );
+        }        
 
 	};
 

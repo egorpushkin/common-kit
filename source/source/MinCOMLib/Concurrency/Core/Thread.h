@@ -8,9 +8,8 @@ namespace MinCOM
 		: public CommonImpl< IThread >
 		, public CommonImpl< ISynchro >
 	{
+        using mc::CommonImpl< IThread >::__Cast;        
 		
-		// friend unsigned int mc_stdcall _ThreadWorkingRoutine(void*);
-
 		/**
 		 * Thread entry point.
 		 */
@@ -26,7 +25,7 @@ namespace MinCOM
 		static unsigned int _ThreadExecutor(Thread * thread);
 
 	public:
-
+        
 		Thread();
 		virtual ~Thread();
 

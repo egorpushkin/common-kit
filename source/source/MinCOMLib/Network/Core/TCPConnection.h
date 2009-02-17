@@ -8,7 +8,9 @@ namespace MinCOM
 		: public CommonImpl< IConnection >
 		, public APImpl
 	{
-	public:
+        using CommonImpl< IConnection >::__Cast;         
+	
+    public:
 
 		/**
 	 	 * Typedef for socket entity to be used by classes from TCP family.
@@ -16,11 +18,11 @@ namespace MinCOM
 		typedef boost::asio::ip::tcp::socket Socket_;
 
 		/**
-		* Pointer wrapping TCP socket.
-		*/ 
+		 * Pointer wrapping TCP socket.
+		 */ 
 		typedef boost::shared_ptr< Socket_ > SocketPtr_;
 
-	public:
+    public:
 
 		TCPConnection(IServiceRef service);
 

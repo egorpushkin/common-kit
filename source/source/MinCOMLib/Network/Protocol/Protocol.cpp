@@ -61,7 +61,8 @@ namespace MinCOM
 
 	void Protocol::SetMode(ProtocolMode mode)
 	{
-		CoreMutexLock locker( CommonImpl< IProtocol >::GetLock() );
+        // TODO: Find the origin of this error.
+		// CoreMutexLock locker( CommonImpl< IProtocol >::GetLock() );
 
 		if ( mode == mode_ )
 			return;
@@ -104,7 +105,9 @@ namespace MinCOM
 			return _E_FAIL;
 
 		std::ostream stream( &connection_->GetOStreamBuf() );
-		return message->Write(stream);
+		message->Write(stream);
+        connection_->Write();
+        return _S_OK;
 	}
 
 	void Protocol::SetMessagesMap(IFactoryRef messagesMap)

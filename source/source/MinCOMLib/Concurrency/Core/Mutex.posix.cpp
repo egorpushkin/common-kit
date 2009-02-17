@@ -9,7 +9,13 @@ namespace MinCOM
         : CommonImpl< IMutex >()
         , mutex_()
 	{
-        pthread_mutex_init(&mutex_, NULL);
+        pthread_mutexattr_t attr;
+        pthread_mutexattr_init(&attr);
+        pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+        
+        pthread_mutex_init(&mutex_, &attr);
+        
+        pthread_mutexattr_destroy(&attr);
         // TODO: Check whether mutex is created.
 	}
     

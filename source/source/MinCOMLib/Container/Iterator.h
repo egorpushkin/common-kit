@@ -13,11 +13,13 @@ namespace MinCOM
 		: public CommonImpl< IIterator >
 		, public CommonImpl< IPrivateIterator< TStdContainer, TMCContainer > >
 	{
+        using CommonImpl< IIterator >::__Cast; 
+        
 		typedef std::vector< ICommonPtr > StdVector_;
 		typedef StdVector_::iterator StdIterator_;
 
 	public:
-
+        
 		Iterator(ICommonRef container, const StdIterator_& stdIterator)
 			: CommonImpl< IIterator >()
 			, CommonImpl< IPrivateIterator< TStdContainer, TMCContainer > >()
