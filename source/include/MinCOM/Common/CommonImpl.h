@@ -239,33 +239,43 @@ namespace MinCOM
 		{
 			return CommonInternals::lock_;
 		}
+
+	protected:
         
-    protected:
-        
-        /** Establish friendship with strong pointers to . */
-        template < class Y > friend class Strong;
-        
+		/** Establish friendship with strong pointers to provide access to 
+		 * ClassRoot_ definition. */
+		template < class Y > friend class Strong;
+
         /** 
-         * Provides Strong with object's root. This requires additional statements to be made
-         * at the declaration of complex objects (derived from more than one CommonImpl 
-         * specialization).
+         * Provides Strong with class's root. This requires additional 
+		 * statement to be made in the declaration of any complex object 
+		 * (derived from more than one CommonImpl specialization).
          *
          * \code
          * class TCPConnection
          *     : public CommonImpl< IConnection >
          *     , public CommonImpl< IAccessProvider >
-         * {        
-         *     using CommonImpl< IConnection >::Cast;   
+         * {   
+		 * public:
+         *     typedef CommonImpl< IConnection > ClassRoot_;   
          *     // ...
          * };
          * \endcode    
          *
-         * Caution. You should never use __Cast directly in your code.
+         * Note that this definition should be public. Otherwise you have to
+		 * establish friendship with target strong pointer.
+		 *
+		 * \code
+		 * private: // or protected:
+		 *     typedef CommonImpl< IConnection > ClassRoot_; 
+		 *     template < class Y > friend class Strong;
+		 * \endcode
+		 *
+		 * MinCOM does not hide definition of ClassRoot_ (except case with 
+		 * definition at CommonImpl), because this is not so critical for
+		 * object consistency and integrity. 
          */
-        ICommon * __Cast()
-        {
-            return static_cast< ICommon* >( this );
-        }        
+		typedef T ClassRoot_;
 
 	};
 

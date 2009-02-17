@@ -8,9 +8,9 @@ namespace MinCOM
 		: public mc::CommonImpl< IJobsQueue >
 		, public mc::CommonImpl< ISynchro >
 	{
-        using mc::CommonImpl< IJobsQueue >::__Cast;
-	
     public:
+
+        typedef CommonImpl< IJobsQueue > ClassRoot_;
 
 		JobsQueue();
 		virtual ~JobsQueue();

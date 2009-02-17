@@ -10,9 +10,9 @@ namespace MinCOM
 		: public mc::CommonImpl< IServer >
 		, public mc::APImpl
 	{
-        using mc::CommonImpl< IServer >::__Cast;
-        
 	public:
+
+		typedef CommonImpl< IServer > ClassRoot_;
         
 		TCPServer(IServiceRef service);
 

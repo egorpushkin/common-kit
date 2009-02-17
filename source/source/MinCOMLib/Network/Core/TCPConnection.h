@@ -8,9 +8,9 @@ namespace MinCOM
 		: public CommonImpl< IConnection >
 		, public APImpl
 	{
-        using CommonImpl< IConnection >::__Cast;         
-	
     public:
+
+		typedef CommonImpl< IConnection > ClassRoot_;
 
 		/**
 	 	 * Typedef for socket entity to be used by classes from TCP family.

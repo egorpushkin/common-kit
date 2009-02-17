@@ -11,9 +11,9 @@ namespace MinCOM
 		: public CommonImpl< IVector >
 		, public APImpl
 	{
-        using CommonImpl< IVector >::__Cast;    
-        
 	public:
+
+		typedef CommonImpl< IVector > ClassRoot_;   
 
 		typedef IPrivateIterator< std::vector< ICommonPtr >, Vector > IPrivateIterator_;
 		typedef Strong< IPrivateIterator_ > IPrivateIteratorPtr_;

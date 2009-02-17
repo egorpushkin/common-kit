@@ -32,6 +32,8 @@ class Test
 {
 public:
 
+	typedef CommonImpl< ITest1 > ClassRoot_;  
+
 	virtual void DoStuff1()
 	{
 		std::cout << "Test::DoStuff1" << std::endl;

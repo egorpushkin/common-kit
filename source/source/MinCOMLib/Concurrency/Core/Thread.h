@@ -7,8 +7,7 @@ namespace MinCOM
 	class Thread 
 		: public CommonImpl< IThread >
 		, public CommonImpl< ISynchro >
-	{
-        using mc::CommonImpl< IThread >::__Cast;        
+	{   
 		
 		/**
 		 * Thread entry point.
@@ -25,6 +24,8 @@ namespace MinCOM
 		static unsigned int _ThreadExecutor(Thread * thread);
 
 	public:
+
+		typedef CommonImpl< IThread > ClassRoot_;     
         
 		Thread();
 		virtual ~Thread();

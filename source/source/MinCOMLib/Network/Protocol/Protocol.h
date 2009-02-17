@@ -7,11 +7,11 @@ namespace MinCOM
 	class Protocol 
 		: public CommonImpl< IProtocol >
 		, public CommonImpl< DRawData >
-		, APImpl
+		, public APImpl
 	{
-        using CommonImpl< IProtocol >::__Cast;
-        
 	public:
+
+		typedef CommonImpl< IProtocol > ClassRoot_;  
         
 		Protocol();
 		virtual ~Protocol();

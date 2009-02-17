@@ -91,7 +91,7 @@ namespace MinCOM
 		 * Client cannot perform this operation directly as there should be no way
 		 * to construct object by means of native 'new' operator.
          * That is why this tool is private. The only tool responsible for
-         * Strong pointers intialization is Class template, which builds objects 
+         * Strong pointers initialization is Class template, which builds objects 
          * taking into account all specific MinCOM rules and idioms.
 		 */
 		template
@@ -109,7 +109,8 @@ namespace MinCOM
 			if ( NULL != p1 )
 			{
 				// Try to cast raw pointer to the type of current pointer.
-				T * p = p1->__Cast();  
+				// T * p = p1->Cast();  
+				T * p = dynamic_cast< T* >( dynamic_cast< T1::ClassRoot_* >( p1 ) );  
 				if ( p )
 				{
 					// Init internal pointer only if casting succeeded.
