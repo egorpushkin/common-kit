@@ -19,25 +19,10 @@ namespace MinCOM
 	 */
 	interface DContainer : public ICommon
 	{	
-		/** 
-		 * 
-		 */
-		virtual result ElementAdded(ICommonRef container, ICommonRef element) = 0;
-
-		/**
-		 * 
-		 */
-		virtual result ElementRemoved(ICommonRef container, ICommonRef element) = 0;
-
 		/**
 		 * 
 		 */
 		virtual result ContainerModified(ICommonRef container) = 0;
-
-		/**
-		 * 
-		 */
-		virtual result ContainerCleared(ICommonRef container) = 0;
 	};
 
 	typedef Strong< DContainer > DContainerPtr;

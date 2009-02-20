@@ -8,6 +8,7 @@
 #include "Concurrency/Core/Semaphore.h"
 #include "Concurrency/Core/Thread.h"
 #include "Concurrency/Jobs/JobsQueue.h"
+#include "Concurrency/Locks/ReadWriteLock.h"
 #include "Network/Core/Service.h"
 #include "Network/Core/TCPConnection.h"
 #include "Network/Core/TCPServer.h"
@@ -23,7 +24,7 @@ namespace MinCOM
 
 	IVectorPtr Library::Vector()
 	{
-		return Class< mc::Vector >::Create();
+		return NULL; // Class< mc::Vector >::Create();
 	}
 
 	IListPtr Library::List()
@@ -83,6 +84,11 @@ namespace MinCOM
 	IJobsQueuePtr Library::JobsQueue()
 	{
 		return Class< mc::JobsQueue >::Create();
+	}
+
+	IReadWriteLockPtr Library::ReadWriteLock()
+	{
+		return Class< mc::ReadWriteLock >::Create();
 	}
 	
 	IConnectionPtr Library::TCPConnection(IServiceRef service)

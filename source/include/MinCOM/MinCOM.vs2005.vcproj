@@ -201,6 +201,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Common\MethodWrapper.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Common\Object.h"
 				>
 			</File>
@@ -237,6 +241,10 @@
 				</File>
 				<File
 					RelativePath=".\Concurrency\Interfaces\IMutex.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Interfaces\IReadWriteLock.h"
 					>
 				</File>
 				<File
@@ -376,7 +384,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Container\Interfaces\IIterator.h"
+					RelativePath=".\Container\Interfaces\IEnumerator.h"
 					>
 				</File>
 				<File
@@ -444,6 +452,10 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Remoting"
+			>
 		</Filter>
 		<File
 			RelativePath=".\External.h"

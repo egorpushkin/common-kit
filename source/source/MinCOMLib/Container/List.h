@@ -11,12 +11,7 @@ namespace MinCOM
 
 		List();
 
-		// IIterator section
-		
-
 	private:
-
-		
 
 	};
 

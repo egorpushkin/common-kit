@@ -16,6 +16,7 @@ namespace mc = MinCOM;
 #include "MinCOM/Common/Guid.h"
 #include "MinCOM/Common/Common.h"
 #include "MinCOM/Common/ToolsMap.h"
+#include "MinCOM/Common/MethodWrapper.h"
 
 // Core concurrency
 //////////////////////////////////////////////////////////////////////////
@@ -40,7 +41,7 @@ namespace mc = MinCOM;
 
 // Container component
 //////////////////////////////////////////////////////////////////////////
-#include "MinCOM/Container/Interfaces/IIterator.h"
+#include "MinCOM/Container/Interfaces/IEnumerator.h"
 #include "MinCOM/Container/Interfaces/IVector.h"
 #include "MinCOM/Container/Interfaces/IList.h"
 #include "MinCOM/Container/Interfaces/IMap.h"
@@ -64,7 +65,6 @@ namespace mc = MinCOM;
 #include "MinCOM/Commands/ICommand.h"
 #include "MinCOM/Commands/ICommands.h"
 #include "MinCOM/Commands/DCommands.h"
-// #include "MinCOM/Model/CommandImpl.h"
 
 // Basic support for concurrency
 //////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ namespace mc = MinCOM;
 #include "MinCOM/Concurrency/Interfaces/IRunnable.h"
 #include "MinCOM/Concurrency/Interfaces/IThread.h"
 #include "MinCOM/Concurrency/Interfaces/IJobsQueue.h"
-// #include "MinCOM/Helpers/Threading.h"
+#include "MinCOM/Concurrency/Interfaces/IReadWriteLock.h"
 
 // Factory support
 //////////////////////////////////////////////////////////////////////////

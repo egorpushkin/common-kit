@@ -162,7 +162,7 @@ namespace MinCOM
 		}
 		else if ( error )
 		{
-			// Some other error occured.
+			// Some other error occurred.
 			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
 			return false;
 		}		

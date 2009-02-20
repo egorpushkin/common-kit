@@ -1,6 +1,7 @@
 #include "Common/Common.h"
 
 #include "Vector.h"
+#include "VectorEnumerator.h"
 
 namespace MinCOM
 {
@@ -9,6 +10,7 @@ namespace MinCOM
 		: CommonImpl< IVector >()
 		, APImpl()
 		, stdVector_()
+		, lock_( Library::ReadWriteLock() )
 		, eventsSpreader_()
 	{
 	}
@@ -19,60 +21,36 @@ namespace MinCOM
 	{
 	}
 
-	void Vector::Assign(size_t count, ICommonRef value)
+	ICommonPtr Vector::At(size_t pos)
 	{
-		CoreMutexLock locker(CommonImpl< IVector >::GetLock());
-
-		stdVector_.assign(count, value);
+		// Wait until container reading is allowed.
+		IReadWriteLock::Reader_ locler(lock_);
+		// Check whether position is valid.
+		if ( !IsPositionValid(pos) )
+			return NULL;
+		// Provide caller with the object he/she is interested in.
+		return stdVector_.at(pos);
 	}
-
-	void Vector::Assign(IIteratorRef first, IIteratorRef last)
-	{
-		CoreMutexLock locker(CommonImpl< IVector >::GetLock());
-
-		IPrivateIteratorPtr_ firstIter(first);
-		IPrivateIteratorPtr_ lastIter(last);
-
-		if ( !firstIter || !lastIter )
-			return;
-
-		stdVector_.assign(firstIter->GetStdIterator(), lastIter->GetStdIterator());
-	}
-
-	IIteratorPtr Vector::Begin()
-	{			
-		CoreMutexLock locker(CommonImpl< IVector >::GetLock());
-
-		return Class< Iterator_ >::Create(CommonImpl< IVector >::GetSelf(), stdVector_.begin());
-	}
-
-	IIteratorPtr Vector::End()
-	{	
-		CoreMutexLock locker(CommonImpl< IVector >::GetLock());
-
-		return Class< Iterator_ >::Create(CommonImpl< IVector >::GetSelf(), stdVector_.begin());
-	}
-
-
-	void Vector::PushBack(ICommonRef val)
-	{
-		// Synchronize call.
-		CoreMutexLock locker(CommonImpl< IVector >::GetLock());
-		// Add element.
-		stdVector_.push_back(val);
-		// Notify subscribers on new event.
-		eventsSpreader_->ElementAdded(APImpl::GetSelf(), val);
-	}
-
 
 	void Vector::Clear()
 	{
-		// Synchronize call.
-		CoreMutexLock locker(CommonImpl< IVector >::GetLock());
-		// Clear contents.
+		// Wait until container modification is allowed.
+		IReadWriteLock::Writer_ locler(lock_);
+		// Clear the contents of the vector.
 		stdVector_.clear();
-		// Notify subscribers on new event.
-		eventsSpreader_->ContainerCleared(APImpl::GetSelf());
+		// Spread corresponding event.
+		eventsSpreader_->ContainerModified( CommonImpl< IVector >::GetSelf( ) );
+	}
+
+	IEnumeratorPtr Vector::GetEnumerator(size_t pos /* = 0 */)
+	{
+		// Wait until container modification is allowed.
+		IReadWriteLock::Writer_ locler(lock_);
+		// Check whether position is correct.
+		if ( !IsPositionValid(pos) )
+			return NULL;
+		// Construct enumerator.
+		return Class< VectorEnumerator >::Create(CommonImpl< IVector >::GetSelf(), lock_, pos);
 	}
 
 	// ICommon section
@@ -82,6 +60,11 @@ namespace MinCOM
 		// events spreader.
 		eventsSpreader_ = APImpl::AdviseAndThrow( TypeInfo< DCommands >::GetGuid() );
 		return _S_OK;
+	}
+
+	inline bool Vector::IsPositionValid(size_t pos)
+	{
+		return ( ( pos >= 0 ) && ( pos < stdVector_.size() ) );
 	}
 
 }

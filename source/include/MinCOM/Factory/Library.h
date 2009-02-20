@@ -40,9 +40,9 @@ namespace MinCOM
 		// Events
 		//////////////////////////////////////////////////////////////////////////
 
-/*		static IEventPtr Event(bool manualReset = true, bool initialState = false, const std::string& name = std::string());
+		// static IEventPtr Event(bool manualReset = true, bool initialState = false, const std::string& name = std::string());
 
-		static IEventPtr EventOpen(const std::string& name); */
+		// static IEventPtr EventOpen(const std::string& name);
 
 		// Mutexes
 		//////////////////////////////////////////////////////////////////////////
@@ -58,10 +58,18 @@ namespace MinCOM
 
 		static ISemaphorePtr SemaphoreOpen(const std::string& name);
 
+		// Concurrency
+		//////////////////////////////////////////////////////////////////////////
+		
 		static IThreadPtr Thread();
 
 		static IJobsQueuePtr JobsQueue();
 
+		static IReadWriteLockPtr ReadWriteLock();
+
+		// Factory
+		//////////////////////////////////////////////////////////////////////////
+		
 		static IFactoryPtr Factory();
 
 		// Networking

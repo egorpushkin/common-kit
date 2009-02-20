@@ -460,6 +460,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Locks"
+				>
+				<File
+					RelativePath=".\Concurrency\Locks\ReadWriteLock.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Concurrency\Locks\ReadWriteLock.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Platforms"
@@ -525,14 +537,6 @@
 			Name="Container"
 			>
 			<File
-				RelativePath=".\Container\IPrivateIterator.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Container\Iterator.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Container\List.cpp"
 				>
 			</File>
@@ -546,6 +550,14 @@
 			</File>
 			<File
 				RelativePath=".\Container\Vector.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Container\VectorEnumerator.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Container\VectorEnumerator.h"
 				>
 			</File>
 		</Filter>
@@ -620,6 +632,10 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Remoting"
+			>
 		</Filter>
 	</Files>
 	<Globals>
