@@ -333,6 +333,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Events\AccessPointImpl.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Events\AccessProviderImpl.cpp"
 				>
 			</File>

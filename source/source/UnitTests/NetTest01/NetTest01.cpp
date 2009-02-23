@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 
+#include <wchar.h>
+
 class DataReceiver
 	: public mc::CommonImpl< mc::DRawData >
 {
@@ -90,7 +92,12 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 
 		mc::IConnectionPtr connection = mc::Library::TCPConnection(service);
 
-		mc::ICommonPtr dataReceiver( mc::Class< DataReceiver >::Create() );
+
+		connection->Establish("localhost", "8444");
+
+		_getwch();
+
+		/* mc::ICommonPtr dataReceiver( mc::Class< DataReceiver >::Create() );
 		mc::Events::Advise(connection, dataReceiver, mc::TypeInfo< mc::DRawData >::GetGuid() );
 
 
@@ -110,7 +117,7 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 		{
 			// service->Work();
 			service->Run();
-		}
+		} */
 
 		// mc::IThread::Sleep(100*1000);
 

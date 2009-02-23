@@ -12,7 +12,11 @@ namespace MinCOM
 		DProtocolStub();
 
 		// DProtocol section
-		virtual result MessageArrived(IMessageRef message);
+		virtual result MessageArrived(IProtocolRef protocol, IMessageRef message);
+
+		virtual result DataErrorOccured(IProtocolRef protocol);
+
+		virtual result Disconnected(IProtocolRef protocol);
 
 		// ICommon section
 		virtual result Invoke(const Call& call);		

@@ -44,6 +44,14 @@ namespace MinCOM
 		return Make(invoker, call);
 	}
 
+	mc::Variant Call::Make(ICommonRef invoker, RefIid methodId, const Variant& arg1, const Variant& arg2)
+	{
+		Call call(methodId);
+		call.GetArguments().push_back( arg1 );
+		call.GetArguments().push_back( arg2 );
+		return Make(invoker, call);
+	}
+
 	mc::Variant Call::Make(ICommonRef invoker, const Call& call)
 	{
 		// Try to acquire call target.

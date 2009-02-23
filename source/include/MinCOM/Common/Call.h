@@ -39,9 +39,9 @@ namespace MinCOM
 		static Variant Make(const Strong< ICommon >& invoker, RefIid methodId, 
 		 	const Variant& arg1);
 
-		// static Variant Make(ICommonRef invoker, RefIid methodId, 
-		// 	const Variant& arg1, 
-		// 	const Variant& arg2);
+		static Variant Make(const Strong< ICommon >& invoker, RefIid methodId, 
+		 	const Variant& arg1, 
+		 	const Variant& arg2);
 
 		// static Variant Make(ICommonRef invoker, RefIid methodId, 
 		// 	const Variant& arg1, 

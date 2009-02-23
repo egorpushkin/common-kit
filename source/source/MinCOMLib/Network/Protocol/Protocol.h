@@ -13,15 +13,15 @@ namespace MinCOM
 
 		typedef CommonImpl< IProtocol > ClassRoot_;  
         
-		Protocol();
+		Protocol(IConnectionRef connection, IProtocol::Mode_ mode);
 		virtual ~Protocol();
 
 		// IProtocol section
-		virtual result AttachConnection(IConnectionRef connection, ProtocolMode mode = PROTOCOL_SYNC);
-		
 		virtual IConnectionPtr GetConnection();
 
-		virtual void SetMode(ProtocolMode mode);
+		virtual void SetMode(Mode_ mode);
+
+		virtual Mode_ GetMode();
 		
 		virtual IMessagePtr Receive();
 		
@@ -43,9 +43,15 @@ namespace MinCOM
 
 	private:
 
+		void Init();
+
+		void ApplyMode();
+
 		void ParseData();
 
 		IMessagePtr MessageFromBuffer();
+
+		void Cleanup();
 
 	private:
 
@@ -53,7 +59,7 @@ namespace MinCOM
 
 		unsigned long cookie_;
 
-		ProtocolMode mode_;
+		Mode_ mode_;
 
 		typedef enum tagState
 		{
@@ -71,13 +77,11 @@ namespace MinCOM
 
 		typedef std::vector< IMessagePtr > Messages_;
 
-		Messages_ pendingMessages_;
+		std::queue< IMessagePtr > pendingMessages_;
 
 		ISemaphorePtr msgWaiter_;
 
 		MessageImpl::MsgHeader_ msgHeader_;
-
-		IJobsQueuePtr msgJobs_;
 
 		DProtocolPtr protocolEvents_;
 

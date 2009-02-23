@@ -20,13 +20,23 @@ namespace MinCOM
 	interface DProtocol : public ICommon
 	{	
 		/** 
-		 * .
+		 * Fired when new message arrives.
 		 */
-		virtual result MessageArrived(IMessageRef message) = 0;
+		virtual result MessageArrived(IProtocolRef protocol, IMessageRef message) = 0;
+
+		/**
+		 * Fired when arrived data cannot be parsed correctly.
+		 */
+		virtual result DataErrorOccured(IProtocolRef protocol) = 0;
+
+		/** 
+		 * Fired when connection is lost.
+		 */
+		virtual result Disconnected(IProtocolRef protocol) = 0;
 	};
 
 	typedef Strong< DProtocol > DProtocolPtr;
-	typedef const DProtocolPtr* DProtocolRef;
+	typedef const DProtocolPtr& DProtocolRef;
 
 }
 

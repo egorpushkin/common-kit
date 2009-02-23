@@ -29,10 +29,21 @@ namespace MinCOM
 
 		virtual Iid GetIid() = 0;
 
+		/** 
+		 * Registers new sink and provides caller with point-specific cookie.
+		 *
+		 * Does not allow to register sinks while spreading any event.
+		 */ 
 		virtual result Advise(ICommonRef sink, unsigned long& cookie) = 0;
 
+		/** 
+		 * Unregisters new sink and provides caller with point-specific cookie.
+		 *
+		 * Allows to unregister sinks while spreading any event. Actual removal 
+		 * occurs immediately after the pass is complete.
+		 */
 		virtual result Unadvise(unsigned long cookie) = 0;
-
+	
 		virtual ICommonPtr Find(unsigned long cookie) = 0;
 
 		virtual ICommonPtr CreateSpreader() = 0;

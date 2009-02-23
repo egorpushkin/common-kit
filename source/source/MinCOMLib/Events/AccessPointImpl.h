@@ -8,8 +8,8 @@
  * 2009-01-30  Egor Pushkin        Initial version
  */
 
-#ifndef ACCESSPOINTIMPL_H__MINCOM__INCLUDED_
-#define ACCESSPOINTIMPL_H__MINCOM__INCLUDED_
+#ifndef ACCESSPOINTIMPL_H__MINCOMLIB__INCLUDED_
+#define ACCESSPOINTIMPL_H__MINCOMLIB__INCLUDED_
 
 namespace MinCOM
 {
@@ -44,6 +44,8 @@ namespace MinCOM
 
 		result NotifySinkOnEvent(ICommonRef sink, const Call& call);
 
+		result UnadviseInternl(unsigned long cookie);
+
 	private:
 
 		IAccessProviderWeak accessProvider_;
@@ -52,8 +54,12 @@ namespace MinCOM
 
 		AccessEntries_ accessEntries_;
 
+		bool spreading_;
+
+		std::set< unsigned long > pendingRemoval_;
+
 	};
 
 }
 
-#endif // !ACCESSPOINTIMPL_H__MINCOM__INCLUDED_
+#endif // !ACCESSPOINTIMPL_H__MINCOMLIB__INCLUDED_

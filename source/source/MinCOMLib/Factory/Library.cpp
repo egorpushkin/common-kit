@@ -106,9 +106,9 @@ namespace MinCOM
 		return Class< mc::TCPServer >::Create(service);
 	}
     
-    IProtocolPtr Library::Protocol()
+    IProtocolPtr Library::Protocol(IConnectionRef connection, IProtocol::Mode_ mode /* = IProtocol::SYNC */)
     {
-        return Class< mc::Protocol >::Create();
+        return Class< mc::Protocol >::Create(connection, mode);
     }    
 
 }

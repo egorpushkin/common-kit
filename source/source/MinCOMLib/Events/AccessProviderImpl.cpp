@@ -1,5 +1,7 @@
 #include "Common/Common.h"
 
+#include "AccessPointImpl.h"
+
 namespace MinCOM
 {
 
@@ -56,6 +58,9 @@ namespace MinCOM
 	result AccessProviderImpl::Spread(const Call& call)
 	{
 		CoreMutexLock locker(CommonImpl< IAccessProvider >::GetLock());
+
+		// Prevent destruction of this object during spreading event.
+		IAccessProviderPtr strongThis( CommonImpl< IAccessProvider >::GetSelf() );
 
 		// Walk through the entire list of access points and spread the event.
 		for ( AccessPoints_::iterator iter = accessPoints_.begin() ; accessPoints_.end() != iter ; ++iter )

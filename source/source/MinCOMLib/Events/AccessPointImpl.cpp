@@ -1,6 +1,7 @@
 #include "Common/Common.h"
 
 #include "EventsSpreader.h"
+#include "AccessPointImpl.h"
 
 // TODO: Find stub at the stage of advising sink.
 
@@ -12,6 +13,8 @@ namespace MinCOM
 		, accessProvider_(accessProvider)
 		, iid_(iid)
 		, accessEntries_()
+		, spreading_( false )
+		, pendingRemoval_()
 	{
 	}
 
@@ -30,11 +33,16 @@ namespace MinCOM
 	{
 		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
+		if ( spreading_ )
+		{
+			return _E_FAIL;
+		}
+
 		// Check input arguments for correctness.
 		if ( !sink )
 			return _E_INVALIDARG;
-		// Check whether such sink already advised and
-		//  prepare new cookie at the same time.
+		// Check whether such sink already advised and prepare new cookie 
+		//  at the same time.
 		unsigned long allocatedCooie = 1;
 		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter  )
 		{
@@ -57,13 +65,15 @@ namespace MinCOM
 	{		
 		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
-		// Check whether sink with specified cookie exists.
-		AccessEntries_::iterator iter = accessEntries_.find(cookie);
-		if ( iter == accessEntries_.end() )
-			return mc::_S_FALSE;
-		// Remove sink from map.
-		accessEntries_.erase(iter);
-		return _S_OK;
+		// Check whether spreading is in process.
+		if ( spreading_ )
+		{
+			pendingRemoval_.insert(cookie);
+			return _S_OK;
+		}
+
+		// Unadvise sink immediately.
+		return UnadviseInternl(cookie);
 	}
 
 	ICommonPtr AccessPointImpl::Find(unsigned long cookie)
@@ -87,12 +97,28 @@ namespace MinCOM
 	{
 		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
+		// Prevent recursive events spreading.
+		if ( spreading_ )
+			return _E_FAIL;
+
+		spreading_ = true;
+
 		// Walk through the entire list of sinks and notify each of them on the event.
 		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter )
 		{
 			if ( Error::IsFailed(NotifySinkOnEvent((*iter).second, call)) )
-				return _E_FAIL;
+				break;
 		}
+
+		spreading_ = false;
+
+		// Remove all pending items
+		for ( std::set< unsigned long >::iterator iter = pendingRemoval_.begin() ; pendingRemoval_.end() != iter ; ++iter )
+		{	
+			UnadviseInternl( *iter );
+		}
+		pendingRemoval_.clear();
+
 		return _S_OK;
 	}
 
@@ -111,6 +137,17 @@ namespace MinCOM
 		}
 		// Translate method with stub.
 		return stub->Invoke(call);
+	}
+
+	result AccessPointImpl::UnadviseInternl(unsigned long cookie)
+	{
+		// Check whether sink with specified cookie exists.
+		AccessEntries_::iterator iter = accessEntries_.find(cookie);
+		if ( iter == accessEntries_.end() )
+			return mc::_S_FALSE;
+		// Remove sink from map.
+		accessEntries_.erase(iter);
+		return _S_OK;
 	}
 
 }

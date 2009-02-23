@@ -30,7 +30,9 @@ namespace MinCOM
 
 	protected:
 
-		ICommonPtr GetContainer();
+		bool HasNextInternal(IVectorRef container) const;
+
+		bool HasPrevInternal(IVectorRef container) const;
 		
 	private:
 

@@ -312,10 +312,6 @@
 				Name="Impl"
 				>
 				<File
-					RelativePath=".\Events\Impl\AccessPointImpl.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Events\Impl\AccessProviderImpl.h"
 					>
 				</File>

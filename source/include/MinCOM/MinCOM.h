@@ -57,7 +57,6 @@ namespace mc = MinCOM;
 #include "MinCOM/Events/Interfaces/IAccessPoint.h"
 #include "MinCOM/Events/Interfaces/IAccessProvider.h"
 #include "MinCOM/Events/Interfaces/Events.h"
-#include "MinCOM/Events/Impl/AccessPointImpl.h"
 #include "MinCOM/Events/Impl/AccessProviderImpl.h"
 
 // Commands engine

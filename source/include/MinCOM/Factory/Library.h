@@ -81,7 +81,7 @@ namespace MinCOM
 
 		static IServerPtr TCPServer(IServiceRef service);
         
-		static IProtocolPtr Protocol();        
+		static IProtocolPtr Protocol(IConnectionRef connection, IProtocol::Mode_ mode = IProtocol::SYNC);        
 
 	};
 
