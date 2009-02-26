@@ -38,7 +38,7 @@ namespace MinCOM
 	void Protocol::SetMode(Mode_ mode)
 	{
         // TODO: Find the origin of this error.
-		// CoreMutexLock locker( CommonImpl< IProtocol >::GetLock() );
+		CoreMutexLock locker( CommonImpl< IProtocol >::GetLock() );
 
 		// Check whether mode should be changed.
 		if ( mode == mode_ )
@@ -76,11 +76,13 @@ namespace MinCOM
 
 	result Protocol::Send(IMessageRef message)
 	{
+        // Validate current object's state and input arguments.
 		if ( !message || !connection_ )
 			return _E_FAIL;
-
+        // Serialize message to stream.
 		std::ostream stream( &connection_->GetOStreamBuf() );
 		message->Write(stream);
+        // Send the entire conents of input stream. 
         connection_->Write();
         return _S_OK;
 	}
@@ -284,4 +286,3 @@ namespace MinCOM
 	}
 
 }
-
