@@ -14,6 +14,7 @@ namespace MinCOM
 		typedef CommonImpl< IProtocol > ClassRoot_;  
         
 		Protocol(IConnectionRef connection, IProtocol::Mode_ mode);
+
 		virtual ~Protocol();
 
 		// IProtocol section
@@ -74,8 +75,6 @@ namespace MinCOM
 		State state_;
 
 		IFactoryPtr messagesMap_;
-
-		typedef std::vector< IMessagePtr > Messages_;
 
 		std::queue< IMessagePtr > pendingMessages_;
 

@@ -34,6 +34,8 @@ namespace MinCOM
 
 		virtual result Unadvise(unsigned long cookie);
 
+		virtual result Unadvise(ICommonRef sink);
+
 		virtual ICommonPtr Find(unsigned long cookie);
 
 		virtual ICommonPtr CreateSpreader();
@@ -42,7 +44,7 @@ namespace MinCOM
 
 	protected:
 
-		result NotifySinkOnEvent(ICommonRef sink, const Call& call);
+		result NotifySinkOnEvent(ICommonRef stub, ICommonRef sink, const Call& call);
 
 		result UnadviseInternl(unsigned long cookie);
 

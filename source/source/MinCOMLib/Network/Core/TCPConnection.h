@@ -70,7 +70,7 @@ namespace MinCOM
 		 * Performs required cleanup of the TCPConnection entry and
 		 * dispatches corresponding events to subscribers.
 		 *
-		 * @return Returns false if error has occured.
+		 * @return Returns false if error has occurred.
 		 */
 		bool HandleError(const boost::system::error_code& error);
 

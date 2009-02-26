@@ -37,12 +37,24 @@ namespace MinCOM
 		virtual result Advise(ICommonRef sink, unsigned long& cookie) = 0;
 
 		/** 
-		 * Unregisters new sink and provides caller with point-specific cookie.
+		 * Unregisters new sink.
 		 *
 		 * Allows to unregister sinks while spreading any event. Actual removal 
 		 * occurs immediately after the pass is complete.
 		 */
 		virtual result Unadvise(unsigned long cookie) = 0;
+
+		/** 
+		 * Unregisters new sink.
+		 *
+		 * This is helper tool provided for convenience. Until access point
+		 * supports cookies it is significantly faster to use cookie value
+		 * to unregister sink.
+		 *
+		 * Allows to unregister sinks while spreading any event. Actual removal 
+		 * occurs immediately after the pass is complete.
+		 */
+		virtual result Unadvise(ICommonRef sink) = 0;
 	
 		virtual ICommonPtr Find(unsigned long cookie) = 0;
 
@@ -57,19 +69,6 @@ namespace MinCOM
 
 	typedef Weak< IAccessPoint > IAccessPointWeak;
 	typedef const IAccessPointWeak& IAccessPointWeakRef;
-
-	// Containers
-	// typedef std::pair< Guid, IAccessPointPtr > AccessPointPair;
-
-	// typedef Container::IContainer< AccessPointPair > IAccessPoints;
-	// typedef Container::IEnumerator< AccessPointPair > IAccessPointsEnum;
-	
-	// Containers' pointers
-	// typedef ComPtr< IAccessPoints > IAccessPointsPtr;
-	// typedef const IAccessPointsPtr& IAccessPointsRef;
-	
-	// typedef ComPtr< IAccessPointsEnum > IAccessPointsEnumPtr;
-	// typedef const IAccessPointsEnumPtr& IAccessPointsEnumRef;
 
 }
 

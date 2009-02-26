@@ -5,6 +5,8 @@
 namespace MinCOM
 {
 
+	// TODO: Implement delayed registering and unregistering of stubs.
+
 	AccessProviderImpl::AccessProviderImpl()
 		: CommonImpl< IAccessProvider >()
 		, accessPoints_()

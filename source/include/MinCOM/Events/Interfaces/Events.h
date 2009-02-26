@@ -24,6 +24,8 @@ namespace MinCOM
 
 		static result Unadvise(ICommonRef connectee, unsigned long cookie, RefIid apIid);
 
+		static result Unadvise(ICommonRef connectee, ICommonRef connector, RefIid apIid);
+
 	};
 
 }

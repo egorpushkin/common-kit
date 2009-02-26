@@ -145,7 +145,7 @@ namespace MinCOM
 		wchar_t toWChar() const;					    // CE_WC2
 
 		std::string toString() const;					// CE_STRA
-		std::wstring toStringW() const;					// CE_STRW
+		std::wstring toWString() const;					// CE_STRW
 
 		ICommonPtr toCommon() const;					// CE_BYPTR | CE_COMMON
 

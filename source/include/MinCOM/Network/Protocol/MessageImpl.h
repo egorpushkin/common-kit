@@ -19,16 +19,58 @@ namespace MinCOM
 	{
 	public:
 
+		/** 
+		 * Tool to serialize variable of type T from stream.
+		 */
 		template< class T >
 		static std::istream& Read(std::istream& stream, T& value)
 		{
 			return stream.read((char*)&value, sizeof(value));
 		}
 
+		/** 
+		 * Tool to serialize variable of type T to stream.
+		 */
 		template< class T >
 		static std::ostream& Write(std::ostream& stream, const T& value)
 		{
 			return stream.write((char*)&value, sizeof(value));
+		}
+
+		/**
+		 * Tool to serialize variable of std::string type to stream.
+		 */ 
+		// template<>
+		static std::ostream& Write(std::ostream& stream, const std::string& value)
+		{
+			size_t dataSize = SizeOf( value );
+			Write(stream, dataSize);	
+			return stream.write(value.c_str(), (std::streamsize)dataSize);
+		}
+
+		/**  
+		 * Tool to determine size (in bytes of stream) to transfer variable of 
+		 * type T.
+		 */
+		template< class T >
+		static size_t SizeOf(const T& param = T())
+		{
+			return sizeof( T );
+		}
+
+		/**  
+		 * Tool to determine size (in bytes of stream) to transfer the contents
+		 * of std::string variable. This tool calculates size required to 
+		 * serialize the contents of string (with terminator at the end). 
+		 * It does not takes into account overhead caused by additional size 
+		 * field usually preceding actual string data.
+		 */
+		// template<>
+		static size_t SizeOf(const std::string& param = std::string())
+		{
+			return 
+				// Size of actual string data (including '\x0' terminator).
+				( param.size() + 1 ) * sizeof( std::string::value_type );
 		}
 
 	public:
@@ -41,6 +83,8 @@ namespace MinCOM
 		virtual Code_ GetCode();
 
 		virtual Size_ GetSize();
+
+		virtual Size_ GetDataSize();
 
 		virtual void PutProperty(Property_ property, const Variant& value);
 
@@ -63,9 +107,9 @@ namespace MinCOM
 
 	protected:
 
-		virtual result WriteBody(std::ostream& stream) = 0;
+		virtual result WriteBody(std::ostream& stream);
 
-		virtual result ReadBody(std::istream& stream) = 0;
+		virtual result ReadBody(std::istream& stream);
 
 	private:
 

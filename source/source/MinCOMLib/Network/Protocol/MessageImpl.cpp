@@ -28,6 +28,11 @@ namespace MinCOM
 			GetDataSize();
 	}
 
+	IMessage::Size_ MessageImpl::GetDataSize()
+	{
+		return 0;
+	}
+
 	void MessageImpl::PutProperty(Property_ property, const mc::Variant& value)
 	{
 		Properties_::iterator propPos = properties_.find(property);
@@ -135,6 +140,16 @@ namespace MinCOM
 	bool MessageImpl::IsMsgBodyReady(size_t available, const MsgHeader_& header)
 	{
 		return ( available >= ( header.GetSize() - GetHeaderSize() ) );
+	}
+
+	result MessageImpl::WriteBody(std::ostream& stream)
+	{
+		return _S_FALSE;
+	}
+
+	result MessageImpl::ReadBody(std::istream& stream)
+	{
+		return _S_FALSE;
 	}
 
 	// MsgHeader_

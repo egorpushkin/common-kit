@@ -40,7 +40,7 @@ namespace MinCOM
         // TODO: Find the origin of this error.
 		// CoreMutexLock locker( CommonImpl< IProtocol >::GetLock() );
 
-		// Check whether mode should be chaged.
+		// Check whether mode should be changed.
 		if ( mode == mode_ )
 			return;
 
@@ -246,8 +246,8 @@ namespace MinCOM
 				// Message was received and extracted from buffer, but! it
 				// was not serialized from stream correctly because 
 				// corresponding (by code) record was not found in the registry.
-				// Protocol may continue functioning without delivery any
-				// notification or cleanup.
+				// Protocol may continue functioning without delivery of any
+				// notifications or cleanup.
 				return NULL;
 			}
 			

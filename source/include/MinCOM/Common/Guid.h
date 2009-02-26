@@ -51,17 +51,6 @@ namespace MinCOM
 		return false;
 	}
 
-	#define MC_INITGUID
-
-	#ifdef MC_INITGUID
-		#define MC_DEFINE_GUID(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8)				\
-			const MinCOM::Guid name															\
-				= { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }
-	#else // MC_INITGUID
-		#define MC_DEFINE_GUID(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8)	\
-			extern const MinCOM::Guid name
-	#endif // MC_INITGUID
-
 }
 
 #endif // !GUID_H__MINCOM__INCLUDED_

@@ -69,6 +69,7 @@ namespace MinCOM
 #endif
 
 		/** Thread context. */
+		// TODO: Reference to context should be weak.
 		IRunnablePtr context_;
 
 	};

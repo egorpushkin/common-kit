@@ -419,22 +419,22 @@ namespace MinCOM
 		}
 
 	// Comparison tools
-	// private:
+	private:
 
 		template < typename T1 >
-		bool Equals( const T1 * p ) const
+		inline bool Equals( const T1 * p ) const
 		{
 			return ( p_ == p );
 		}
 
 		template < typename T1 >
-		bool LessThan( const T1 * p ) const
+		inline bool LessThan( const T1 * p ) const
 		{
 			return ( p_ < p );
 		}
 
 		template < typename T1 >
-		bool GreaterThan( const T1 * p ) const
+		inline bool GreaterThan( const T1 * p ) const
 		{
 			return ( p_ > p );
 		}
@@ -446,6 +446,11 @@ namespace MinCOM
 		inline bool operator != ( const Strong< T1 > & rhs ) const
 		{
 			return !( rhs.Equals( p_ ) );
+		}
+
+		bool operator < ( const Strong & rhs ) const
+		{
+			return rhs.GreaterThan( p_ );
 		}
 
 		// Enables 'if ( !sp ) ...'

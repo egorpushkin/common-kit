@@ -81,7 +81,7 @@ namespace MinCOM
 		return Unwrap< std::string >(cmnVal_);
 	}
 
-	std::wstring CommonVariant::toStringW() const		// CE_STRW
+	std::wstring CommonVariant::toWString() const		// CE_STRW
 	{
 		if ( vt_ != CE_STRW )
 			return std::wstring();

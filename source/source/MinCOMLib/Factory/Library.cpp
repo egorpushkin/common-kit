@@ -111,4 +111,9 @@ namespace MinCOM
         return Class< mc::Protocol >::Create(connection, mode);
     }    
 
+	IMessagePtr Library::Message(const IMessage::Code_& code)
+	{
+		return mc::Class< mc::MessageImpl >::Create(code);
+	}
+
 }

@@ -3,10 +3,11 @@
 #include "EventsSpreader.h"
 #include "AccessPointImpl.h"
 
-// TODO: Find stub at the stage of advising sink.
-
 namespace MinCOM
 {
+
+	// TODO: Find stub at the stage of advising sink.
+	// TODO: Implement delayed registering of sinks.
 
 	AccessPointImpl::AccessPointImpl(IAccessProviderRef accessProvider, RefGuid iid)
 		: CommonImpl< IAccessPoint >()
@@ -33,6 +34,7 @@ namespace MinCOM
 	{
 		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
+		// Prevents registering new sinks while spreading an event.
 		if ( spreading_ )
 		{
 			return _E_FAIL;
@@ -73,7 +75,31 @@ namespace MinCOM
 		}
 
 		// Unadvise sink immediately.
-		return UnadviseInternl(cookie);
+		return UnadviseInternl( cookie );
+	}
+
+	result AccessPointImpl::Unadvise(ICommonRef sink)
+	{
+		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
+	
+		// Find corresponding cookie. 
+		unsigned long cookie = 0;
+		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter )
+		{
+			ICommonPtr strongSink((*iter).second);
+			if ( strongSink == sink )
+			{
+				cookie = (*iter).first;
+				break;
+			}
+		}
+
+		if ( 0 == cookie )
+			// Sink was not found.
+			return _E_INVALIDARG;
+
+		// Unregister sink with known cookie in regular way.
+		return Unadvise( cookie );
 	}
 
 	ICommonPtr AccessPointImpl::Find(unsigned long cookie)
@@ -103,10 +129,15 @@ namespace MinCOM
 
 		spreading_ = true;
 
-		// Walk through the entire list of sinks and notify each of them on the event.
+		// Create stub preliminary. We should not create stub earlier because 
+		// it may not be yet registered by that time.
+		ICommonPtr stub( Object::Create(iid_) );
+
+		// Walk through the entire list of sinks and notify each of them on the 
+		// event.
 		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter )
 		{
-			if ( Error::IsFailed(NotifySinkOnEvent((*iter).second, call)) )
+			if ( Error::IsFailed(NotifySinkOnEvent(stub, (*iter).second, call)) )
 				break;
 		}
 
@@ -123,18 +154,19 @@ namespace MinCOM
 	}
 
 	// Protected tools
-	result AccessPointImpl::NotifySinkOnEvent(ICommonRef sink, const Call& call)
+	result AccessPointImpl::NotifySinkOnEvent(ICommonRef stub, ICommonRef sink, const Call& call)
 	{
 		// Check whether sink is still alive.
 		if ( !sink )
 			return _S_FALSE;
-		// Create appropriate stub.
-		ICommonPtr stub(Object::CreateStub(iid_, sink, false));
+		// Check whether stub is correct.
 		if ( !stub )
 		{
 			// Invoke method directly.
 			return sink->Invoke(call);
 		}
+		// Configure stub.
+		stub->SetTarget(sink, false);
 		// Translate method with stub.
 		return stub->Invoke(call);
 	}

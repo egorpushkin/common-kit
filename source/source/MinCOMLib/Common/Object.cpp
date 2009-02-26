@@ -9,13 +9,13 @@ namespace MinCOM
 	 * the scope of client source code (for example, objects from 
 	 * shared libraries).
 	 *
-	 * This inplementation checks whether object can be found locally 
+	 * This implementation checks whether object can be found locally 
 	 * and then attempts to find it in shared library. NULL reference
 	 * is returned to caller if both attempts fail.
 	 */
 	Strong<ICommon> Object::Create(RefClsid clsid)
 	{
-		// Try to instantiate object from locall registry.
+		// Try to instantiate object from local registry.
 		ICommonPtr objectStep1 = FactoryHolder::Instance()->Create(clsid);
 		if ( objectStep1 )
 			return objectStep1;

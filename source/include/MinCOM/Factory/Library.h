@@ -83,6 +83,8 @@ namespace MinCOM
         
 		static IProtocolPtr Protocol(IConnectionRef connection, IProtocol::Mode_ mode = IProtocol::SYNC);        
 
+		static IMessagePtr Message(const IMessage::Code_& code);
+
 	};
 
 }

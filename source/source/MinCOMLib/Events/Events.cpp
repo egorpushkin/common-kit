@@ -35,4 +35,17 @@ namespace MinCOM
 		return accessPoint->Unadvise(cookie);
 	}
 
+	result Events::Unadvise(ICommonRef connectee, ICommonRef connector, RefIid apIid)
+	{
+		mc::IAccessProviderPtr accessProvider(connectee);
+		if ( !accessProvider )
+			return _E_FAIL;
+
+		mc::IAccessPointPtr accessPoint( accessProvider->Find(apIid) );
+		if ( !accessPoint )
+			return _E_FAIL;
+
+		return accessPoint->Unadvise(connector);
+	}
+
 }
