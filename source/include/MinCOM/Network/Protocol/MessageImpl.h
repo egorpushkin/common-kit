@@ -44,8 +44,18 @@ namespace MinCOM
 		{
 			size_t dataSize = 0;
 			Read(stream, dataSize);
-			value.reserve( dataSize );
-			return stream.read((char *)value.c_str(), (std::streamsize)dataSize);
+			
+			std::string::value_type * buffer = new std::string::value_type[dataSize];
+			stream.read(buffer, (std::streamsize)dataSize);			
+			std::string rvalue(buffer, dataSize);
+			delete []buffer;
+
+			value = rvalue;
+
+			return stream;
+
+			// value.reserve( dataSize );
+			// return stream.read((char *)value.data(), (std::streamsize)dataSize);
 		}
 
 		/**

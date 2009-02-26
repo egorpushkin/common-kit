@@ -45,7 +45,7 @@ namespace MinCOM
 		}	
 
 		template< class T1 > 
-		static Strong<ICommon> Create(T1 p1) 
+		static Strong<ICommon> Create(const T1& p1) 
 		{ 
 			try
 			{
@@ -58,7 +58,7 @@ namespace MinCOM
 		}	
 
 		template< class T1, class T2 > 
-		static Strong<ICommon> Create(T1 p1, T2 p2) 
+		static Strong<ICommon> Create(const T1& p1, const T2& p2) 
 		{ 
 			try
 			{
@@ -71,7 +71,7 @@ namespace MinCOM
 		}	
 
 		template< class T1, class T2, class T3 > 
-		static Strong<ICommon> Create(T1 p1, T2 p2, T3 p3) 
+		static Strong<ICommon> Create(const T1& p1, const T2& p2, const T3& p3) 
 		{ 
 			try
 			{

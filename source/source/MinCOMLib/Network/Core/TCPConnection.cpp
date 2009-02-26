@@ -75,6 +75,11 @@ namespace MinCOM
 		return Establish(host->GetHost(), host->GetService());
 	}
 
+	std::string TCPConnection::GetIpAddress()
+	{
+		return socket_->remote_endpoint().address().to_string();
+	}
+
 	void TCPConnection::ReadAsync(std::size_t minimum)
 	{
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());

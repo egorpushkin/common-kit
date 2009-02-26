@@ -35,6 +35,8 @@ namespace MinCOM
 
 		virtual result Establish(IHostRef host);
 
+		virtual std::string GetIpAddress();
+
 		virtual void TCPConnection::ReadAsync(std::size_t minimum = 1);
 
 		virtual void Write();

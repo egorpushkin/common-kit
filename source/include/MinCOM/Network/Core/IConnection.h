@@ -21,6 +21,8 @@ namespace MinCOM
 
 		virtual result Establish(IHostRef host) = 0;
 
+		virtual std::string GetIpAddress() = 0;
+
 		// virtual mc::result Write(asio::streambuf& buffer) = 0;
 		// virtual std::size_t Read(const mc::StringA& delimiter) = 0;
 		// virtual std::size_t Read(std::size_t minimum = 1) = 0;
