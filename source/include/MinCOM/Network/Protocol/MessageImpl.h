@@ -37,10 +37,20 @@ namespace MinCOM
 			return stream.write((char*)&value, sizeof(value));
 		}
 
+		/** 
+		 * Tool to serialize variable of type std::string from stream.
+		 */
+		static std::istream& Read(std::istream& stream, std::string& value)
+		{
+			size_t dataSize = 0;
+			Read(stream, dataSize);
+			value.reserve( dataSize );
+			return stream.read((char *)value.c_str(), (std::streamsize)dataSize);
+		}
+
 		/**
 		 * Tool to serialize variable of std::string type to stream.
 		 */ 
-		// template<>
 		static std::ostream& Write(std::ostream& stream, const std::string& value)
 		{
 			size_t dataSize = SizeOf( value );
@@ -65,7 +75,6 @@ namespace MinCOM
 		 * It does not takes into account overhead caused by additional size 
 		 * field usually preceding actual string data.
 		 */
-		// template<>
 		static size_t SizeOf(const std::string& param = std::string())
 		{
 			return 
