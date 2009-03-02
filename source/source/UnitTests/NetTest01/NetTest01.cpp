@@ -89,10 +89,7 @@ int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 	{
 		
 		mc::IServicePtr service = mc::Library::Service();
-
 		mc::IConnectionPtr connection = mc::Library::TCPConnection(service);
-
-
 		connection->Establish("localhost", "8444");
 
 		_getwch();

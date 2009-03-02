@@ -6,7 +6,8 @@
 #pragma once
 
 
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#include <boost/asio.hpp>
+
 #include <stdio.h>
 #include <tchar.h>
 

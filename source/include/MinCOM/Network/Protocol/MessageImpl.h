@@ -53,9 +53,6 @@ namespace MinCOM
 			value = rvalue;
 
 			return stream;
-
-			// value.reserve( dataSize );
-			// return stream.read((char *)value.data(), (std::streamsize)dataSize);
 		}
 
 		/**

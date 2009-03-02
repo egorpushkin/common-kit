@@ -57,7 +57,7 @@ namespace MinCOM
 		continueExecution_ = false;
 
 		// Signal on fake job 
-		jobsCounter_->Release(1);
+		jobsCounter_->Release();
 
 		// Waiting for thread termination
 		workingThread_->Join();

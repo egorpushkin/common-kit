@@ -31,6 +31,7 @@ namespace MinCOM
 
 	typedef Strong< IJobsQueue > IJobsQueuePtr;
 	typedef const IJobsQueuePtr& IJobsQueueRef;
+	typedef Weak< IJobsQueue > IJobsQueueWeak;
 
 }
 

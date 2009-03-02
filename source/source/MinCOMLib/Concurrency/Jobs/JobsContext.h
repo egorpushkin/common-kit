@@ -16,7 +16,7 @@ namespace MinCOM
 
 	private:
 
-		IJobsQueuePtr jobsQueue_;
+		IJobsQueueWeak jobsQueue_;
 		
 		ISemaphorePtr jobsCounter_;
 
