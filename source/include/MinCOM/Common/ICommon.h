@@ -43,6 +43,19 @@ namespace MinCOM
 		virtual Strong< ICommon > GetSelf() = 0;
 
 		/**
+		 * Returns unique object identifier. This value is unique in bounds 
+		 * of caller process. Moreover, this value has sense only in bounds
+		 * of caller and has no relationship to object host process (if these
+		 * processes do not coinside).
+		 */
+		virtual size_t GetCookie() = 0;
+
+		/** 
+		 * Tests whether specified cookie corresponds to this object.
+		 */
+		virtual bool TestCookie(size_t cookie) = 0;
+
+		/**
 		 *
 		 */
 		virtual result SetParent(const Strong< ICommon >& parent) = 0;

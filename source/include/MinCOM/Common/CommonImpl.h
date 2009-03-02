@@ -119,6 +119,24 @@ namespace MinCOM
 			return CommonInternals::self_;
 		}
 
+		/** 
+		 * Default implementation of this tool relies on value achieved 
+		 * from pointer to this.
+		 */
+		virtual size_t GetCookie()
+		{
+			return (size_t)this;
+		}
+
+		/** 
+		 * Default implementation of this tool relies on value achieved 
+		 * from pointer to this.
+		 */
+		virtual bool TestCookie(size_t cookie)
+		{
+			return ( (size_t)this == cookie );
+		}
+
 		virtual result SetParent(const Strong< ICommon >& parent)
 		{
 			CoreMutexLock locker(CommonInternals::lock_);

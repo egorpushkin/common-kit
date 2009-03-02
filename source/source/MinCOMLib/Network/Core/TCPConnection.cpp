@@ -29,6 +29,11 @@ namespace MinCOM
 	{
 	}
 
+	TCPConnection::~TCPConnection()
+	{
+		socket_->close();
+	}
+
 	// ITCPConnection section
 	//////////////////////////////////////////////////////////////////////////
 

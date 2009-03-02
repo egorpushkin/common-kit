@@ -28,6 +28,8 @@ namespace MinCOM
 
 		TCPConnection(IServiceRef service, const SocketPtr_& socket);
 
+		virtual ~TCPConnection();
+
 		// ITCPConnection section
 		//////////////////////////////////////////////////////////////////////////
 

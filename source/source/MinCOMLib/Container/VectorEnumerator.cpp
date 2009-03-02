@@ -35,6 +35,7 @@ namespace MinCOM
 		IReadWriteLockPtr lock(lock_);
 		if ( !lock_ )
 			return false;
+		IReadWriteLock::Reader_ locker(lock);
 		// Check whether container is still alive.
 		IVectorPtr container(container_);
 		if ( !container )
@@ -61,6 +62,7 @@ namespace MinCOM
 		IReadWriteLockPtr lock(lock_);
 		if ( !lock_ )
 			return false;
+		IReadWriteLock::Reader_ locker(lock);
 		// Check whether container is still alive.
 		IVectorPtr container(container_);
 		if ( !container )
@@ -87,6 +89,7 @@ namespace MinCOM
 		IReadWriteLockPtr lock(lock_);
 		if ( !lock_ )
 			return false;
+		IReadWriteLock::Reader_ locker(lock);
 		// Check whether container is still alive.
 		IVectorPtr container(container_);
 		if ( !container )
@@ -101,6 +104,7 @@ namespace MinCOM
 		IReadWriteLockPtr lock(lock_);
 		if ( !lock_ )
 			return false;
+		IReadWriteLock::Reader_ locker(lock);
 		// Check whether container is still alive.
 		IVectorPtr container(container_);
 		if ( !container )
@@ -113,7 +117,7 @@ namespace MinCOM
 	{
 		IReadWriteLockPtr lock(lock_);
 		if ( !lock_ )
-			return false;
+			return false;		
 		IVectorPtr container(container_);
 		if ( !container )
 			return false;
