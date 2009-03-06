@@ -12,9 +12,9 @@ namespace MinCOM
 		/**
 		 * Thread entry point.
 		 */
-#if defined(WIN32)        
-		static unsigned int mc_stdcall _ThreadWorkingRoutine(void*);
-#elif defined(POSIX)        
+#if defined(WIN32)
+        static unsigned int mc_stdcall _ThreadWorkingRoutine(void*);
+#elif defined(POSIX)
         static void * _ThreadWorkingRoutine(void*);
 #endif
         

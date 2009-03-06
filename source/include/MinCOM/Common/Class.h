@@ -83,6 +83,19 @@ namespace MinCOM
 			}
 		}
 
+		template< class T1, class T2, class T3, class T4 >
+		static Strong<ICommon> Create(const T1& p1, const T2& p2, const T3& p3, const T4& p4)
+		{
+			try
+			{
+				return PostInit(Strong<ICommon>(new T(p1, p2, p3, p4)));
+			}
+			catch ( ... )
+			{
+				return NULL;
+			}
+		}
+
 		/**
 		 * Tool to provide client with class identifier.
 		 */

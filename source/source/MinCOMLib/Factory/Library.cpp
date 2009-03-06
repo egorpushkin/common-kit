@@ -32,19 +32,6 @@ namespace MinCOM
 		return Class< mc::List >::Create();
 	}
 
-	// Events
-	//////////////////////////////////////////////////////////////////////////
-
-/*	IEventPtr Library::Event(bool manualReset /* = true *, bool initialState /* = false *, const std::string& name /* = std::string() *)
-	{
-		return Class< mc::Event >::Create(manualReset, initialState, name);
-	}
-
-	IEventPtr Library::EventOpen(const std::string& name)
-	{
-		return Class< mc::Event >::Create(name);
-	} */
-
 	// Mutexes
 	//////////////////////////////////////////////////////////////////////////
 

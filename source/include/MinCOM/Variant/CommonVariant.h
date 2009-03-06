@@ -14,11 +14,13 @@
 namespace MinCOM
 {
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER)
 	typedef __int64 longlong;
 	typedef unsigned __int64 ulonglong;
-#elif WIN32 // MinGW or something else	
-#elif POSIX // any Posix macro
+#elif defined(__MINGW32__ ) // MinGW
+        typedef long long longlong;
+        typedef unsigned long long ulonglong;
+#elif defined(POSIX) // any Posix macro
 #elif __MACH__
 	typedef long long longlong;
 	typedef unsigned long long ulonglong;

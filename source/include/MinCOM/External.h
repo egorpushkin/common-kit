@@ -66,11 +66,11 @@
 
 // Calling conventions
 //////////////////////////////////////////////////////////////////////////
-#ifdef _MSC_VER
+#if defined(WIN32)
 #define mc_stdcall __stdcall
-#elif WIN32 // MinGW or something else	
-#elif POSIX // any Posix macro
-#elif __MACH__
+#elif defined(POSIX) // any Posix macro
+#define mc_stdcall
+#elif defined(__MACH__)
 #define mc_stdcall
 #endif // _MSC_VER
 
