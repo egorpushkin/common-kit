@@ -82,7 +82,7 @@ namespace MinCOM
         // Serialize message to stream.
 		std::ostream stream( &connection_->GetOStreamBuf() );
 		message->Write(stream);
-        // Send the entire conents of input stream. 
+        // Send the entire content of input stream. 
         connection_->Write();
         return _S_OK;
 	}

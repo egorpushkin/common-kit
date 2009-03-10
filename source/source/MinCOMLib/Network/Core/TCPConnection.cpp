@@ -112,7 +112,6 @@ namespace MinCOM
 
 	std::streambuf& TCPConnection::GetIStreamBuf()
 	{
-		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 		return ibuffer_;
 	}
 
@@ -123,7 +122,6 @@ namespace MinCOM
 
 	std::streambuf& TCPConnection::GetOStreamBuf()
 	{
-		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 		return obuffer_;
 	}
 
