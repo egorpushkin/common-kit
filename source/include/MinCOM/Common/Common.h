@@ -90,6 +90,8 @@ namespace MinCOM
 	 */ 
 	interface IReferenceCounter
 	{
+        virtual ~IReferenceCounter() {}
+
 		/** Should increase internal reference counter. */
 		virtual long IncrementReference() = 0;
 

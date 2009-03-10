@@ -18,13 +18,12 @@ namespace MinCOM
 	typedef __int64 longlong;
 	typedef unsigned __int64 ulonglong;
 #elif defined(__MINGW32__ ) // MinGW
-        typedef long long longlong;
-        typedef unsigned long long ulonglong;
+    typedef long long longlong;
+    typedef unsigned long long ulonglong;
 #elif defined(POSIX) // any Posix macro
-#elif __MACH__
-	typedef long long longlong;
-	typedef unsigned long long ulonglong;
-#endif // _MSC_VER
+    typedef long long longlong;
+    typedef unsigned long long ulonglong;
+#endif
 
 	class CommonVariant
 	{			

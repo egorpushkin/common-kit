@@ -99,12 +99,12 @@ namespace MinCOM
 	}
 
 	// DRawData section
-	result Protocol::Connected(IConnectionRef connection)
+	result Protocol::Connected(IConnectionRef /* connection */)
 	{
 		return _E_NOTIMPL;
 	}
 
-	result Protocol::DataReceived(IConnectionRef connection)
+	result Protocol::DataReceived(IConnectionRef /* connection */)
 	{
 		// This method should be locked because this notification is generally
 		// comes from another thread.
@@ -118,7 +118,7 @@ namespace MinCOM
 		return _S_OK;
 	}
 
-	result Protocol::Disconnected(IConnectionRef connection)
+	result Protocol::Disconnected(IConnectionRef /* connection */)
 	{
 		// Notify clients on the fact that connection is lost.
 		protocolEvents_->Disconnected(CommonImpl< IProtocol >::GetSelf());
@@ -137,7 +137,7 @@ namespace MinCOM
 
 		// Subscribe on events from attached connection and ...
 		Events::Advise(connection_, CommonImpl< IProtocol >::GetSelf(), cookie_, TypeInfo< DRawData >::GetGuid());
-		// ... receiving data immediately.
+		// ... start receiving data immediately.
 		connection_->ReadAsync();	
 
 		return _S_OK;
