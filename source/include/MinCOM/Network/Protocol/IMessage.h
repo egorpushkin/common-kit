@@ -38,14 +38,17 @@ namespace MinCOM
 		virtual result Write(std::ostream& stream) = 0;
 
 		virtual result Read(std::istream& stream) = 0;
+
+	private:
+
+		friend class Protocol;
+
+		virtual void SetCode(const Code_& code) = 0;
+
 	};
 
 	typedef Strong< IMessage > IMessagePtr;
 	typedef const IMessagePtr& IMessageRef;
-
-	extern const IMessage::Marker_ beginningMarker;
-
-	extern const IMessage::Marker_ endingMarker;
 
 }
 

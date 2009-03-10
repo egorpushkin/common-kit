@@ -7,6 +7,14 @@ namespace MinCOM
 
 	const IMessage::Marker_ endingMarker = 0xcdcdcdcd;
 
+	MessageImpl::MessageImpl()
+		: mc::CommonImpl< IMessage >()
+		, code_()
+		, constructed_(false)
+		, properties_()
+	{
+	}
+
 	MessageImpl::MessageImpl(IMessage::Code_ code)
 		: mc::CommonImpl< IMessage >()
 		, code_(code)
@@ -84,6 +92,11 @@ namespace MinCOM
 		constructed_ = true;
 
 		return mc::_S_OK;
+	}
+
+	void MessageImpl::SetCode(const Code_& code)
+	{
+		code_ = code;
 	}
 
 	// Protected wrappers

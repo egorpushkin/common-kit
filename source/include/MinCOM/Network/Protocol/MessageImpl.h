@@ -93,6 +93,8 @@ namespace MinCOM
 
 		friend class Protocol;
 
+		MessageImpl();
+
 		MessageImpl(IMessage::Code_ code);
 
 		// IMessage section
@@ -109,6 +111,10 @@ namespace MinCOM
 		virtual result Write(std::ostream& stream);
 
 		virtual result Read(std::istream& stream);
+
+	private:
+
+		virtual void SetCode(const Code_& code);
 
 	protected:
 

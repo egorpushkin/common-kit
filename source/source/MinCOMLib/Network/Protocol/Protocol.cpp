@@ -250,8 +250,16 @@ namespace MinCOM
 				// corresponding (by code) record was not found in the registry.
 				// Protocol may continue functioning without delivery of any
 				// notifications or cleanup.
+
+				// TODO: Actually message was received but not extracted. It should
+				// be done here.
 				return NULL;
 			}
+
+			// Set code forcibly. This should be done to allow use of 
+			// MessageImpl directly without deriving additional classes for
+			// simple command messages without arguments.
+			msg->SetCode(msgHeader_.GetCode());
 			
 			// Attempt to read message body.
 			if ( Error::IsFailed(msg->Read(stream)) )

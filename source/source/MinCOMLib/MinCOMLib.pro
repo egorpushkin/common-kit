@@ -4,16 +4,19 @@
 TARGET = MinCOM
 TEMPLATE = lib
 CONFIG += staticlib
+
 contains(CONFIG, debug) {
-OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
-DESTDIR = ../../lib/mingw/debug
+    OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
+    DESTDIR = ../../lib/mingw/debug
 } else {
-OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/release
-DESTDIR = ../../lib/mingw/release
+    OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/release
+    DESTDIR = ../../lib/mingw/release
 }
+
 INCLUDEPATH = C:/Dev/boost_1_37_0 \
     ../../include \
     ../../sdk/include
+
 PRECOMPILED_HEADER = Common/Common.h
 HEADERS += Common/Common.h \
     Commands/Commands.h \
