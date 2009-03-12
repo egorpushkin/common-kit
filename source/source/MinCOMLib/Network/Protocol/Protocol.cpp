@@ -76,6 +76,8 @@ namespace MinCOM
 
 	result Protocol::Send(IMessageRef message)
 	{
+		MC_LOG_ROUTINE;
+
         // Validate current object's state and input arguments.
 		if ( !message || !connection_ )
 			return _E_FAIL;
@@ -83,7 +85,8 @@ namespace MinCOM
 		std::ostream stream( &connection_->GetOStreamBuf() );
 		message->Write(stream);
         // Send the entire content of input stream. 
-        connection_->Write();
+		MC_LOG_STATEMENT("Attempting to write data to the connection.");
+		connection_->Write();
         return _S_OK;
 	}
 

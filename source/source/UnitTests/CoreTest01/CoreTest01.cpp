@@ -135,25 +135,28 @@ private:
 int _tmain(int /* argc */, _TCHAR* /* argv[] */)
 {
 	
-	Locker l;
-	mc::Strong< ITest1 > test1( mc::Class< Test >::Create() );
-	{		
-		//LockerHolder lh(&l, &Locker::Lock, &Locker::Unlock);
+
+	{
+		MC_LOG_ROUTINE;
+
+		{
+			MC_LOG_ROUTINE;
 
 
-		// Loki::Functor< mc::result > lock(&l, &Locker::Lock);
-		// lock();
+			{
+				MC_LOG_ROUTINE;
 
-		
+				MC_LOG_STATEMENT("12313");
 
-		// Loki::Functor<> lock1(test1, &ITest1::DoStuff1);
-		// lock1();
+				MC_LOG_STATEMENT("234");
 
-		_attempt2::LockerHolder<> lh( &l, &Locker::Lock, &Locker::Unlock );
-		// _attempt2::LockerHolder lh( test1, &ITest1::DoStuff1, &ITest1::DoStuff1);
 
-			
+				{
+					MC_LOG_ROUTINE;
 
+				}
+			}
+		}
 	}
 	
 	//size_t t = sizeof(mc::Variant);

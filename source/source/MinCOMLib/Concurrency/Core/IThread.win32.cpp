@@ -13,4 +13,9 @@ namespace MinCOM
 		::Sleep(delay);
 	}
 
+	int IThread::GetSelfId()
+	{
+		return ::GetCurrentThreadId();
+	}
+
 }

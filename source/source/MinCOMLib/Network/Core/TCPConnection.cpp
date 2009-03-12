@@ -15,6 +15,7 @@ namespace MinCOM
 		, ibuffer_()
 		, obuffer_()
 		, events_()
+		, disconnected_(false)
 	{
 	}
 
@@ -26,6 +27,7 @@ namespace MinCOM
 		, ibuffer_()
 		, obuffer_()
 		, events_()
+		, disconnected_(false)
 	{
 	}
 
@@ -46,6 +48,7 @@ namespace MinCOM
 			// Flush buffers.
 			ibuffer_.consume(ibuffer_.size());
 			obuffer_.consume(obuffer_.size());
+			disconnected_ = false;
 
 			// Establish new one.
 			boost::asio::ip::tcp::resolver resolver(Strong< Service >(service_)->GetService());
@@ -87,8 +90,7 @@ namespace MinCOM
 
 	void TCPConnection::ReadAsync(std::size_t minimum)
 	{
-		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
-
+		MC_LOG_ROUTINE;
 		boost::asio::async_read(
 			*socket_, 
 			ibuffer_, 
@@ -98,16 +100,12 @@ namespace MinCOM
 
 	void TCPConnection::Write()
 	{
-		boost::system::error_code error;
-		boost::asio::write(
+		MC_LOG_ROUTINE;
+		boost::asio::async_write(
 			*socket_, 
 			obuffer_,
 			boost::asio::transfer_all(),
-			error);
-
-		HandleError(error);
-		// There is no sense to handle return value. This routine should exit 
-		// in any case.
+			boost::bind(&TCPConnection::HandleWrite, this, boost::asio::placeholders::error));
 	}
 
 	std::streambuf& TCPConnection::GetIStreamBuf()
@@ -143,6 +141,15 @@ namespace MinCOM
 
 	// Async handlers
 	//////////////////////////////////////////////////////////////////////////
+	void TCPConnection::HandleWrite(const boost::system::error_code& error)
+	{
+		if ( !HandleError(error) )
+		{
+			// Error was detected, handled and dispatched. Required cleanup 
+			// was also performed. So.. nothing else should be done here.
+			return;
+		}
+	}
 
 	void TCPConnection::HandleRead(const boost::system::error_code& error)
 	{
@@ -162,16 +169,33 @@ namespace MinCOM
 
 	bool TCPConnection::HandleError(const boost::system::error_code& error)
 	{
+		MC_LOG_ROUTINE;
+
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
+
+		MC_LOG_STATEMENT("Unlocked");
+
+		if ( disconnected_ )
+			return false;
+
+		MC_LOG_STATEMENT("After check");
+
 		if ( boost::asio::error::eof == error )
 		{
+			MC_LOG_ROUTINE_NAMED("Disconnecting");
+
 			// Connection closed cleanly by peer.
 			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+			disconnected_ = true;
 			return false;
 		}
 		else if ( error )
 		{
+			MC_LOG_ROUTINE_NAMED("Disconnecting");
+
 			// Any other error occurred.
 			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+			disconnected_ = true;
 			return false;
 		}		
 

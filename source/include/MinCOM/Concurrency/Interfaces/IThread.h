@@ -33,6 +33,8 @@ namespace MinCOM
 
 		static void Sleep(unsigned long delay);
 
+		static int GetSelfId();
+
 	};
 
 	typedef Strong< IThread > IThreadPtr;

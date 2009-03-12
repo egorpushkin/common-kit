@@ -4,19 +4,17 @@
 TARGET = MinCOM
 TEMPLATE = lib
 CONFIG += staticlib
-
-contains(CONFIG, debug) {
+contains(CONFIG, debug) { 
     OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
     DESTDIR = ../../lib/mingw/debug
-} else {
+}
+else { 
     OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/release
     DESTDIR = ../../lib/mingw/release
 }
-
 INCLUDEPATH = C:/Dev/boost_1_37_0 \
     ../../include \
     ../../sdk/include
-
 PRECOMPILED_HEADER = Common/Common.h
 HEADERS += Common/Common.h \
     Commands/Commands.h \
@@ -43,7 +41,8 @@ HEADERS += Common/Common.h \
     Network/Protocol/DProtocolStub.h \
     Network/Protocol/Protocol.h \
     Platforms/win32/Concurrent.win32.h \
-    Platforms/win32/Locale.win32.h
+    Platforms/win32/Locale.win32.h \
+    Log/LogStorage.h
 SOURCES += Common/GuidsInternal.cpp \
     Common/Guids.cpp \
     Common/Errors.cpp \
@@ -89,4 +88,8 @@ SOURCES += Common/GuidsInternal.cpp \
     Platforms/win32/Concurrent.win32.cpp \
     Variant/Accessors.cpp \
     Variant/Constructors.cpp \
-    Concurrency/Core/Semaphore.win32.cpp
+    Concurrency/Core/Semaphore.win32.cpp \
+    Log/LogStorage.cpp \
+    Log/LogRoutine.cpp \
+    Log/Log.cpp \
+    Log/LogStatement.cpp

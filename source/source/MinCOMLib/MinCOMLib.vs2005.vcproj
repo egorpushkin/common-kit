@@ -641,6 +641,30 @@
 			Name="Remoting"
 			>
 		</Filter>
+		<Filter
+			Name="Log"
+			>
+			<File
+				RelativePath=".\Log\Log.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Log\LogRoutine.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Log\LogStatement.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Log\LogStorage.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Log\LogStorage.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

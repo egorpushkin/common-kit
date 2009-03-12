@@ -63,6 +63,12 @@ namespace MinCOM
 
 		/**
 		 * This callback is passed to ASIO internals and is called 
+		 * when data is sent.
+		 */ 
+		void HandleWrite(const boost::system::error_code& error);
+
+		/**
+		 * This callback is passed to ASIO internals and is called 
 		 * when data is arrived.
 		 */ 
 		void HandleRead(const boost::system::error_code& error);
@@ -94,6 +100,9 @@ namespace MinCOM
 
 		/** Connection events spreader. */
 		DRawDataPtr events_;
+
+		/** Indicates that subscribers were already notified on disconnection. */
+		bool disconnected_;
 	};
 
 }

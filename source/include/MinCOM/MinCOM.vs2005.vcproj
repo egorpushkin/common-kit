@@ -453,6 +453,26 @@
 			Name="Remoting"
 			>
 		</Filter>
+		<Filter
+			Name="Log"
+			>
+			<File
+				RelativePath=".\Log\Log.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Log\LogRoutine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Log\LogStatement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Log\LogThread.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\External.h"
 			>

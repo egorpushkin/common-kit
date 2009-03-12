@@ -76,6 +76,13 @@ namespace mc = MinCOM;
 #include "MinCOM/Concurrency/Interfaces/IJobsQueue.h"
 #include "MinCOM/Concurrency/Interfaces/IReadWriteLock.h"
 
+// Advanced logging utility
+//////////////////////////////////////////////////////////////////////////
+#include "MinCOM/Log/Log.h"
+#include "MinCOM/Log/LogRoutine.h"
+#include "MinCOM/Log/LogStatement.h"
+#include "MinCOM/Log/LogThread.h"
+
 // Factory support
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Factory/IFactory.h"
