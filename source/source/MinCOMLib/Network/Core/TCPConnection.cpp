@@ -15,7 +15,6 @@ namespace MinCOM
 		, ibuffer_()
 		, obuffer_()
 		, events_()
-		, disconnected_(false)
 	{
 	}
 
@@ -27,7 +26,6 @@ namespace MinCOM
 		, ibuffer_()
 		, obuffer_()
 		, events_()
-		, disconnected_(false)
 	{
 	}
 
@@ -48,7 +46,6 @@ namespace MinCOM
 			// Flush buffers.
 			ibuffer_.consume(ibuffer_.size());
 			obuffer_.consume(obuffer_.size());
-			disconnected_ = false;
 
 			// Establish new one.
 			boost::asio::ip::tcp::resolver resolver(Strong< Service >(service_)->GetService());
@@ -69,6 +66,9 @@ namespace MinCOM
 
 			// Spread good news.
 			events_->Connected( CommonImpl< IConnection >::GetSelf() );
+
+			// Make this object immortal.
+			self_ = CommonImpl< IConnection >::GetSelf();
 		}
 		catch( ... )
 		{
@@ -175,18 +175,13 @@ namespace MinCOM
 
 		MC_LOG_STATEMENT("Unlocked");
 
-		if ( disconnected_ )
-			return false;
-
-		MC_LOG_STATEMENT("After check");
-
 		if ( boost::asio::error::eof == error )
 		{
 			MC_LOG_ROUTINE_NAMED("Disconnecting");
 
 			// Connection closed cleanly by peer.
 			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-			disconnected_ = true;
+			socket_->close();
 			return false;
 		}
 		else if ( error )
@@ -195,7 +190,7 @@ namespace MinCOM
 
 			// Any other error occurred.
 			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-			disconnected_ = true;
+			socket_->close();
 			return false;
 		}		
 

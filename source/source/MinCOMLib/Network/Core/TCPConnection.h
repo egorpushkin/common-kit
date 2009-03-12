@@ -101,8 +101,6 @@ namespace MinCOM
 		/** Connection events spreader. */
 		DRawDataPtr events_;
 
-		/** Indicates that subscribers were already notified on disconnection. */
-		bool disconnected_;
 	};
 
 }
