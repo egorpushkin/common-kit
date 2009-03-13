@@ -61,9 +61,12 @@ namespace MinCOM
 	ulonglong* toPULLong() const; 					// CE_BYREF | CE_UI8
 	float* toPFloat() const;					    // CE_BYREF | CE_R4 */
 
-/*	char toChar() const;					        // CE_C1
-	unsigned char toUChar() const;			        // CE_UC1
-	wchar_t toWChar() const;					    // CE_WC2
+/*	char toChar() const;					        // CE_C1 */
+	unsigned char CommonVariant::toUChar() const    // CE_UC1
+	{
+		return ucVal_;
+	}
+/*	wchar_t toWChar() const;					    // CE_WC2
 
 	char* toPChar() const;					        // CE_BYREF | CE_C1
 	unsigned char* toPUchar() const;		        // CE_BYREF | CE_UC1

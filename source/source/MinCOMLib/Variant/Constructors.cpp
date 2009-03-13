@@ -66,8 +66,15 @@ namespace MinCOM
 	} */
 
 	/*
-	CommonVariant(char cVal);						// CE_C1
-	CommonVariant(unsigned char ucVal);			    // CE_UC1
+	CommonVariant(char cVal);						// CE_C1 */
+	
+	CommonVariant::CommonVariant(unsigned char ucVal)    // CE_UC1
+		: vt_(CE_UC1)
+		, ucVal_(ucVal)
+	{
+	}
+	
+	/* 
 	CommonVariant(wchar_t wcVal);					// CE_WC2
 
 	CommonVariant(char*	pcVal);						// CE_BYREF | CE_C1
