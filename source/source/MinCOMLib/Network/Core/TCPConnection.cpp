@@ -55,7 +55,7 @@ namespace MinCOM
 		// returned back to DISCONNECTED by handler (read or write) which is
 		// related to previous connection. 
 		// TODO: Fix this problem and make it possible to reconnect.
-		if ( ( NOT_INITIALIZED != state_ ) || ( DISCONNECTED != state_ ) )
+		if ( ( NOT_INITIALIZED != state_ ) && ( DISCONNECTED != state_ ) )
 			return mc::_E_ALREADYINIT;
 		
 		try
