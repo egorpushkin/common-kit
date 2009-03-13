@@ -14,10 +14,12 @@ namespace MinCOM
 		, mc::APImpl()
 		, service_( service )
 		, socket_( new Socket_( Strong< Service >(service_)->GetService() ) )
+		, state_(NOT_INITIALIZED)
 		, ibuffer_()
 		, obuffer_()
 		, events_()
 	{
+		if ( !service ) throw std::exception();
 	}
 
 	TCPConnection::TCPConnection(IServiceRef service, const SocketPtr_& socket)
@@ -25,10 +27,14 @@ namespace MinCOM
 		, mc::APImpl()
 		, service_( service )
 		, socket_( socket )
+		, state_(CONNECTED)
 		, ibuffer_()
 		, obuffer_()
 		, events_()
 	{
+		if ( !service ) throw std::exception();
+		if ( !socket ) throw std::exception();
+		// TODO: Check whether socket is ok (using probably is_open()).
 	}
 
 	TCPConnection::~TCPConnection()
@@ -44,8 +50,18 @@ namespace MinCOM
         MC_LOG_ROUTINE;
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 
+		// There is a problem with maintaining connection state after reconnect
+		// (it is synchronously set to CONNECTED and later asynchronously 
+		// returned back to DISCONNECTED by handler (read or write) which is
+		// related to previous connection. 
+		// TODO: Fix this problem and make it possible to reconnect.
+		if ( ( NOT_INITIALIZED != state_ ) || ( DISCONNECTED != state_ ) )
+			return mc::_E_ALREADYINIT;
+		
 		try
 		{
+			state_ = CONNECTING;
+
 			// Flush buffers.
 			ibuffer_.consume(ibuffer_.size());
 			obuffer_.consume(obuffer_.size());
@@ -64,8 +80,16 @@ namespace MinCOM
 				socket_->connect(*endpointIterator++, error);
 			}
 
+			// Check whether connection attempt failed.
 			if ( error )
+			{
+				// Modify state. 
+				state_ = DISCONNECTED;
 				return mc::_E_FAIL;
+			}
+
+			// Modify state.
+			state_ = CONNECTED;
 
 			// Spread good news.
 			events_->Connected( CommonImpl< IConnection >::GetSelf() );
@@ -75,6 +99,7 @@ namespace MinCOM
 		}
 		catch( ... )
 		{
+			state_ = DISCONNECTED;
 			return mc::_E_FAIL;
 		}
 
@@ -86,8 +111,17 @@ namespace MinCOM
 		return Establish(host->GetHost(), host->GetService());
 	}
 
+	IConnection::State_ TCPConnection::GetState()
+	{
+		return state_;
+	}
+
 	std::string TCPConnection::GetIpAddress()
 	{
+		MC_LOG_ROUTINE;
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
+		if ( CONNECTED != state_ )
+			return std::string();
 		return socket_->remote_endpoint().address().to_string();
 	}
 
@@ -100,8 +134,8 @@ namespace MinCOM
 			boost::asio::transfer_at_least(minimum),
 			boost::bind(
                 &TCPConnection::HandleRead, 
-                // This workaround helps to maintain lifetime of this (TCPConnection) object independently 
-                // from client application architecture.
+                // This helps to maintain lifetime of this (TCPConnection) 
+				// object independently from client application architecture.
                 HandlerWrapper< TCPConnection >::Ptr_( new HandlerWrapper< TCPConnection >(this, CommonImpl< IConnection >::GetSelf()) ),
                 boost::asio::placeholders::error));
 	}
@@ -115,9 +149,8 @@ namespace MinCOM
 			boost::asio::transfer_all(),            
 			boost::bind(
                 &TCPConnection::HandleWrite, 
-                // This workaround helps to maintain lifetime of this (TCPConnection) object independently 
-                // from client application architecture.
-                // ConnectionHolder_::Ptr_(new ConnectionHolder_(this, CommonImpl< IConnection >::GetSelf())),
+				// This helps to maintain lifetime of this (TCPConnection) 
+				// object independently from client application architecture.
                 HandlerWrapper< TCPConnection >::Ptr_( new HandlerWrapper< TCPConnection >(this, CommonImpl< IConnection >::GetSelf()) ),
                 boost::asio::placeholders::error));
 	}
@@ -157,6 +190,8 @@ namespace MinCOM
 	//////////////////////////////////////////////////////////////////////////
 	void TCPConnection::HandleWrite(const boost::system::error_code& error)
 	{
+		MC_LOG_ROUTINE;
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 		if ( !HandleError(error) )
 		{
 			// Error was detected, handled and dispatched. Required cleanup 
@@ -173,7 +208,7 @@ namespace MinCOM
 			// was also performed. So.. nothing else should be done here.
 			return;
 		}
-		
+
 		// Spread event to subscribers.
 		events_->DataReceived( CommonImpl< IConnection >::GetSelf() );		
         
@@ -188,15 +223,22 @@ namespace MinCOM
 	{
 		MC_LOG_ROUTINE;
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
-		MC_LOG_STATEMENT("Unlocked");
 
-		if ( error )
+		if ( error && boost::asio::error::operation_aborted != error )
 		{
-			MC_LOG_ROUTINE_NAMED("Disconnecting");
-			// Connection closed cleanly by peer.
-			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-			return false;
-		}
+			MC_LOG_STATEMENT("Error has occurred");
+			if ( DISCONNECTED != state_ )
+			{
+				MC_LOG_ROUTINE_NAMED("Notifying on disconnection");
+				// Modify connection state.
+				state_ = DISCONNECTED;
+				// Connection closed cleanly by peer.
+				events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+				// Close socket.
+				socket_->close();
+				return false;
+			}
+		}		
 
 		return true;
 	}

@@ -37,6 +37,8 @@ namespace MinCOM
 
 		virtual result Establish(IHostRef host);
 
+		virtual State_ GetState();
+
 		virtual std::string GetIpAddress();
 
 		virtual void TCPConnection::ReadAsync(std::size_t minimum = 1);
@@ -80,17 +82,20 @@ namespace MinCOM
 		 * Performs required cleanup of the TCPConnection entry and
 		 * dispatches corresponding events to subscribers.
 		 *
-		 * @return Returns false if error has occurred.
+		 * @return Returns false if an error has occurred.
 		 */
 		bool HandleError(const boost::system::error_code& error);
         
 	private:
         
-		/** . */
+		/** Service responsible for I/O networking operations. */
 		IServicePtr service_;
 
-		/** . */
+		/** TCP socket. */
 		SocketPtr_ socket_;
+
+		/** Connection state. */
+		State_ state_;
 
 		/** Buffer to hold received data. */
 		boost::asio::streambuf ibuffer_;

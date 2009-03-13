@@ -16,16 +16,26 @@ namespace MinCOM
 
 	interface IConnection : public ICommon
 	{
+		
+		/** 
+		 * Enumeration of all possible connection states.
+		 */
+		typedef enum tagState_
+		{
+			NOT_INITIALIZED = 0,
+			CONNECTING = 1,
+			CONNECTED = 2,
+			DISCONNECTED = 3
+		} 
+		State_;
 
 		virtual result Establish(const std::string& host, const std::string& service) = 0;
 
 		virtual result Establish(IHostRef host) = 0;
 
-		virtual std::string GetIpAddress() = 0;
+		virtual State_ GetState() = 0;
 
-		// virtual mc::result Write(asio::streambuf& buffer) = 0;
-		// virtual std::size_t Read(const mc::StringA& delimiter) = 0;
-		// virtual std::size_t Read(std::size_t minimum = 1) = 0;
+		virtual std::string GetIpAddress() = 0;
 
 		/** 
 		 * Tool to initiate asynchronous read operation. As soon as this is

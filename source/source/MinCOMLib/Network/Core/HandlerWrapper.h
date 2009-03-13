@@ -39,8 +39,8 @@ namespace MinCOM
         friend inline U * get_pointer(boost::shared_ptr< HandlerWrapper< U > > const & p);
             
         /** 
-         * Holds native (not MinCOM) reference to contained object. This prevents 
-         * from ugly workarounds and superfuous runtime castings. 
+         * Holds native (not MinCOM) reference to contained object. This 
+		 * prevents from ugly workarounds and superfluous runtime castings. 
          */
         T * thisReference_;
 
@@ -50,8 +50,8 @@ namespace MinCOM
     };
     
     /**
-     * Helper tool that unwraps HandlerWrapper and delegates calls directly to the
-     * contained object.
+     * Helper tool that unwraps HandlerWrapper and delegates calls directly to 
+	 * the contained object.
      */
     template
     <
