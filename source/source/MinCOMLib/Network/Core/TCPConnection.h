@@ -41,9 +41,11 @@ namespace MinCOM
 
 		virtual std::string GetIpAddress();
 
-		virtual void TCPConnection::ReadAsync(std::size_t minimum = 1);
+		virtual void ReadAsync(std::size_t minimum = 1);
 
 		virtual void WriteAsync();
+        
+		virtual void Write();        
 
 		virtual std::streambuf& GetIStreamBuf();
 

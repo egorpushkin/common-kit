@@ -45,10 +45,16 @@ namespace MinCOM
 		virtual void ReadAsync(std::size_t minimum = 1) = 0;
 
 		/**
-		 * Synchronously writes the entire  contents of internal output buffer 
+		 * Asynchronously writes the entire contents of internal output buffer 
 		 * to a stream.
 		 */
 		virtual void WriteAsync() = 0;
+        
+ 		/**
+		 * Synchronously writes the entire  contents of internal output buffer 
+		 * to a stream.
+		 */
+		virtual void Write() = 0;       
 
 		/**
 		 * Use this tool only to produce your own std::istream objects. 

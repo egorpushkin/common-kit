@@ -85,7 +85,7 @@ namespace MinCOM
 		message->Write(stream);
         // Send the entire content of input stream. 
 		MC_LOG_STATEMENT("Attempting to write data to the connection.");
-		connection_->WriteAsync();
+		connection_->Write();
         return _S_OK;
 	}
 

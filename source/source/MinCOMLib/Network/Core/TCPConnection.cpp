@@ -170,6 +170,29 @@ namespace MinCOM
 			// state after such an error.
 		}
 	}
+    
+    void TCPConnection::Write()   
+    {
+		MC_LOG_ROUTINE;
+		try
+		{
+			boost::asio::async_write(
+               *socket_, 
+               obuffer_,
+               boost::asio::transfer_all(),            
+               boost::bind(
+                   &TCPConnection::HandleWrite, 
+                   // This helps to maintain lifetime of this (TCPConnection) 
+                   // object independently from client application architecture.
+                   HandlerWrapper< TCPConnection >::Ptr_( new HandlerWrapper< TCPConnection >(this, CommonImpl< IConnection >::GetSelf()) ),
+                   boost::asio::placeholders::error)); 
+		}
+		catch ( ... )
+		{
+			// TODO: Check whether connection should be put into DISCONNECTED
+			// state after such an error.
+		}        
+    }
 
 	std::streambuf& TCPConnection::GetIStreamBuf()
 	{
@@ -218,6 +241,8 @@ namespace MinCOM
 
 	void TCPConnection::HandleRead(const boost::system::error_code& error)
 	{
+		MC_LOG_ROUTINE;
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());        
 		if ( !HandleError(error) )
 		{
 			// Error was detected, handled and dispatched. Required cleanup 
@@ -238,8 +263,6 @@ namespace MinCOM
 	bool TCPConnection::HandleError(const boost::system::error_code& error)
 	{
 		MC_LOG_ROUTINE;
-		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
-
 		if ( error && boost::asio::error::operation_aborted != error )
 		{
 			MC_LOG_STATEMENT("Error has occurred");
