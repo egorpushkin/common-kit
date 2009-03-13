@@ -4,6 +4,8 @@
 
 #include "Service.h"
 
+#include "HandlerWrapper.h"
+
 namespace MinCOM
 {
 
@@ -39,6 +41,7 @@ namespace MinCOM
 
 	result TCPConnection::Establish(const std::string& host, const std::string& service)
 	{
+        MC_LOG_ROUTINE;
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 
 		try
@@ -95,17 +98,28 @@ namespace MinCOM
 			*socket_, 
 			ibuffer_, 
 			boost::asio::transfer_at_least(minimum),
-			boost::bind(&TCPConnection::HandleRead, this, boost::asio::placeholders::error));
+			boost::bind(
+                &TCPConnection::HandleRead, 
+                // This workaround helps to maintain lifetime of this (TCPConnection) object independently 
+                // from client application architecture.
+                HandlerWrapper< TCPConnection >::Ptr_( new HandlerWrapper< TCPConnection >(this, CommonImpl< IConnection >::GetSelf()) ),
+                boost::asio::placeholders::error));
 	}
 
-	void TCPConnection::Write()
+	void TCPConnection::WriteAsync()
 	{
 		MC_LOG_ROUTINE;
 		boost::asio::async_write(
 			*socket_, 
 			obuffer_,
-			boost::asio::transfer_all(),
-			boost::bind(&TCPConnection::HandleWrite, this, boost::asio::placeholders::error));
+			boost::asio::transfer_all(),            
+			boost::bind(
+                &TCPConnection::HandleWrite, 
+                // This workaround helps to maintain lifetime of this (TCPConnection) object independently 
+                // from client application architecture.
+                // ConnectionHolder_::Ptr_(new ConnectionHolder_(this, CommonImpl< IConnection >::GetSelf())),
+                HandlerWrapper< TCPConnection >::Ptr_( new HandlerWrapper< TCPConnection >(this, CommonImpl< IConnection >::GetSelf()) ),
+                boost::asio::placeholders::error));
 	}
 
 	std::streambuf& TCPConnection::GetIStreamBuf()
@@ -162,6 +176,9 @@ namespace MinCOM
 		
 		// Spread event to subscribers.
 		events_->DataReceived( CommonImpl< IConnection >::GetSelf() );		
+        
+		// Continue asynchronous reading.
+        ReadAsync();        
 	}
 
 	// Internal helpers
@@ -170,29 +187,16 @@ namespace MinCOM
 	bool TCPConnection::HandleError(const boost::system::error_code& error)
 	{
 		MC_LOG_ROUTINE;
-
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
-
 		MC_LOG_STATEMENT("Unlocked");
 
-		if ( boost::asio::error::eof == error )
+		if ( error )
 		{
 			MC_LOG_ROUTINE_NAMED("Disconnecting");
-
 			// Connection closed cleanly by peer.
 			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-			socket_->close();
 			return false;
 		}
-		else if ( error )
-		{
-			MC_LOG_ROUTINE_NAMED("Disconnecting");
-
-			// Any other error occurred.
-			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-			socket_->close();
-			return false;
-		}		
 
 		return true;
 	}

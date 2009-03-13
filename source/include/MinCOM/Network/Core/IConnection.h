@@ -38,7 +38,7 @@ namespace MinCOM
 		 * Synchronously writes the entire  contents of internal output buffer 
 		 * to a stream.
 		 */
-		virtual void Write() = 0;
+		virtual void WriteAsync() = 0;
 
 		/**
 		 * Use this tool only to produce your own std::istream objects. 

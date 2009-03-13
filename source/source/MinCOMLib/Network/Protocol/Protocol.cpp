@@ -77,7 +77,6 @@ namespace MinCOM
 	result Protocol::Send(IMessageRef message)
 	{
 		MC_LOG_ROUTINE;
-
         // Validate current object's state and input arguments.
 		if ( !message || !connection_ )
 			return _E_FAIL;
@@ -86,7 +85,7 @@ namespace MinCOM
 		message->Write(stream);
         // Send the entire content of input stream. 
 		MC_LOG_STATEMENT("Attempting to write data to the connection.");
-		connection_->Write();
+		connection_->WriteAsync();
         return _S_OK;
 	}
 
@@ -115,9 +114,7 @@ namespace MinCOM
 
 		// Parse arrived data.
 		ParseData();
-		// Initiate next data receiving loop.
-		if ( connection_ )
-			connection_->ReadAsync();	
+	
 		return _S_OK;
 	}
 

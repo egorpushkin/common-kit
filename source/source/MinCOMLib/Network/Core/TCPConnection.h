@@ -41,7 +41,7 @@ namespace MinCOM
 
 		virtual void TCPConnection::ReadAsync(std::size_t minimum = 1);
 
-		virtual void Write();
+		virtual void WriteAsync();
 
 		virtual std::streambuf& GetIStreamBuf();
 
@@ -83,9 +83,9 @@ namespace MinCOM
 		 * @return Returns false if error has occurred.
 		 */
 		bool HandleError(const boost::system::error_code& error);
-
+        
 	private:
-
+        
 		/** . */
 		IServicePtr service_;
 
@@ -97,12 +97,12 @@ namespace MinCOM
 
 		/** Buffer to hold data to be sent. */
 		boost::asio::streambuf obuffer_;
-
+        
 		/** Connection events spreader. */
 		DRawDataPtr events_;
 
 	};
-
+    
 }
 
 #endif // !TCPCONNECTION_H__MINCOMLIB__INCLUDED_
