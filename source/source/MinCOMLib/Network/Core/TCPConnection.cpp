@@ -128,6 +128,7 @@ namespace MinCOM
 	void TCPConnection::ReadAsync(std::size_t minimum)
 	{
 		MC_LOG_ROUTINE;
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 		try
 		{
 			boost::asio::async_read(
@@ -143,14 +144,16 @@ namespace MinCOM
 		}
 		catch ( ... )
 		{
-			// TODO: Check whether connection should be put into DISCONNECTED
-			// state after such an error.
+			// Error should be handled here because is may occur so that there 
+			// is no any registered handlers at the moment. 
+			HandleError( boost::asio::error::connection_aborted );
 		}
 	}
 
 	void TCPConnection::WriteAsync()
 	{
 		MC_LOG_ROUTINE;
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 		try
 		{
 			boost::asio::async_write(
@@ -166,14 +169,16 @@ namespace MinCOM
 		}
 		catch ( ... )
 		{
-			// TODO: Check whether connection should be put into DISCONNECTED
-			// state after such an error.
+			// Error should be handled here because is may occur so that there 
+			// is no any registered handlers at the moment. 
+			HandleError( boost::asio::error::connection_aborted );
 		}
 	}
     
     void TCPConnection::Write()   
     {
 		MC_LOG_ROUTINE;
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 		try
 		{
 			boost::asio::async_write(
@@ -189,8 +194,9 @@ namespace MinCOM
 		}
 		catch ( ... )
 		{
-			// TODO: Check whether connection should be put into DISCONNECTED
-			// state after such an error.
+			// Error should be handled here because is may occur so that there 
+			// is no any registered handlers at the moment. 
+			HandleError( boost::asio::error::connection_aborted );
 		}        
     }
 
