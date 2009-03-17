@@ -110,6 +110,17 @@ namespace MinCOM
 	{
 		return Establish(host->GetHost(), host->GetService());
 	}
+    
+    result TCPConnection::Close()
+    {
+		MC_LOG_ROUTINE;
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
+        if ( CONNECTED != state_ )
+            return _E_NOTINIT;
+        // Break the connection.
+        socket_->close();        
+        return _S_OK;
+    }
 
 	IConnection::State_ TCPConnection::GetState()
 	{

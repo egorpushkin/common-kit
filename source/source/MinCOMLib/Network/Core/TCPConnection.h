@@ -36,6 +36,8 @@ namespace MinCOM
 		virtual result Establish(const std::string& host, const std::string& service);
 
 		virtual result Establish(IHostRef host);
+        
+        virtual result Close();        
 
 		virtual State_ GetState();
 

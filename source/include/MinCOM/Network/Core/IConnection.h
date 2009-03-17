@@ -32,6 +32,12 @@ namespace MinCOM
 		virtual result Establish(const std::string& host, const std::string& service) = 0;
 
 		virtual result Establish(IHostRef host) = 0;
+        
+        /** 
+         * This method should be called explicitly when connection there is no
+         * more need in keeping this connection in the application object model. 
+         */
+        virtual result Close() = 0;
 
 		virtual State_ GetState() = 0;
 
