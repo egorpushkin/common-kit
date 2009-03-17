@@ -118,7 +118,15 @@ namespace MinCOM
         if ( CONNECTED != state_ )
             return _E_NOTINIT;
         // Break the connection.
-        socket_->close();        
+		try
+		{
+			socket_->close();        
+		}
+		catch ( ... ) 
+		{			
+		}
+		// TODO: Check that connection should not be turned into DISCONNECTED
+		// state here. 
         return _S_OK;
     }
 
