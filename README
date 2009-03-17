@@ -19,15 +19,13 @@ Supported platforms:
  - Win32.
 
 Dependencies:
- - Boost libraries. You have to download Boost (http://www.boost.org/) and configure Microsoft Visual Studio.
- - Asio library. 
- - Loki library.
+ - Boost libraries. You have to download Boost (http://www.boost.org/) and configure your IDE and projects to
+   point to correct location of Boost source code. Note that you do not need to build Boost from its source code. 
+   CommonKit bases only on header libraries from Boost package.  
+- Loki library.
   
 Package content:
  - CommonKit source code. 
- - Unittests for "Components" module (source/UnitTests/CompTest01 - CompTest03). 
- - Unittests for "Remoting" module (source/UnitTests/NetTest02 - NetTest08).
- - Asio 0.3.9 (released Sunday, 9 December 2007).
  - Loki 0.1.6 (last update: Novmber 16, 2005).
  
 Project owner:

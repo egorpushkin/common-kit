@@ -110,13 +110,4 @@ namespace mc = MinCOM;
 // Local MinCOM registry of tools for fast and convenient access
 #include "MinCOM/Factory/Library.h"
 
-// Logging support
-//////////////////////////////////////////////////////////////////////////
-// #define INTRENAL_LOG
-// #include "MinCOM/Interfaces/ILog.h"
-
-
-
-
-
 #endif // !MINCOM_H__MINCOM__COMMONKIT__INCLUDED_

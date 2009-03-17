@@ -83,6 +83,7 @@ namespace MinCOM
 
 	typedef Strong< IConnection > IConnectionPtr;
 	typedef const IConnectionPtr& IConnectionRef;
+  	typedef Weak< IConnection > IConnectionWeak;
 
 }
 
