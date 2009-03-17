@@ -158,7 +158,7 @@ namespace MinCOM
 		catch ( ... )
 		{
 			// Error should be handled here because is may occur so that there 
-			// is no any registered handlers at the moment. 
+			// are no any registered handlers at the moment. 
 			HandleError( boost::asio::error::connection_aborted );
 		}
 	}
@@ -185,7 +185,7 @@ namespace MinCOM
 		catch ( ... )
 		{
 			// Error should be handled here because is may occur so that there 
-			// is no any registered handlers at the moment. 
+			// are no any registered handlers at the moment. 
 			HandleError( boost::asio::error::connection_aborted );
 		}
 	}
@@ -197,21 +197,15 @@ namespace MinCOM
 			return;
 		try
 		{
-			boost::asio::async_write(
+			boost::asio::write(
                *socket_, 
                obuffer_,
-               boost::asio::transfer_all(),            
-               boost::bind(
-                   &TCPConnection::HandleWrite, 
-                   // This helps to maintain lifetime of this (TCPConnection) 
-                   // object independently from client application architecture.
-                   HandlerWrapper< TCPConnection >::Ptr_( new HandlerWrapper< TCPConnection >(this, CommonImpl< IConnection >::GetSelf()) ),
-                   boost::asio::placeholders::error)); 
+               boost::asio::transfer_all());
 		}
 		catch ( ... )
 		{
 			// Error should be handled here because is may occur so that there 
-			// is no any registered handlers at the moment. 
+			// are no any registered handlers at the moment. 
 			HandleError( boost::asio::error::connection_aborted );
 		}        
     }
