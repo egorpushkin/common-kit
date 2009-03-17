@@ -474,6 +474,10 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\Config.h"
+			>
+		</File>
+		<File
 			RelativePath=".\External.h"
 			>
 		</File>

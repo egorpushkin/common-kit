@@ -140,6 +140,8 @@ namespace MinCOM
 	{
 		MC_LOG_ROUTINE;
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
+		if ( CONNECTED != state_ )
+			return;
 		try
 		{
 			boost::asio::async_read(
@@ -165,6 +167,8 @@ namespace MinCOM
 	{
 		MC_LOG_ROUTINE;
 		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
+		if ( CONNECTED != state_ )
+			return;
 		try
 		{
 			boost::asio::async_write(
@@ -189,7 +193,8 @@ namespace MinCOM
     void TCPConnection::Write()   
     {
 		MC_LOG_ROUTINE;
-		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
+		if ( CONNECTED != state_ )
+			return;
 		try
 		{
 			boost::asio::async_write(
@@ -283,17 +288,17 @@ namespace MinCOM
 		if ( error && boost::asio::error::operation_aborted != error )
 		{
 			MC_LOG_STATEMENT("Error has occurred");
-			if ( DISCONNECTED != state_ )
-			{
-				MC_LOG_ROUTINE_NAMED("Notifying on disconnection");
-				// Modify connection state.
-				state_ = DISCONNECTED;
-				// Connection closed cleanly by peer.
-				events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-				// Close socket.
-				socket_->close();
+			if ( DISCONNECTED == state_ )
 				return false;
-			}
+
+			MC_LOG_ROUTINE_NAMED("Notifying on disconnection");
+			// Modify connection state.
+			state_ = DISCONNECTED;
+			// Connection closed cleanly by peer.
+			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+			// Close socket.
+			socket_->close();
+			return false;
 		}		
 
 		return true;
