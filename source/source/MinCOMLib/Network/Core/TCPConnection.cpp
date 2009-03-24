@@ -167,7 +167,7 @@ namespace MinCOM
 		{
 			// Error should be handled here because is may occur so that there 
 			// are no any registered handlers at the moment. 
-			HandleError( boost::asio::error::connection_aborted );
+			HandleDisconnectionInIOServiceThread();
 		}
 	}
 
@@ -194,7 +194,7 @@ namespace MinCOM
 		{
 			// Error should be handled here because is may occur so that there 
 			// are no any registered handlers at the moment. 
-			HandleError( boost::asio::error::connection_aborted );
+			HandleDisconnectionInIOServiceThread();
 		}
 	}
     
@@ -214,7 +214,7 @@ namespace MinCOM
 		{
 			// Error should be handled here because is may occur so that there 
 			// are no any registered handlers at the moment. 
-			HandleError( boost::asio::error::connection_aborted );
+			HandleDisconnectionInIOServiceThread();
 		}        
     }
 
@@ -292,18 +292,39 @@ namespace MinCOM
 			MC_LOG_STATEMENT("Error has occurred");
 			if ( DISCONNECTED == state_ )
 				return false;
-
-			MC_LOG_ROUTINE_NAMED("Notifying on disconnection");
-			// Modify connection state.
-			state_ = DISCONNECTED;
-			// Connection closed cleanly by peer.
-			events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
-			// Close socket.
-			socket_->close();
+			
+			// There is no need to dispatch this handler by io_service because 
+			// 'HandleError' method may only be called from another handler. 
+			HandleDisconnection();
 			return false;
 		}		
 
 		return true;
 	}
 
+	void TCPConnection::HandleDisconnectionInIOServiceThread()
+	{
+		MC_LOG_ROUTINE;
+		Strong< Service >(service_)->GetService().dispatch(
+			boost::bind(
+				&TCPConnection::HandleDisconnection,
+				HandlerWrapper< TCPConnection >::Ptr_( 
+					new HandlerWrapper< TCPConnection >(this, CommonImpl< IConnection >::GetSelf() )
+				) 
+			) 
+		);
+	}
+
+	void TCPConnection::HandleDisconnection() 
+	{
+		MC_LOG_ROUTINE;
+		// Modify connection state.
+		state_ = DISCONNECTED;
+		// Connection closed cleanly by peer.
+		events_->Disconnected( CommonImpl< IConnection >::GetSelf() );
+		// Close socket.
+		socket_->close();		
+	}
+
 }
+

@@ -89,6 +89,17 @@ namespace MinCOM
 		 * @return Returns false if an error has occurred.
 		 */
 		bool HandleError(const boost::system::error_code& error);
+
+		/** 
+		 * Notifies all subscribers on disconnection from io_service pool.
+		 */
+		void HandleDisconnectionInIOServiceThread();
+
+		/** 
+		 * Notifies all subscribers on disconnection and performs required 
+		 * cleanup.
+		 */
+		void HandleDisconnection();
         
 	private:
         
