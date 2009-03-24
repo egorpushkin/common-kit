@@ -8,6 +8,13 @@
 #define BOOST_REGEX_NO_LIB
 #define BOOST_DATE_TIME_NO_LIB
 
+// Disable use of runtime type information acquisition tools like 'typeid' 
+// inside boost::asio.
+// Reason: Runtime checking code fails in-depth of asio implementation
+// ( service_registry::service_id_matches ) while running application on 
+// iPhone 2.2 in Debug mode.
+#define BOOST_ASIO_NO_TYPEID
+
 #ifdef WIN32
 // Required by Windows headers.
 #define _WIN32_WINNT 0x0501

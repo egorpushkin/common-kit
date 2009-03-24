@@ -19,8 +19,18 @@ namespace MinCOM
 	{
 	}	
 	
-	/*CommonVariant(short iVal);						// CE_I2
-	CommonVariant(unsigned short uiVal);			// CE_UI2*/
+    CommonVariant::CommonVariant(short iVal)						// CE_I2
+        : vt_(CE_I2)
+        , iVal_(iVal)
+    {
+    }
+
+    CommonVariant::CommonVariant(unsigned short uiVal)			// CE_UI2
+        : vt_(CE_UI2)
+        , uiVal_(uiVal)    
+    {
+    }
+     
 	CommonVariant::CommonVariant(int intVal)		// CE_INT
 		: vt_(CE_INT)
 		, intVal_(intVal)

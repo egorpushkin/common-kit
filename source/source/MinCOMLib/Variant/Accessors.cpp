@@ -9,8 +9,16 @@ namespace MinCOM
 	}
 
 	
-/*	short toShort() const;                          // CE_I2
-	unsigned short toUShort() const;                // CE_UI2*/
+	short CommonVariant::toShort() const            // CE_I2
+    {
+        return iVal_;
+    }
+	
+    unsigned short CommonVariant::toUShort() const  // CE_UI2
+    {
+        return uiVal_;
+    }
+    
 	int CommonVariant::toInt() const				// CE_INT
 	{
 		return intVal_;
@@ -30,8 +38,6 @@ namespace MinCOM
 	{
 		return ulVal_;
 	}
-
-
 	
 	/*	longlong toLLong() const;                       // CE_I8
 	ulonglong toULLong() const;						// CE_UI8 */
@@ -51,31 +57,12 @@ namespace MinCOM
 		return sizeVal_;
 	} */
 
-/*	short* toPShort() const;				        // CE_BYREF | CE_I2
-	unsigned short* toPUShort() const;			    // CE_BYREF | CE_UI2
-	int* toPInt() const;							// CE_BYREF | CE_INT
-	unsigned int* toPUInt() const;		            // CE_BYREF | CE_UINT
-	long* toPLong() const;					        // CE_BYREF | CE_I4
-	unsigned long* toPUlong() const;			    // CE_BYREF | CE_UI4
-	longlong* toPLLong() const;				        // CE_BYREF | CE_I8
-	ulonglong* toPULLong() const; 					// CE_BYREF | CE_UI8
-	float* toPFloat() const;					    // CE_BYREF | CE_R4 */
-
 /*	char toChar() const;					        // CE_C1 */
 	unsigned char CommonVariant::toUChar() const    // CE_UC1
 	{
 		return ucVal_;
 	}
-/*	wchar_t toWChar() const;					    // CE_WC2
-
-	char* toPChar() const;					        // CE_BYREF | CE_C1
-	unsigned char* toPUchar() const;		        // CE_BYREF | CE_UC1
-	wchar_t* toPWChar() const;						// CE_BYREF | CE_WC1*/
-
-/*	ICommon** toPPCommon() const;					// CE_BYREF | CE_COMMON
-
-	CommonVariant* toPVariant() const;			    // CE_BYREF | CE_VARIANT*/
-/*	void** toPPVoid() const;					    // Generic ByRef */
+/*	wchar_t toWChar() const;					    // CE_WC2 */
 
 	std::string CommonVariant::toString() const		// CE_STRA
 	{
@@ -91,10 +78,6 @@ namespace MinCOM
 
 		return Unwrap< std::wstring >(cmnVal_);
 	}
-	
-	/* String* toPString() const;						// CE_BYREF | CE_STR
-	StringA* toPStringA() const;					// CE_BYREF | CE_STRA
-	StringW* toPStringW() const;					// CE_BYREF | CE_STRW	*/
 
 	ICommonPtr CommonVariant::toCommon() const		// CE_COMMON
 	{
