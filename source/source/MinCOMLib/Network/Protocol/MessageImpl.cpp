@@ -155,12 +155,12 @@ namespace MinCOM
 		return ( available >= ( header.GetSize() - GetHeaderSize() ) );
 	}
 
-	result MessageImpl::WriteBody(std::ostream& stream)
+	result MessageImpl::WriteBody(std::ostream& /* stream */)
 	{
 		return _S_FALSE;
 	}
 
-	result MessageImpl::ReadBody(std::istream& stream)
+	result MessageImpl::ReadBody(std::istream& /* stream */)
 	{
 		return _S_FALSE;
 	}
