@@ -29,16 +29,26 @@ namespace MinCOM
 		short portShort = 0;
 		converter >> portShort;
 
-		acceptor_ = AcceptorPtr_( new Acceptor_( 
-			Strong< Service >(service_)->GetService(), 
-			boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), portShort)) );
+		try
+		{
+			acceptor_ = AcceptorPtr_( new Acceptor_( 
+				Strong< Service >(service_)->GetService(), 
+				boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), portShort),
+				// Address should not been reused.
+				false) );
+		}
+		catch (...)
+		{
+			// This may occur if service is already in use.
+			return _E_FAIL;
+		}
 
 		TCPConnection::SocketPtr_ socket( 
 			new TCPConnection::Socket_( Strong< Service >(service_)->GetService() ) );
 		acceptor_->async_accept(*socket,
 			boost::bind(&TCPServer::HandleAccept, this, socket, boost::asio::placeholders::error));		
 
-		return mc::_S_OK;
+		return _S_OK;
 	}
 
 	void TCPServer::Run()
