@@ -26,10 +26,6 @@ namespace MinCOM
 		virtual result Wait(unsigned long delay = _INFINITE);
 
 	private:
-
-		const wchar_t* PrepareName(const std::string& name);
-
-	private:
 		
 #if defined(WIN32)
 		/** Handle for win32 environments. */

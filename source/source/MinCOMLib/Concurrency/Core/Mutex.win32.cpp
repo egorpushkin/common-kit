@@ -10,16 +10,30 @@ namespace MinCOM
 
 	Mutex::Mutex(bool obtain, const std::string& name)
 		: CommonImpl< IMutex >()
-		, mutex_(::CreateMutexW(NULL, obtain, PrepareName(name)))
-	{
+		, mutex_(NULL)
+	{		
+		if ( 0 != name.size() ) 
+		{
+			std::wstring wname(LocaleWin32::A2W(name));
+			mutex_ = ::CreateMutexW(NULL, obtain, wname.c_str());
+			if ( ERROR_ALREADY_EXISTS == ::GetLastError() )
+				throw std::exception();
+		}
+		else 
+			mutex_ = ::CreateMutexW(NULL, obtain, NULL);
 		if ( !mutex_ )
 			throw std::exception();
 	}
 
 	Mutex::Mutex(const std::string& name)
 		: CommonImpl< IMutex >()
-		, mutex_(::OpenEventW(MUTEX_ALL_ACCESS, TRUE, LocaleWin32::A2W(name).c_str()))
-	{
+		, mutex_(NULL)
+	{		
+		if ( 0 == name.size() )
+			throw std::exception();
+
+		std::wstring wname(LocaleWin32::A2W(name));
+		mutex_ = ::OpenMutexW(MUTEX_ALL_ACCESS, TRUE, wname.c_str());
 		if ( !mutex_ )
 			throw std::exception();
 	}
@@ -43,14 +57,6 @@ namespace MinCOM
 	result Mutex::Wait(unsigned long delay /* = _INFINITE */)
 	{
 		return ConcurrentWin32::Wait(mutex_, delay);
-	}
-
-	// Internal tools	
-	const wchar_t* Mutex::PrepareName(const std::string& name)
-	{
-		if ( name.length() == 0 )
-			return NULL;
-		return LocaleWin32::A2W(name).c_str();
 	}
 
 }

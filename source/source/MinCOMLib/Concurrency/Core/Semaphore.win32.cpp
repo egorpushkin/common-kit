@@ -10,8 +10,17 @@ namespace MinCOM
 
 	Semaphore::Semaphore(long initial, long maximum, const std::string& name)
 		: CommonImpl< ISemaphore >()
-		, semaphore_(::CreateSemaphoreW(NULL, initial, maximum, PrepareName(name)))		 
+		, semaphore_(NULL)		 
 	{
+		if ( 0 != name.size() ) 
+		{
+			std::wstring wname(LocaleWin32::A2W(name));
+			semaphore_ = ::CreateSemaphoreW(NULL, initial, maximum, wname.c_str());		 
+			if ( ERROR_ALREADY_EXISTS == ::GetLastError() )
+				throw std::exception();
+		}
+		else 
+			semaphore_ = ::CreateSemaphoreW(NULL, initial, maximum, NULL);	
 		if ( !semaphore_ )
 			throw std::exception();
 	}
@@ -20,6 +29,11 @@ namespace MinCOM
 		: CommonImpl< ISemaphore >()
 		, semaphore_(::OpenSemaphoreW(EVENT_ALL_ACCESS, TRUE, LocaleWin32::A2W(name).c_str()))	
 	{
+		if ( 0 == name.size() ) 
+			throw std::exception();
+
+		std::wstring wname(LocaleWin32::A2W(name));
+		semaphore_ = ::OpenSemaphoreW(EVENT_ALL_ACCESS, TRUE, wname.c_str());	
 		if ( !semaphore_ )
 			throw std::exception();
 	}
@@ -44,14 +58,6 @@ namespace MinCOM
 	result Semaphore::Wait(unsigned long delay /* = _INFINITE */)
 	{
 		return ConcurrentWin32::Wait(semaphore_, delay);
-	}
-
-	// Internal tools	
-	const wchar_t* Semaphore::PrepareName(const std::string& name)
-	{
-		if ( name.length() == 0 )
-			return NULL;
-		return LocaleWin32::A2W(name).c_str();
 	}
 
 }
