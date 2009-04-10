@@ -117,6 +117,11 @@ namespace MinCOM
 		return workingThread_->Join();
 	}
 
+	result JobsQueue::Close()
+	{
+		return _E_NOTIMPL;
+	}
+
 	// Internal tools
 	IRunnablePtr JobsQueue::Pop()
 	{

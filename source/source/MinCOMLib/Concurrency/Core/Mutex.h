@@ -21,6 +21,8 @@ namespace MinCOM
 		// ISynchro section
 		virtual result Wait(unsigned long delay = _INFINITE);
 
+		virtual result Close();
+
 	private:
 
 #if defined(WIN32)

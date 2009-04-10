@@ -25,6 +25,8 @@ namespace MinCOM
 		// ISynchro section
 		virtual result Wait(unsigned long delay = _INFINITE);
 
+		virtual result Close();
+
 	private:
 
 		const wchar_t* PrepareName(const std::string& name);

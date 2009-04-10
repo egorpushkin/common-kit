@@ -40,6 +40,8 @@ namespace MinCOM
 		// ISynchro section
 		virtual result Wait(unsigned long milliseconds = _INFINITE);
 
+		virtual result Close();
+
 	protected:
 
 		bool IsStarted();

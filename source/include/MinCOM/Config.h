@@ -17,6 +17,14 @@
 /** Defines human readable MinCOM version. */
 #define MC_VERSION std::string("0.1.0")
 
+// Debugging
+//////////////////////////////////////////////////////////////////////////
+#if defined(DEBUG) || defined(_DEBUG)
+#define MC_DEBUG
+#else
+#define MC_RELEASE
+#endif
+
 // Logging
 //////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +36,7 @@
  *
  * TODO: Implement asynchronous logging over TCP/IP as an option. 
  */
-#ifdef MC_PLATFORM_MOBILE
+#if defined(MC_PLATFORM_MOBILE) || !defined(MC_DEBUG)
 #define MC_DISABLE_LOG
 #endif
 

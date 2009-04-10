@@ -60,4 +60,13 @@ namespace MinCOM
 		return ConcurrentWin32::Wait(semaphore_, delay);
 	}
 
+	result Semaphore::Close()
+	{
+		if ( !semaphore_ )
+			return _E_NOTINIT;
+		::CloseHandle(semaphore_);
+		semaphore_ = NULL;
+		return _S_OK;
+	}
+
 }

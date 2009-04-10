@@ -372,14 +372,6 @@
 				Name="Core"
 				>
 				<File
-					RelativePath=".\Concurrency\Core\Event.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Concurrency\Core\Event.win32.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\Concurrency\Core\IThread.win32.cpp"
 					>
 				</File>
@@ -473,6 +465,14 @@
 				</File>
 				<File
 					RelativePath=".\Concurrency\Locks\ReadWriteLock.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Scopes"
+				>
+				<File
+					RelativePath=".\Concurrency\Scopes\SemaphoreScopeRelease.cpp"
 					>
 				</File>
 			</Filter>

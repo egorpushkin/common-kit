@@ -29,6 +29,8 @@ namespace MinCOM
 		// ISynchro section
 		virtual result Wait(unsigned long delay = _INFINITE);
 
+		virtual result Close();
+
 	protected:
 
 		// Internal tools

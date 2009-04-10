@@ -59,4 +59,13 @@ namespace MinCOM
 		return ConcurrentWin32::Wait(mutex_, delay);
 	}
 
+	result Mutex::Close()
+	{
+		if ( !mutex_ )
+			return _E_NOTINIT;
+		::CloseHandle(mutex_);
+		mutex_ = NULL;
+		return _S_OK;
+	}
+
 }

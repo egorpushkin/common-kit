@@ -126,6 +126,11 @@ namespace MinCOM
 		return ConcurrentWin32::Wait(thread_, milliseconds);
 	}
 
+	result Thread::Close()
+	{
+		return _E_NOTIMPL;
+	}
+
 	// Internal tools
 	//////////////////////////////////////////////////////////////////////////
 

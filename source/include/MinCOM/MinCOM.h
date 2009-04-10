@@ -79,6 +79,7 @@ namespace mc = MinCOM;
 #include "MinCOM/Concurrency/Interfaces/IThread.h"
 #include "MinCOM/Concurrency/Interfaces/IJobsQueue.h"
 #include "MinCOM/Concurrency/Interfaces/IReadWriteLock.h"
+#include "MinCOM/Concurrency/Scopes/SemaphoreScopeRelease.h"
 
 // Advanced logging utility
 //////////////////////////////////////////////////////////////////////////

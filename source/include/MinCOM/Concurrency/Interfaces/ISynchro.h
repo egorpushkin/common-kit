@@ -20,6 +20,8 @@ namespace MinCOM
 		static const unsigned long _INFINITE = 0xFFFFFFFF;
 
 		virtual result Wait(unsigned long delay = _INFINITE) = 0;
+
+		virtual result Close() = 0;
 	};
 
 	typedef Strong< ISynchro > ISynchroPtr;

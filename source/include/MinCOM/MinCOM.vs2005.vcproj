@@ -264,6 +264,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Scopes"
+				>
+				<File
+					RelativePath=".\Concurrency\Scopes\SemaphoreScopeRelease.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Pointers"

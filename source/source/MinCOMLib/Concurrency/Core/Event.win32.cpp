@@ -59,6 +59,11 @@ namespace MinCOM
 		return ConcurrentWin32::Wait(event_, delay);
 	}
 
+	result Event::Close()
+	{
+
+	}
+
 	// Internal tools	
 	const wchar_t* Event::PrepareName(const std::string& name)
 	{
