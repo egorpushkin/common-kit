@@ -130,6 +130,11 @@ namespace MinCOM
 		int code = pthread_join(thread_, NULL);        
         return ( code == 0 ) ? ( _S_OK ) : ( _E_FAIL );
 	}
+    
+    result Thread::Close()
+    {
+        return _E_NOTIMPL;
+    }
 
 	// Internal tools
 	//////////////////////////////////////////////////////////////////////////

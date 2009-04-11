@@ -45,5 +45,10 @@ namespace MinCOM
 			return _E_FAIL;        
 		return _S_OK;
 	}
+    
+    result Semaphore::Close()
+    {
+        return _E_NOTIMPL;
+    }
  		
 }

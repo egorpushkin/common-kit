@@ -46,5 +46,10 @@ namespace MinCOM
 			return _E_FAIL;        
 		return _S_OK;
 	}
+    
+    result Mutex::Close()
+    {
+        return _E_NOTIMPL;
+    }
  		
 }
