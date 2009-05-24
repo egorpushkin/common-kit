@@ -8,6 +8,7 @@
 #endif
 
 #include <sstream>
+#include <iomanip>
 
 namespace MinCOM
 {
@@ -30,18 +31,23 @@ namespace MinCOM
 	{
 		std::stringstream stream;
 		stream 
-			<< std::hex
+			<< std::hex << std::setfill('0')
 			<< "{"
-			<< data1_
+			<< std::setw(8) << data1_
 			<< "-"
-			<< data2_
+			<< std::setw(4) << data2_
 			<< "-"
-			<< data3_
+			<< std::setw(4) << data3_
 			<< "-"
-			<< (int)data4_[0] << (int)data4_[1] 
+			<< std::setw(2) << (int)data4_[0] 
+			<< std::setw(2) << (int)data4_[1] 
 			<< "-"
-			<< (int)data4_[2] << (int)data4_[3]
-			<< (int)data4_[4] << (int)data4_[5] << (int)data4_[6] << (int)data4_[7]
+			<< std::setw(2) << (int)data4_[2] 
+			<< std::setw(2) << (int)data4_[3]
+			<< std::setw(2) << (int)data4_[4] 
+			<< std::setw(2) << (int)data4_[5] 
+			<< std::setw(2) << (int)data4_[6] 
+			<< std::setw(2) << (int)data4_[7]
 			<< "}";
 		std::string str;
 		stream >> str;
