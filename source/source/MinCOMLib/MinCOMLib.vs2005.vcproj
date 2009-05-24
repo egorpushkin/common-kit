@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Common\GuidImpl.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Common\Guids.cpp"
 				>
 			</File>

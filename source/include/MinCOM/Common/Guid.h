@@ -11,6 +11,21 @@ namespace MinCOM
 		unsigned short data2_;
 		unsigned short data3_;
 		unsigned char data4_[8];
+
+		/**
+		 * Generates new global unique identifier.
+		 */
+		static tagGuid Generate();
+
+		/**
+		 * Dumps guid to string.
+		 */
+		std::string ToString() const;
+
+		/**
+		 * Restores guid from string.
+		 */
+		static tagGuid FromString(const std::string& str);
 	} 
 	Guid, Guid_, Iid, Clsid;
 
