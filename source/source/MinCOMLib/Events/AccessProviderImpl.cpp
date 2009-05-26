@@ -84,19 +84,48 @@ namespace MinCOM
 		if ( !accessPoint )
 			return NULL;
 		// Produce corresponding events spreader.
-		ICommonPtr eventsSpreader_ = Object::CreateStub( 
+		ICommonPtr eventsSpreader = Object::CreateStub( 
 			eventsIid, accessPoint->CreateSpreader(), true );
-		if ( !eventsSpreader_ )
+		if ( !eventsSpreader )
 			return NULL;		
 		// Register access point.
 		if ( Error::IsFailed(Advise(eventsIid, accessPoint)) )
 			return NULL;
-		return eventsSpreader_;
+		return eventsSpreader;
 	}
 
 	ICommonPtr AccessProviderImpl::AdviseAndThrow(RefIid eventsIid)
 	{
 		ICommonPtr eventsSpreader = this->Advise(eventsIid);
+		if ( !eventsSpreader )
+		{
+			// TODO: Add mo details to generated exception here.
+			throw std::exception();
+		}
+		return eventsSpreader;
+	}
+
+	ICommonPtr AccessProviderImpl::Advise(IAccessProviderRef accessProvider, RefIid eventsIid)
+	{
+		// Construct access point.
+		IAccessPointPtr accessPoint( Class< AccessPointImpl >::Create( 
+			accessProvider, eventsIid ) );
+		if ( !accessPoint )
+			return NULL;
+		// Produce corresponding events spreader.
+		ICommonPtr eventsSpreader = Object::CreateStub( 
+			eventsIid, accessPoint->CreateSpreader(), true );
+		if ( !eventsSpreader )
+			return NULL;		
+		// Register access point.
+		if ( Error::IsFailed(accessProvider->Advise(eventsIid, accessPoint)) )
+			return NULL;
+		return eventsSpreader;
+	}
+
+	ICommonPtr AccessProviderImpl::AdviseAndThrow(IAccessProviderRef accessProvider, RefIid eventsIid)
+	{
+		ICommonPtr eventsSpreader = AccessProviderImpl::Advise(accessProvider, eventsIid);
 		if ( !eventsSpreader )
 		{
 			// TODO: Add mo details to generated exception here.

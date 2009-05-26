@@ -54,6 +54,18 @@ namespace MinCOM
 		 */
 		ICommonPtr AdviseAndThrow(RefIid eventsIid);
 
+	public:
+
+		/**
+		 * Another version of Advise provided for classes not derived from 
+		 * AccessProviderImpl.
+		 */
+		static ICommonPtr Advise(IAccessProviderRef accessProvider, RefIid eventsIid);
+
+		/**
+		 * Wraps call to Advise tool.
+		 */
+		static ICommonPtr AdviseAndThrow(IAccessProviderRef accessProvider, RefIid eventsIid);
 
 	private:
 
