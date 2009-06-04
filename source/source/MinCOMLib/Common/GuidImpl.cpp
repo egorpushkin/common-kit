@@ -10,6 +10,10 @@
 #include <sstream>
 #include <iomanip>
 
+#if defined(__MACH__)
+#include <CoreFoundation/CoreFoundation.h>
+#endif
+
 namespace MinCOM
 {
 
@@ -21,8 +25,12 @@ namespace MinCOM
 		// This tool may be used because mc::Guid is binary compatible with COM 
 		// GUID.
 		::CoCreateGuid((GUID*)&guid);
-#else
-		Not implemented.
+#elif defined(__MACH__)
+        // CFUUIDCreate produces the same old 16 bytes unique identifier. 
+        CFUUIDRef uuid = CFUUIDCreate(NULL);
+        CFUUIDBytes uuidBytes = CFUUIDGetUUIDBytes(uuid);
+        CFRelease(uuid);	
+        memcpy(&guid, &uuid, sizeof(guid));
 #endif			
 		return guid;
 	}
