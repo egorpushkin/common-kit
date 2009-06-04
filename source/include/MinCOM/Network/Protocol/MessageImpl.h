@@ -47,7 +47,11 @@ namespace MinCOM
 			
 			std::string::value_type * buffer = new std::string::value_type[dataSize];
 			stream.read(buffer, (std::streamsize)dataSize);			
-			std::string rvalue(buffer, dataSize);
+			std::string rvalue;
+			if ( '\x0' == buffer[dataSize - 1] )
+				rvalue = std::string(buffer);
+			else
+				rvalue = std::string(buffer, dataSize);
 			delete []buffer;
 
 			value = rvalue;
