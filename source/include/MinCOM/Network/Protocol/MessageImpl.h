@@ -99,7 +99,7 @@ namespace MinCOM
 
 		MessageImpl();
 
-		MessageImpl(IMessage::Code_ code);
+		MessageImpl(IMessage::CodeRef_ code);
 
 		// IMessage section
 		virtual Code_ GetCode();

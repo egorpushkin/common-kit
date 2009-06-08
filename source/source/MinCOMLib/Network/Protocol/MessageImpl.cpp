@@ -15,7 +15,7 @@ namespace MinCOM
 	{
 	}
 
-	MessageImpl::MessageImpl(IMessage::Code_ code)
+	MessageImpl::MessageImpl(IMessage::CodeRef_ code)
 		: mc::CommonImpl< IMessage >()
 		, code_(code)
 		, constructed_(false)

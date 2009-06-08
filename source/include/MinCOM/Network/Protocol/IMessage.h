@@ -19,6 +19,8 @@ namespace MinCOM
 
 		typedef Guid Code_;
 
+		typedef const Code_& CodeRef_;
+
 		typedef unsigned long Marker_;
 
 		typedef size_t Size_;
