@@ -16,6 +16,13 @@ namespace MinCOM
 
 	class SemaphoreScopeRelease
 	{
+
+		/** Copy-constructor not implemented and denied. */
+		SemaphoreScopeRelease( const SemaphoreScopeRelease & );
+        
+		/** Copy-assignment operator not implemented and denied. */
+		SemaphoreScopeRelease & operator = ( const SemaphoreScopeRelease & );        
+        
 	public:
 
 		SemaphoreScopeRelease(ISemaphoreRef semaphore, long count = 1);
