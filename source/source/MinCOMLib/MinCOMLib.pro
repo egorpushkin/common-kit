@@ -4,15 +4,27 @@
 TARGET = MinCOM
 TEMPLATE = lib
 CONFIG += staticlib
-contains(CONFIG, debug) { 
-    OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
-    DESTDIR = ../../lib/mingw/debug
+win32 { 
+    contains(CONFIG, debug) { 
+        OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
+        DESTDIR = ../../lib/mingw/debug
+    }
+    else { 
+        OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/release
+        DESTDIR = ../../lib/mingw/release
+    }
 }
-else { 
-    OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/release
-    DESTDIR = ../../lib/mingw/release
+macx { 
+    contains(CONFIG, debug) { 
+        OBJECTS_DIR = ../../compiled/macx/MinCOMLib/debug
+        DESTDIR = ../../lib/macx/debug
+    }
+    else { 
+        OBJECTS_DIR = ../../compiled/macx/MinCOMLib/release
+        DESTDIR = ../../lib/macx/release
+    }
 }
-INCLUDEPATH = C:/Dev/boost_1_37_0 \
+INCLUDEPATH = ../../../../boost137 \
     ../../include \
     ../../sdk/include
 PRECOMPILED_HEADER = Common/Common.h
@@ -40,8 +52,6 @@ HEADERS += Common/Common.h \
     Network/Core/TCPServer.h \
     Network/Protocol/DProtocolStub.h \
     Network/Protocol/Protocol.h \
-    Platforms/win32/Concurrent.win32.h \
-    Platforms/win32/Locale.win32.h \
     Log/LogStorage.h
 SOURCES += Common/GuidsInternal.cpp \
     Common/Guids.cpp \
@@ -55,10 +65,6 @@ SOURCES += Common/GuidsInternal.cpp \
     Concurrency/Jobs/JobsQueue.cpp \
     Concurrency/Jobs/JobsContext.cpp \
     Concurrency/Locks/ReadWriteLock.cpp \
-    Concurrency/Core/Mutex.win32.cpp \
-    Concurrency/Core/IThread.win32.cpp \
-    Concurrency/Core/Event.win32.cpp \
-    Concurrency/Core/Thread.win32.cpp \
     Container/VectorEnumerator.cpp \
     Container/Vector.cpp \
     Container/List.cpp \
@@ -84,12 +90,26 @@ SOURCES += Common/GuidsInternal.cpp \
     Network/Protocol/Protocol.cpp \
     Network/Protocol/MessageImpl.cpp \
     Network/Protocol/DProtocolStub.cpp \
-    Platforms/win32/Locale.win32.cpp \
-    Platforms/win32/Concurrent.win32.cpp \
     Variant/Accessors.cpp \
     Variant/Constructors.cpp \
-    Concurrency/Core/Semaphore.win32.cpp \
     Log/LogStorage.cpp \
     Log/LogRoutine.cpp \
     Log/Log.cpp \
-    Log/LogStatement.cpp
+    Log/LogStatement.cpp \
+    Concurrency/Scopes/SemaphoreScopeRelease.cpp \
+    Common/GuidImpl.cpp \
+    Concurrency/Scopes/MutexScope.cpp
+win32 { 
+    HEADERS += Platforms/win32/Concurrent.win32.h \
+        Platforms/win32/Locale.win32.h
+    SOURCES += Concurrency/Core/Mutex.win32.cpp \
+        Concurrency/Core/IThread.win32.cpp \
+        Concurrency/Core/Thread.win32.cpp \
+        Concurrency/Core/Semaphore.win32.cpp \
+        Platforms/win32/Locale.win32.cpp \
+        Platforms/win32/Concurrent.win32.cpp
+}
+unix:SOURCES += Concurrency/Core/Mutex.posix.cpp \
+    Concurrency/Core/IThread.posix.cpp \
+    Concurrency/Core/Thread.posix.cpp \
+    Concurrency/Core/Semaphore.posix.cpp
