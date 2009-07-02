@@ -476,6 +476,10 @@
 				Name="Scopes"
 				>
 				<File
+					RelativePath=".\Concurrency\Scopes\MutexScope.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Concurrency\Scopes\SemaphoreScopeRelease.cpp"
 					>
 				</File>
