@@ -29,8 +29,16 @@ namespace MinCOM
 		/** Handle for win32 environments. */
 		HANDLE mutex_;
 #elif defined(POSIX)
+        /** Indicates which synchronization promitive is used. */ 
+        bool named_;
 		/** Handle for posix environments. */
 		pthread_mutex_t mutex_;
+		/** Mutex name. */
+		std::string name_;
+        /** Named mutex is implemented via posix semaphore. */
+        sem_t *semaphore_;        
+        /** Indicates whether semaphore was opened or created. */ 
+        bool opened_;
 #endif
 		
 	};
