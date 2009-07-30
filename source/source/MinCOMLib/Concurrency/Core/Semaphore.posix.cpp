@@ -5,7 +5,7 @@
 namespace MinCOM
 {
     
-	Semaphore::Semaphore(long initial, long maximum, const std::string& name)
+	Semaphore::Semaphore(long initial, long /* maximum */, const std::string& /* name */)
         : CommonImpl< ISemaphore >()
         , semaphore_()
 	{
@@ -13,7 +13,7 @@ namespace MinCOM
         // TODO: Check whether semaphore is created.
 	}
     
-	Semaphore::Semaphore(const std::string& name)
+	Semaphore::Semaphore(const std::string& /* name */)
         : CommonImpl< ISemaphore >()
         , semaphore_()
 	{
@@ -38,7 +38,7 @@ namespace MinCOM
 	}
     
 	// ISynchro section
-	result Semaphore::Wait(unsigned long delay /* = _INFINITE */)
+	result Semaphore::Wait(unsigned long /* delay *//* = _INFINITE */)
 	{
 		int code = sem_wait(&semaphore_);
 		if ( 0 != code )

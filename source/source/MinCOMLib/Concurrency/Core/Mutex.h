@@ -35,7 +35,7 @@ namespace MinCOM
 		pthread_mutex_t mutex_;
 		/** Mutex name. */
 		std::string name_;
-        /** Named mutex is implemented via posix semaphore. */
+		/** Named mutex is implemented via posix semaphore. */
         sem_t *semaphore_;        
         /** Indicates whether semaphore was opened or created. */ 
         bool opened_;

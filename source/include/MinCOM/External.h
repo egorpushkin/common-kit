@@ -14,6 +14,7 @@
   #define POSIX 0
  #endif
  #include <pthread.h>
+ #include <semaphore.h>
 #endif
 
 // Standard library requirements

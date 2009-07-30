@@ -1,10 +1,6 @@
 #ifndef SEMAPHORE_H__MINCOMLIB__INCLUDED_
 #define SEMAPHORE_H__MINCOMLIB__INCLUDED_
 
-#if defined(POSIX)
-#include <semaphore.h>
-#endif
-
 namespace MinCOM
 {
 
