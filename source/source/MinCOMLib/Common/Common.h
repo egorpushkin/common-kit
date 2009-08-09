@@ -42,4 +42,10 @@
 
 #include "MinCOM/MinCOM.h"
 
+// Platform specific dependencies
+//////////////////////////////////////////////////////////////////////////
+#if defined(POSIX)
+#include <semaphore.h>
+#endif // Platform
+
 #endif // !COMMON_H__MINCOMLIB__INCLUDED_

@@ -39,7 +39,7 @@ namespace MinCOM
         sem_t *semaphore_;        
         /** Indicates whether semaphore was opened or created. */ 
         bool opened_;
-#endif
+#endif // Platform
 		
 	};
 

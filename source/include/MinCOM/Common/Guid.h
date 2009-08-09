@@ -19,8 +19,17 @@ namespace MinCOM
 
 		/**
 		 * Dumps guid to string.
+		 * Format:
+		 * {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}
 		 */
 		std::string ToString() const;
+		
+		/**
+		 * Dumps guid to string.
+		 * Format:
+		 * XXXXXXXXYYYYZZZZXXXXYYYYYYYYYYYYY
+		 */
+		std::string ToRawString() const;		
 
 		/**
 		 * Restores guid from string.

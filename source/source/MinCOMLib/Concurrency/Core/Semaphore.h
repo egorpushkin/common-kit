@@ -30,7 +30,7 @@ namespace MinCOM
 		HANDLE semaphore_;
 #elif defined(POSIX)
 		/** Handle for posix environments. */
-		sem_t semaphore_;
+		sem_t *semaphore_;
 #endif
 		
 	};

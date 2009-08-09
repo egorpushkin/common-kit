@@ -121,7 +121,7 @@ namespace MinCOM
 	}
 
 	// ISynchro section
-	result Thread::Wait(unsigned long milliseconds /* = _INFINITE */)
+	result Thread::Wait(unsigned long /* milliseconds *//* = _INFINITE */)
 	{
 		// This routine must not (!) block execution because it performs blocking itself,
 		// does not modify internal object's state and relies on it's internal representation 
