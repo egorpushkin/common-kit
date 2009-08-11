@@ -2,6 +2,9 @@
 
 #include "Semaphore.h"
 
+// System time.
+#include <sys/time.h>
+
 namespace MinCOM
 {
     
@@ -18,10 +21,22 @@ namespace MinCOM
 		if ( 0 == semName.size() )
 		{
 			// Unfortunately guid doed not fit the criteria of sem_open (guid
-			// string representation is to long).
+			// string representation is to long). Semaphore name is generated
+			// based on the following pattern:
+			// mcs_<time in milliseconds>_<object_cookie>.
+			// In this case it becomes almost unique name in bounds of a process.
+
+			// Format time.
+			struct timeval tp;
+			gettimeofday(&tp, NULL);
+			int interval = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+
+			// Format name.
 			std::stringstream nameStream;
 			nameStream
-				<< "mcs"
+				<< "mcs_"
+				<< interval
+				<< "_"
 				<< GetCookie();
 			nameStream >> semName;
 		}
