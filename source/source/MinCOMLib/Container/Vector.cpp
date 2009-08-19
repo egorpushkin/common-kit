@@ -64,7 +64,7 @@ namespace MinCOM
 
 	inline bool Vector::IsPositionValid(size_t pos)
 	{
-		return ( ( pos >= 0 ) && ( pos < stdVector_.size() ) );
+		return ( pos < stdVector_.size() );
 	}
 
 }

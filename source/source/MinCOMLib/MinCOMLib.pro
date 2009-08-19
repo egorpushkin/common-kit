@@ -5,23 +5,25 @@ TARGET = MinCOM
 TEMPLATE = lib
 CONFIG += staticlib
 win32 { 
-    contains(CONFIG, debug) { 
-        OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
-        DESTDIR = ../../lib/mingw/debug
-    }
-    else { 
+    CONFIG(release, debug|release) {
         OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/release
         DESTDIR = ../../lib/mingw/release
     }
+    CONFIG(debug, debug|release) {
+        OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
+        DESTDIR = ../../lib/mingw/debug
+    }
 }
 macx { 
-    contains(CONFIG, debug) { 
-        OBJECTS_DIR = ../../compiled/macx/MinCOMLib/debug
-        DESTDIR = ../../lib/macx/debug
-    }
-    else { 
+    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
+    CONFIG += x86 ppc
+    CONFIG(release, debug|release) {
         OBJECTS_DIR = ../../compiled/macx/MinCOMLib/release
         DESTDIR = ../../lib/macx/release
+    }
+    CONFIG(debug, debug|release) {
+        OBJECTS_DIR = ../../compiled/macx/MinCOMLib/debug
+        DESTDIR = ../../lib/macx/debug
     }
 }
 INCLUDEPATH = ../../../../boost137 \
