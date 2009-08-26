@@ -40,6 +40,9 @@ namespace MinCOM
 	TCPConnection::~TCPConnection()
 	{
 		socket_->close();
+		// This prevents object destruction during any synchronous call 
+		// (for example, Establish).
+		CoreMutexLock locker(CommonImpl< IConnection >::GetLock());
 	}
 
 	// ITCPConnection section
