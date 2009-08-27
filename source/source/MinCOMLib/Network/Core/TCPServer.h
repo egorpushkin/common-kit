@@ -48,6 +48,10 @@ namespace MinCOM
 		/** . */
 		DServerPtr events_;
 
+		/** A number of attempts to start accepting incoming connections
+		 * asynchronously. */
+		size_t attempts_;
+
 	};
 
 }

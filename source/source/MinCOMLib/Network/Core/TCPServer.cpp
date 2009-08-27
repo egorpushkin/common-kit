@@ -13,6 +13,10 @@ namespace MinCOM
 		, service_( service )
 		, acceptor_()
 		, events_()
+		// This value is hardcoded for now. In future it should be moved to
+		// some kind of global config, with a chence to configure it even at
+		// runtime.
+		, attempts_(5)
 	{
 	}
 
@@ -29,20 +33,35 @@ namespace MinCOM
 		short portShort = 0;
 		converter >> portShort;
 
-		try
+		// Perform a number of attempts to start accepting connections.
+		size_t attempt = 0;
+		for ( attempt = 1 ; attempt <= attempts_ ; ++attempt )
 		{
-			acceptor_ = AcceptorPtr_( new Acceptor_( 
-				Strong< Service >(service_)->GetService(), 
-				boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), portShort),
-				// Address should not been reused.
-				false) );
+			try
+			{
+				acceptor_ = AcceptorPtr_( new Acceptor_(
+					Strong< Service >(service_)->GetService(),
+					boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),
+					portShort),
+					// Address should be reused.
+					true) );
+				break;
+			}
+			catch (...)
+			{
+				// This may occur if service is already in use.
+				// Nothing shoould be done here. Just proceed to the next loop
+				// iteration - next attempts to start server.
+			}
 		}
-		catch (...)
+		if ( attempt > attempts_ )
 		{
-			// This may occur if service is already in use.
+			// This occurs, if server has failed to start even after a number of
+			// attempts.
 			return _E_FAIL;
 		}
 
+		// Create accepting socket.
 		TCPConnection::SocketPtr_ socket( 
 			new TCPConnection::Socket_( Strong< Service >(service_)->GetService() ) );
 		acceptor_->async_accept(*socket,
