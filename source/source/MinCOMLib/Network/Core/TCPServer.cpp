@@ -39,12 +39,15 @@ namespace MinCOM
 		{
 			try
 			{
+#if defined(WIN32)
+				bool reuseAddress = false;
+#else
+				bool reuseAddress = true;
+#endif // Platform
 				acceptor_ = AcceptorPtr_( new Acceptor_(
 					Strong< Service >(service_)->GetService(),
-					boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),
-					portShort),
-					// Address should be reused.
-					true) );
+					boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), portShort),
+					reuseAddress) );
 				break;
 			}
 			catch (...)
