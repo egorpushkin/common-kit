@@ -49,7 +49,7 @@ namespace MinCOM
 	/**
 	 * Strong pointer intended to host pointers to native MinCOM and
 	 * inherited control interfaces. Implementation of this helper class 
-	 * provides support for MinCOM memory (life-circle) management.
+	 * provides support for MinCOM memory (life-cycle) management.
 	 *
 	 * This class provides external (in relation to an object) reference 
 	 * counter.
