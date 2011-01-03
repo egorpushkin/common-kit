@@ -15,8 +15,13 @@ win32 {
     }
 }
 macx { 
-    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-    CONFIG += x86 ppc
+    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
+    CONFIG += x86
+
+    # PPC architecture is not supported any more.
+    # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
+    # CONFIG += x86 ppc
+
     CONFIG(release, debug|release) {
         OBJECTS_DIR = ../../compiled/macx/MinCOMLib/release
         DESTDIR = ../../lib/macx/release
@@ -54,7 +59,17 @@ HEADERS += Common/Common.h \
     Network/Core/TCPServer.h \
     Network/Protocol/DProtocolStub.h \
     Network/Protocol/Protocol.h \
-    Log/LogStorage.h
+    Log/LogStorage.h \
+    ../../include/MinCOM/Common/ToolsMap.h \
+    ../../include/MinCOM/Common/Object.h \
+    ../../include/MinCOM/Common/MethodWrapper.h \
+    ../../include/MinCOM/Common/ICommon.h \
+    ../../include/MinCOM/Common/Guid.h \
+    ../../include/MinCOM/Common/Errors.h \
+    ../../include/MinCOM/Common/CommonImpl.h \
+    ../../include/MinCOM/Common/Common.h \
+    ../../include/MinCOM/Common/Class.h \
+    ../../include/MinCOM/Common/Call.h
 SOURCES += Common/GuidsInternal.cpp \
     Common/Guids.cpp \
     Common/Errors.cpp \
@@ -111,7 +126,9 @@ win32 {
         Platforms/win32/Locale.win32.cpp \
         Platforms/win32/Concurrent.win32.cpp
 }
-unix:SOURCES += Concurrency/Core/Mutex.posix.cpp \
-    Concurrency/Core/IThread.posix.cpp \
-    Concurrency/Core/Thread.posix.cpp \
-    Concurrency/Core/Semaphore.posix.cpp
+unix {
+    SOURCES += Concurrency/Core/Mutex.posix.cpp \
+        Concurrency/Core/IThread.posix.cpp \
+        Concurrency/Core/Thread.posix.cpp \
+        Concurrency/Core/Semaphore.posix.cpp
+}
