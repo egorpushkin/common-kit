@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{360a3ee1-7981-4618-a34b-7c494ab8c2b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrency">
+      <UniqueIdentifier>{0d285e6c-7565-4383-90cf-79ffeb8c73da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrency\Core">
+      <UniqueIdentifier>{85485f72-4bdc-44d7-b1c1-212b90d36429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrency\Interfaces">
+      <UniqueIdentifier>{decc13a2-d55e-447c-836b-12f0df9a6a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrency\Scopes">
+      <UniqueIdentifier>{9e1636c2-8324-4acf-b35f-1650c1a91277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pointers">
+      <UniqueIdentifier>{8b27364a-805b-440e-8780-3990636c0d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{a0fc3669-4da1-4ce5-8042-22d34b007f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events\Interfaces">
+      <UniqueIdentifier>{833f5a59-477d-45b3-97ff-2ef09cceeeaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events\Impl">
+      <UniqueIdentifier>{ea438129-9724-44be-879d-34c529705614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Variant">
+      <UniqueIdentifier>{05bec569-0004-4793-b7cc-b8027901c721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{ae934470-6810-459d-8644-cc41527023b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{65a5aa7a-cb82-4cca-9f68-703321c85a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{ca0ebc50-9e5f-4f91-9546-5c47fc6dbfeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container\Interfaces">
+      <UniqueIdentifier>{aa008ad1-f58d-40e0-991d-f676d79d6288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{67e738fd-942d-475f-983a-8dd26529cae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Core">
+      <UniqueIdentifier>{5a07f7cb-4038-4790-9d1c-7cd8c145efb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Protocol">
+      <UniqueIdentifier>{6e3b26c2-c041-4448-a2e2-f77a58aa3613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Remoting">
+      <UniqueIdentifier>{b9b26fdd-1157-44e3-a866-3714ba9e52c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{a56c4d6d-e9a0-4f50-8eba-f65c4430df7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\Call.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Class.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\CommonImpl.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Errors.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Guid.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ICommon.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MethodWrapper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Object.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ToolsMap.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Core\CoreCounter.h">
+      <Filter>Concurrency\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Core\CoreMutex.h">
+      <Filter>Concurrency\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\IEvent.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\IJobsQueue.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\IMutex.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\IReadWriteLock.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\IRunnable.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\ISemaphore.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\ISynchro.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Interfaces\IThread.h">
+      <Filter>Concurrency\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Scopes\MutexScope.h">
+      <Filter>Concurrency\Scopes</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Scopes\SemaphoreScopeRelease.h">
+      <Filter>Concurrency\Scopes</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointers\BinaryOperators.h">
+      <Filter>Pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointers\DualRefCounter.h">
+      <Filter>Pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointers\StdExtensions.h">
+      <Filter>Pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointers\Strong.h">
+      <Filter>Pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointers\Weak.h">
+      <Filter>Pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\Interfaces\Events.h">
+      <Filter>Events\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\Interfaces\IAccessPoint.h">
+      <Filter>Events\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\Interfaces\IAccessProvider.h">
+      <Filter>Events\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\Impl\AccessProviderImpl.h">
+      <Filter>Events\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant\CommonVariant.h">
+      <Filter>Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant\WrapperT.h">
+      <Filter>Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\DCommands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\ICommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\ICommands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\CommonHolder.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\FactoryHolder.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\FactoryImpl.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\IFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\Library.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Interfaces\DContainer.h">
+      <Filter>Container\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Interfaces\IEnumerator.h">
+      <Filter>Container\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Interfaces\IList.h">
+      <Filter>Container\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Interfaces\IMap.h">
+      <Filter>Container\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Interfaces\IVector.h">
+      <Filter>Container\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Core\DRawData.h">
+      <Filter>Network\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Core\DServer.h">
+      <Filter>Network\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Core\IConnection.h">
+      <Filter>Network\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Core\IHost.h">
+      <Filter>Network\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Core\IServer.h">
+      <Filter>Network\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Core\IService.h">
+      <Filter>Network\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Protocol\DProtocol.h">
+      <Filter>Network\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Protocol\IMessage.h">
+      <Filter>Network\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Protocol\IProtocol.h">
+      <Filter>Network\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Protocol\MessageImpl.h">
+      <Filter>Network\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\Log.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\LogRoutine.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\LogStatement.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\LogThread.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="External.h" />
+    <ClInclude Include="MinCOM.h" />
+  </ItemGroup>
+</Project>

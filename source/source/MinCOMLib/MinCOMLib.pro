@@ -115,7 +115,8 @@ SOURCES += Common/GuidsInternal.cpp \
     Log/LogStatement.cpp \
     Concurrency/Scopes/SemaphoreScopeRelease.cpp \
     Common/GuidImpl.cpp \
-    Concurrency/Scopes/MutexScope.cpp
+    Concurrency/Scopes/MutexScope.cpp \
+    ../../sdk/source/boost/system/error_code.cpp
 win32 { 
     HEADERS += Platforms/win32/Concurrent.win32.h \
         Platforms/win32/Locale.win32.h
