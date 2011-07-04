@@ -129,7 +129,9 @@ namespace MinCOM
 		MessageImpl::Read(stream, ending);
 
 		if ( ending != endingMarker )
+        {
 			return mc::_E_FAIL;
+        }
 
 		return mc::_S_OK;
 	}

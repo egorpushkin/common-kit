@@ -174,7 +174,7 @@ namespace MinCOM
 			unsigned int            uintVal_;           // CE_UINT
 			long                    lVal_;              // CE_I4
 			unsigned long           ulVal_;             // CE_UI4
-			longlong                llval_;             // CE_I8
+			longlong                llVal_;             // CE_I8
 			ulonglong				ullVal_;            // CE_UI8
 			float                   fltVal_;            // CE_R4
 			double                  dblVal_;            // CE_R8

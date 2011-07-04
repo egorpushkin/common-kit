@@ -15,14 +15,14 @@ namespace MinCOM
 {
 
 	/** . */ 
-	interface IAccessProvider;
+	struct IAccessProvider;
 	/** . */ 
 	typedef Strong< IAccessProvider > IAccessProviderPtr;
 
 	/**
 	 *
 	 */
-	interface IAccessPoint : public ICommon
+	struct IAccessPoint : public ICommon
 	{
 
 		virtual IAccessProviderPtr GetAccessProvider() = 0;

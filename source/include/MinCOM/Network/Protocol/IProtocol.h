@@ -25,7 +25,7 @@ namespace MinCOM
 	 * This module introduces messaging concept. See IMessage and MessageImpl 
 	 * for more details.
 	 */ 
-	interface IProtocol : public ICommon
+	struct IProtocol : public ICommon
 	{
 		/** 
 		 * Enumerates list of allowed modes.

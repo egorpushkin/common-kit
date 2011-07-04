@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * 
 	 */
-	interface IThread : public ICommon
+	struct IThread : public ICommon
 	{
 
 		virtual result SetContext(IRunnableRef context) = 0;

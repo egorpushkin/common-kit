@@ -18,7 +18,7 @@ namespace MinCOM
 	 * Provides a way to synchronize simultaneous access to the same 
 	 * resource by readers and writers. 
 	 */
-	interface IReadWriteLock : public ICommon
+	struct IReadWriteLock : public ICommon
 	{
 		/**
 		 * Should be called before modifying the resource.

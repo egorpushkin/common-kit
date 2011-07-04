@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * Powers asynchronous communications facility.
 	 */  
-	interface IService : public ICommon
+	struct IService : public ICommon
 	{
 
 		/**

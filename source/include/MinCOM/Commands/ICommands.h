@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface ICommands : public ICommon
+	struct ICommands : public ICommon
 	{
 		
 		virtual result Undo() = 0;

@@ -18,7 +18,7 @@ namespace MinCOM
 	<
 		class T
 	>
-	interface IWrapperT : public ICommon
+	struct IWrapperT : public ICommon
 	{
 		virtual void SetData(const T& data) = 0;
 		virtual T GetData() = 0;

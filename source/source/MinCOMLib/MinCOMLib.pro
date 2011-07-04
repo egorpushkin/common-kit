@@ -31,7 +31,7 @@ macx {
         DESTDIR = ../../lib/macx/debug
     }
 }
-INCLUDEPATH = ../../../../boost137 \
+INCLUDEPATH = ../../../../boost146 \
     ../../include \
     ../../sdk/include
 PRECOMPILED_HEADER = Common/Common.h
@@ -95,7 +95,6 @@ SOURCES += Common/GuidsInternal.cpp \
     External/Singleton.cpp \
     External/SafeFormat.cpp \
     External/OrderedStatic.cpp \
-    External/error_code.cpp \
     Factory/FactoryImpl.cpp \
     Factory/FactoryHolder.cpp \
     Factory/Library.cpp \
@@ -116,7 +115,7 @@ SOURCES += Common/GuidsInternal.cpp \
     Concurrency/Scopes/SemaphoreScopeRelease.cpp \
     Common/GuidImpl.cpp \
     Concurrency/Scopes/MutexScope.cpp \
-    ../../sdk/source/boost/system/error_code.cpp
+    External/error_code.146.cpp
 win32 { 
     HEADERS += Platforms/win32/Concurrent.win32.h \
         Platforms/win32/Locale.win32.h

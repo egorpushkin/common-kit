@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * Basic interface for walking through any container.
 	 */ 
-	interface IList : public ICommon
+	struct IList : public ICommon
 	{
 		
 		

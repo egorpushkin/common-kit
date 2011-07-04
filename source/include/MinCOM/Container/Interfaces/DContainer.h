@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * Notifies subscribers on container events.
 	 */
-	interface DContainer : public ICommon
+	struct DContainer : public ICommon
 	{	
 		/**
 		 * 

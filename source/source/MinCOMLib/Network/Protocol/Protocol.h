@@ -83,6 +83,8 @@ namespace MinCOM
 		MessageImpl::MsgHeader_ msgHeader_;
 
 		DProtocolPtr protocolEvents_;
+        
+        IMutexPtr sendLock_;
 
 	};
 

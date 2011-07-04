@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface ISynchro : public ICommon
+	struct ISynchro : public ICommon
 	{
 
 		static const unsigned long _INFINITE = 0xFFFFFFFF;

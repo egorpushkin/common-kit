@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface ISemaphore : public ISynchro
+	struct ISemaphore : public ISynchro
 	{
 		
 		virtual result Release(long count = 1) = 0;

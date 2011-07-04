@@ -39,8 +39,15 @@ namespace MinCOM
 		return ulVal_;
 	}
 	
-	/*	longlong toLLong() const;                       // CE_I8
-	ulonglong toULLong() const;						// CE_UI8 */
+	longlong CommonVariant::toLLong() const         // CE_I8
+    {
+        return llVal_;
+    }
+    
+	ulonglong CommonVariant::toULLong() const		// CE_UI8
+    {
+        return ullVal_;
+    }
 	
 	float CommonVariant::toFloat() const			// CE_R4
 	{

@@ -116,7 +116,7 @@ namespace MinCOM
 
 		virtual result Read(std::istream& stream);
 
-	private:
+	protected:
 
 		virtual void SetCode(const Code_& code);
 

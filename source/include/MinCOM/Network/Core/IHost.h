@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IHost : public ICommon
+	struct IHost : public ICommon
 	{
 
 		virtual std::string GetHost() = 0;

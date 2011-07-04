@@ -29,7 +29,7 @@ namespace MinCOM
 		 */
 		class TMCContainer
 	>
-	interface IPrivateIterator : public ICommon
+	struct IPrivateIterator : public ICommon
 	{
 #if defined(_MSC_VER)
     // This prevents from accessing by unauthorized tools.

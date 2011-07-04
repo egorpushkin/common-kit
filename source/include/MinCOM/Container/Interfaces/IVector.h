@@ -34,7 +34,7 @@ namespace MinCOM
 	 * See IEnumerator documentation on details. By default assume that any 
 	 * enumerator becomes invalid after container modification.
 	 */ 
-	interface IVector : public ICommon
+	struct IVector : public ICommon
 	{
 		// TODO: Const members.
 			

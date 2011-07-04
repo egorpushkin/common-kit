@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IServer : public ICommon
+	struct IServer : public ICommon
 	{
 		
 		virtual result AsyncAccept(const std::string& service) = 0;

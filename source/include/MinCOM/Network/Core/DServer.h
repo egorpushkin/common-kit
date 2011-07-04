@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * .
 	 */
-	interface DServer : public ICommon
+	struct DServer : public ICommon
 	{	
 		/** 
 		 * .

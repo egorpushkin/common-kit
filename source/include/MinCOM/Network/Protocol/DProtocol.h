@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * .
 	 */
-	interface DProtocol : public ICommon
+	struct DProtocol : public ICommon
 	{	
 		/** 
 		 * Fired when new message arrives.

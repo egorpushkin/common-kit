@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IJobsQueue : public ICommon
+	struct IJobsQueue : public ICommon
 	{
 
 		virtual result Run() = 0;

@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * Basic interface for walking through any container.
 	 */ 
-	interface IEnumerator : public ICommon
+	struct IEnumerator : public ICommon
 	{
 
 		virtual ICommonPtr GetCurrent() const = 0;

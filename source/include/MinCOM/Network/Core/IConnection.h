@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IConnection : public ICommon
+	struct IConnection : public ICommon
 	{
 		
 		/** 

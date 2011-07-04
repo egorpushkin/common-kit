@@ -20,6 +20,7 @@ namespace MinCOM
 		, msgWaiter_()
 		, msgHeader_()
 		, protocolEvents_()
+        , sendLock_( Library::Mutex() )
 	{
 		Init();
 	}
@@ -80,6 +81,10 @@ namespace MinCOM
         // Validate current object's state and input arguments.
 		if ( !message || !connection_ )
 			return _E_FAIL;
+        
+        // Use separate mutex to synchronize delivery from multiple threads.
+        MutexScope locker( sendLock_ );
+        
         // Serialize message to stream.
 		std::ostream stream( &connection_->GetOStreamBuf() );
 		message->Write(stream);

@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IMessage : public mc::ICommon
+	struct IMessage : public mc::ICommon
 	{
 
 		typedef Guid Code_;
@@ -41,7 +41,7 @@ namespace MinCOM
 
 		virtual result Read(std::istream& stream) = 0;
 
-	private:
+	protected:
 
 		friend class Protocol;
 

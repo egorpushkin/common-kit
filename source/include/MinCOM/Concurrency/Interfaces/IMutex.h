@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IMutex : public ISynchro
+	struct IMutex : public ISynchro
 	{
 
 		virtual result Release() = 0;

@@ -26,7 +26,7 @@ namespace MinCOM
 	/**
 	 * Preliminary declaration of object model basics.
 	 */ 
-	interface ICommon;
+	struct ICommon;
 
 	/**
 	 * Preliminary declaration of default ICommon implementation.

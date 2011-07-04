@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IFactory : public ICommon
+	struct IFactory : public ICommon
 	{
 
 		typedef ICommonPtr (*Creator_)();

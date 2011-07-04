@@ -14,7 +14,7 @@
 namespace MinCOM
 {
 
-	interface IEvent : public ISynchro
+	struct IEvent : public ISynchro
 	{
 
 		virtual result Pulse() = 0;

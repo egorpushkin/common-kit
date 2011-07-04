@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * .
 	 */
-	interface DRawData : public ICommon
+	struct DRawData : public ICommon
 	{	
 		/** 
 		 * .

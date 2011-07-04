@@ -54,8 +54,17 @@ namespace MinCOM
 	{
 	}	
 	
-	/*CommonVariant(longlong llval);					// CE_I8
-	CommonVariant(ulonglong ullVal);				// CE_UI8*/
+    CommonVariant::CommonVariant(longlong llVal)	// CE_I8
+        : vt_(CE_I8)
+        , llVal_(llVal)    
+    {        
+    }
+    
+    CommonVariant::CommonVariant(ulonglong ullVal)	// CE_UI8
+        : vt_(CE_UI8)
+        , ullVal_(ullVal)        
+    {        
+    }
 	
 	CommonVariant::CommonVariant(float fltVal)		// CE_R4
 		: vt_(CE_R8)

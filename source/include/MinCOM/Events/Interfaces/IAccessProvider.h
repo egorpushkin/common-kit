@@ -17,7 +17,7 @@ namespace MinCOM
 	/** 
 	 * 
 	 */
-	interface IAccessProvider : public ICommon
+	struct IAccessProvider : public ICommon
 	{
 
 		virtual result Advise(RefIid iid, IAccessPointRef accessPoint) = 0;

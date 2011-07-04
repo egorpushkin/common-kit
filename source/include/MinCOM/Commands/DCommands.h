@@ -20,7 +20,7 @@ namespace MinCOM
 	 * Each CLSID_Commands compatible object provides a way to subscribe on
 	 * such events.
 	 */
-	interface DCommands : public ICommon
+	struct DCommands : public ICommon
 	{	
 		/**
 		 * This event is fired when corresponding commands container

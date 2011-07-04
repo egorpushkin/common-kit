@@ -13,11 +13,9 @@
 
 namespace MinCOM
 {
-
-#ifndef interface
-	/** . */
-	#define interface struct
-#endif
+    // This definition was removed for compatibility with Objective C++ language,
+    // where there is corresponding keyword.
+	// #define interface struct
 
 	/** . */
 	typedef void* Handle;
@@ -88,7 +86,7 @@ namespace MinCOM
 	 *
 	 * Implementation of this interface must me thread safe.
 	 */ 
-	interface IReferenceCounter
+	struct IReferenceCounter
 	{
         virtual ~IReferenceCounter() {}
 

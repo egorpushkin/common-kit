@@ -17,7 +17,7 @@ namespace MinCOM
 	/**
 	 * Provides interface for any executable operation.
 	 */
-	interface IRunnable : public ICommon
+	struct IRunnable : public ICommon
 	{
 		/**
 		 * Any component calls this method to perform an operation.
