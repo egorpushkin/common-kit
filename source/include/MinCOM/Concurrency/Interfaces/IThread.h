@@ -31,9 +31,11 @@ namespace MinCOM
 		
 		static unsigned int GetCores();
 
-		static void Sleep(unsigned long delay);
-
 		static int GetSelfId();
+
+        static longlong Time();
+
+        static void Sleep(unsigned long delay);
 
 	};
 

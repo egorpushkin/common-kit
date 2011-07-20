@@ -8,14 +8,21 @@ namespace MinCOM
 		return 0;
 	}
 
+    int IThread::GetSelfId()
+    {
+        return ::GetCurrentThreadId();
+    }
+
+    longlong IThread::Time()
+    {
+        FILETIME now;
+        ::GetSystemTimeAsFileTime(&now);
+        return (mc::longlong)now.dwLowDateTime + ((mc::longlong)(now.dwHighDateTime) << 32LL);
+    }
+
 	void IThread::Sleep(unsigned long delay)
 	{
 		::Sleep(delay);
-	}
-
-	int IThread::GetSelfId()
-	{
-		return ::GetCurrentThreadId();
 	}
 
 }

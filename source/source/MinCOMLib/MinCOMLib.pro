@@ -69,7 +69,15 @@ HEADERS += Common/Common.h \
     ../../include/MinCOM/Common/CommonImpl.h \
     ../../include/MinCOM/Common/Common.h \
     ../../include/MinCOM/Common/Class.h \
-    ../../include/MinCOM/Common/Call.h
+    ../../include/MinCOM/Common/Call.h \
+    ../../include/MinCOM/Concurrency/Interfaces/IThread.h \
+    ../../include/MinCOM/Concurrency/Interfaces/ISynchro.h \
+    ../../include/MinCOM/Concurrency/Interfaces/ISemaphore.h \
+    ../../include/MinCOM/Concurrency/Interfaces/IRunnable.h \
+    ../../include/MinCOM/Concurrency/Interfaces/IReadWriteLock.h \
+    ../../include/MinCOM/Concurrency/Interfaces/IMutex.h \
+    ../../include/MinCOM/Concurrency/Interfaces/IJobsQueue.h \
+    ../../include/MinCOM/Concurrency/Interfaces/IEvent.h
 SOURCES += Common/GuidsInternal.cpp \
     Common/Guids.cpp \
     Common/Errors.cpp \
