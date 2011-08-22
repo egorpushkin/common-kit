@@ -45,8 +45,10 @@ namespace MinCOM
 	protected:
 
 		result NotifySinkOnEvent(ICommonRef stub, ICommonRef sink, const Call& call);
+		
+		result AdviseInternal(unsigned long cookie, ICommonRef sink);		
 
-		result UnadviseInternl(unsigned long cookie);
+		result UnadviseInternal(unsigned long cookie);
 
 	private:
 
@@ -57,6 +59,8 @@ namespace MinCOM
 		AccessEntries_ accessEntries_;
 
 		bool spreading_;
+
+        AccessEntries_ pendingAdd_;
 
 		std::set< unsigned long > pendingRemoval_;
 

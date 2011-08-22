@@ -15,6 +15,7 @@ namespace MinCOM
 		, iid_(iid)
 		, accessEntries_()
 		, spreading_( false )
+        , pendingAdd_()
 		, pendingRemoval_()
 	{
 	}
@@ -34,17 +35,11 @@ namespace MinCOM
 	{
 		CoreMutexLock locker(CommonImpl< IAccessPoint >::GetLock());
 
-		// Prevents registering new sinks while spreading an event.
-		if ( spreading_ )
-		{
-			return _E_FAIL;
-		}
-
 		// Check input arguments for correctness.
 		if ( !sink )
 			return _E_INVALIDARG;
 		// Check whether such sink already advised and prepare new cookie 
-		//  at the same time.
+        // at the same time.
 		unsigned long allocatedCooie = 1;
 		for ( AccessEntries_::iterator iter = accessEntries_.begin() ; accessEntries_.end() != iter ; ++iter  )
 		{
@@ -57,8 +52,21 @@ namespace MinCOM
 			if ( (*iter).first == allocatedCooie )
 				++allocatedCooie;
 		}
+
+        // Prevents registering new sinks while spreading an event.
+        if ( spreading_ )
+        {
+            for ( AccessEntries_::iterator iter = pendingAdd_.begin() ; pendingAdd_.end() != iter ; ++iter  )
+            {
+                if ( (*iter).first == allocatedCooie )
+                    ++allocatedCooie;
+            }
+            pendingAdd_.insert(AccessEntries_::value_type(allocatedCooie, sink));
+            return _E_FAIL;
+        }
+
 		// Insert new sink
-		accessEntries_.insert(AccessEntries_::value_type(allocatedCooie, sink));
+		AdviseInternal(allocatedCooie, sink);
 		cookie = allocatedCooie;
 		return _S_OK;
 	}
@@ -75,7 +83,7 @@ namespace MinCOM
 		}
 
 		// Unadvise sink immediately.
-		return UnadviseInternl( cookie );
+		return UnadviseInternal( cookie );
 	}
 
 	result AccessPointImpl::Unadvise(ICommonRef sink)
@@ -142,11 +150,18 @@ namespace MinCOM
 		}
 
 		spreading_ = false;
+		
+		// Add all pending items.
+		for ( AccessEntries_::iterator iter = pendingAdd_.begin() ; pendingAdd_.end() != iter ; ++iter  )
+		{
+			AdviseInternal( (*iter).first, (*iter).second );
+		}
+		pendingAdd_.clear();
 
-		// Remove all pending items
+		// Remove all pending items.
 		for ( std::set< unsigned long >::iterator iter = pendingRemoval_.begin() ; pendingRemoval_.end() != iter ; ++iter )
 		{	
-			UnadviseInternl( *iter );
+			UnadviseInternal( *iter );
 		}
 		pendingRemoval_.clear();
 
@@ -170,8 +185,14 @@ namespace MinCOM
 		// Translate method with stub.
 		return stub->Invoke(call);
 	}
+	
+	result AccessPointImpl::AdviseInternal(unsigned long cookie, ICommonRef sink)
+	{
+		accessEntries_.insert(AccessEntries_::value_type(cookie, sink));		
+		return _S_OK;
+	}
 
-	result AccessPointImpl::UnadviseInternl(unsigned long cookie)
+	result AccessPointImpl::UnadviseInternal(unsigned long cookie)
 	{
 		// Check whether sink with specified cookie exists.
 		AccessEntries_::iterator iter = accessEntries_.find(cookie);

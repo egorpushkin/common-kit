@@ -14,6 +14,7 @@ namespace MinCOM
 	// IService section
 	void Service::Run()
 	{
+		service_.reset();
 		service_.run();
 	}
 

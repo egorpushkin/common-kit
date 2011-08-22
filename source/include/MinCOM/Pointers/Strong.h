@@ -447,6 +447,12 @@ namespace MinCOM
 		{
 			return !( rhs.Equals( p_ ) );
 		}
+		
+		template < typename T1 >
+		inline bool operator == ( const Strong< T1 > & rhs ) const
+		{
+			return rhs.Equals( p_ );
+		}		
 
 		bool operator < ( const Strong & rhs ) const
 		{
