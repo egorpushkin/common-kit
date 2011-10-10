@@ -77,7 +77,13 @@ HEADERS += Common/Common.h \
     ../../include/MinCOM/Concurrency/Interfaces/IReadWriteLock.h \
     ../../include/MinCOM/Concurrency/Interfaces/IMutex.h \
     ../../include/MinCOM/Concurrency/Interfaces/IJobsQueue.h \
-    ../../include/MinCOM/Concurrency/Interfaces/IEvent.h
+    ../../include/MinCOM/Concurrency/Interfaces/IEvent.h \
+    ../../include/MinCOM/Pointers/Weak.h \
+    ../../include/MinCOM/Pointers/Strong.h \
+    ../../include/MinCOM/Pointers/StdExtensions.h \
+    ../../include/MinCOM/Pointers/DualRefCounter.h \
+    ../../include/MinCOM/Pointers/BinaryOperators.h \
+    Network/Core/NetworkStats.h
 SOURCES += Common/GuidsInternal.cpp \
     Common/Guids.cpp \
     Common/Errors.cpp \
@@ -123,7 +129,8 @@ SOURCES += Common/GuidsInternal.cpp \
     Concurrency/Scopes/SemaphoreScopeRelease.cpp \
     Common/GuidImpl.cpp \
     Concurrency/Scopes/MutexScope.cpp \
-    External/error_code.146.cpp
+    External/error_code.146.cpp \
+    Network/Core/NetworkStats.cpp
 win32 { 
     HEADERS += Platforms/win32/Concurrent.win32.h \
         Platforms/win32/Locale.win32.h

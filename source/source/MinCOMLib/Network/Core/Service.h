@@ -15,6 +15,8 @@ namespace MinCOM
 		virtual void Run();
 
 		virtual void Stop();
+		
+		virtual INetworkStatsPtr GetStats() const;		
 
 	protected:
 
@@ -26,6 +28,8 @@ namespace MinCOM
 	private:
 
 		boost::asio::io_service service_;
+		
+		INetworkStatsPtr stats_;
 
 	};
 

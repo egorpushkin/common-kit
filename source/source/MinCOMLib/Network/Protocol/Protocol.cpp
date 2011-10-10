@@ -80,17 +80,20 @@ namespace MinCOM
 		MC_LOG_ROUTINE;
         // Validate current object's state and input arguments.
 		if ( !message || !connection_ )
-			return _E_FAIL;
-        
-        // Use separate mutex to synchronize delivery from multiple threads.
-        MutexScope locker( sendLock_ );
-        
-        // Serialize message to stream.
-		std::ostream stream( &connection_->GetOStreamBuf() );
-		message->Write(stream);
-        // Send the entire content of input stream. 
-		MC_LOG_STATEMENT("Attempting to write data to the connection.");
-		connection_->Write();
+			return _E_FAIL;        
+		{
+			// Use separate mutex to synchronize delivery from multiple threads.
+			MutexScope locker( sendLock_ );
+			
+			// Serialize message to stream.
+			std::ostream stream( &connection_->GetOStreamBuf() );
+			message->Write(stream);
+			// Send the entire content of input stream. 
+			MC_LOG_STATEMENT("Attempting to write data to the connection.");
+			connection_->Write();
+		}
+		// Collect statistics.
+		connection_->GetService()->GetStats()->HandleSent( message->GetSize() );			
         return _S_OK;
 	}
 
@@ -190,7 +193,7 @@ namespace MinCOM
 
 		IMessagePtr message;
 		while ( message = MessageFromBuffer() )
-		{
+		{		
 			if ( SYNC == mode_ )
 			{
 				// Register message.
@@ -202,7 +205,9 @@ namespace MinCOM
 			{
 				// Deliver message synchronously.
 				protocolEvents_->MessageArrived(CommonImpl< IProtocol >::GetSelf(), message);
-			}
+			}			
+			// Collect statistics.
+			connection_->GetService()->GetStats()->HandleReceived( message->GetSize() );			
 		}
 	}
 

@@ -99,9 +99,10 @@ namespace mc = MinCOM;
 // Networking support
 //////////////////////////////////////////////////////////////////////////
 #include "MinCOM/Network/Core/IHost.h"
-#include "MinCOM/Network/Core/IConnection.h"
 #include "MinCOM/Network/Core/IServer.h"
+#include "MinCOM/Network/Core/INetworkStats.h"
 #include "MinCOM/Network/Core/IService.h"
+#include "MinCOM/Network/Core/IConnection.h"
 #include "MinCOM/Network/Core/DRawData.h"
 #include "MinCOM/Network/Core/DServer.h"
 #include "MinCOM/Network/Protocol/IMessage.h"

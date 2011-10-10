@@ -38,6 +38,8 @@ namespace MinCOM
 		virtual result Establish(IHostRef host);
         
         virtual result Close();        
+		
+		virtual IServicePtr GetService() const;		
 
 		virtual State_ GetState();
 

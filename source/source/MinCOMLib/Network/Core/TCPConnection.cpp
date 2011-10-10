@@ -128,10 +128,14 @@ namespace MinCOM
 		catch ( ... ) 
 		{			
 		}
-		// TODO: Check that connection should not be turned into DISCONNECTED
-		// state here. 
+        state_ = DISCONNECTED;
         return _S_OK;
     }
+	
+	IServicePtr TCPConnection::GetService() const
+	{
+		return service_;
+	}
 
 	IConnection::State_ TCPConnection::GetState()
 	{
@@ -205,7 +209,7 @@ namespace MinCOM
     {
 		MC_LOG_ROUTINE;
 		if ( CONNECTED != state_ )
-			return;
+			return;		
 		try
 		{
 			boost::asio::write(
@@ -215,7 +219,7 @@ namespace MinCOM
 		}
 		catch ( ... )
 		{
-			// Error should be handled here because is may occur so that there 
+            // Error should be handled here because it may occur so that there
 			// are no any registered handlers at the moment. 
 			HandleDisconnectionInIOServiceThread();
 		}        
@@ -276,7 +280,7 @@ namespace MinCOM
 			// was also performed. So.. nothing else should be done here.
 			return;
 		}
-
+		
 		// Spread event to subscribers.
 		events_->DataReceived( CommonImpl< IConnection >::GetSelf() );		
         
@@ -292,7 +296,6 @@ namespace MinCOM
 		MC_LOG_ROUTINE;
 		if ( error && boost::asio::error::operation_aborted != error )
 		{
-			MC_LOG_STATEMENT("Error has occurred");
 			if ( DISCONNECTED == state_ )
 				return false;
 			
@@ -308,6 +311,9 @@ namespace MinCOM
 	void TCPConnection::HandleDisconnectionInIOServiceThread()
 	{
 		MC_LOG_ROUTINE;
+        if ( DISCONNECTED == state_ )
+            return;
+
 		Strong< Service >(service_)->GetService().dispatch(
 			boost::bind(
 				&TCPConnection::HandleDisconnection,

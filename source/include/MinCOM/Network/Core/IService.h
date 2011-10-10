@@ -31,6 +31,11 @@ namespace MinCOM
 		 * Nonblocking call.
 		 */
 		virtual void Stop() = 0;
+		
+		/**
+		 * Provides access to basic network analytics.
+		 */
+		virtual INetworkStatsPtr GetStats() const = 0;
 
 	};
 

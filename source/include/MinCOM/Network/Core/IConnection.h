@@ -28,6 +28,7 @@ namespace MinCOM
 			DISCONNECTED = 3
 		} 
 		State_;
+		
 
 		virtual result Establish(const std::string& host, const std::string& service) = 0;
 
@@ -38,6 +39,8 @@ namespace MinCOM
          * more need in keeping this connection in the application object model. 
          */
         virtual result Close() = 0;
+		
+		virtual IServicePtr GetService() const = 0;
 
 		virtual State_ GetState() = 0;
 

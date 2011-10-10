@@ -127,6 +127,10 @@ namespace MinCOM
 	// {9481DCC0-DD41-4b48-A070-EEE404DD181A}
 	template<> const Guid TypeInfo< DProtocol >::iid_ = 
 		{ 0x9481dcc0, 0xdd41, 0x4b48, 0xa0, 0x70, 0xee, 0xe4, 0x4, 0xdd, 0x18, 0x1a };
+	
+	// {A9037958-6F12-424D-B4A6-EE9AA150BB7E}
+	template<> const Guid TypeInfo< INetworkStats >::iid_ = 	
+		{ 0xA9037958, 0x6F12, 0x424D, { 0xB4, 0xA6, 0xEE, 0x9A, 0xA1, 0x50, 0xBB, 0x7E }};
 
 	// Containers
 	//////////////////////////////////////////////////////////////////////////
