@@ -31,7 +31,7 @@ namespace MinCOM
 		
 		static unsigned int GetCores();
 
-		static int GetSelfId();
+        static longlong GetSelfId();
 
         static longlong Time();
 

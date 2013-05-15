@@ -12,7 +12,9 @@
 #define IMESSAGE_H__MINCOM__INCLUDED_
 
 namespace MinCOM
-{
+{    
+    // Preliminary declaration is required to establish friendship relationship. 
+    class Protocol;
 
 	struct IMessage : public mc::ICommon
 	{

@@ -30,7 +30,7 @@ namespace MinCOM
         CFUUIDRef uuid = CFUUIDCreate(NULL);
         CFUUIDBytes uuidBytes = CFUUIDGetUUIDBytes(uuid);
         CFRelease(uuid);	
-        memcpy(&guid, &uuid, sizeof(guid));
+        memcpy(&guid, &uuidBytes, sizeof(guid));
 #endif			
 		return guid;
 	}

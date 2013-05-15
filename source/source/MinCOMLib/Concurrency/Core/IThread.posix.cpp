@@ -5,11 +5,9 @@
 namespace MinCOM
 {
 
-    int IThread::GetSelfId()
+    longlong IThread::GetSelfId()
     {
-        // When switching to 64-bit compiler, this routine should return intptr_t
-        // ( declared in <inttypes.h> ).
-        return (int)pthread_self();
+        return (longlong)pthread_self();
     }
 
     longlong IThread::Time()

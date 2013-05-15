@@ -15,7 +15,7 @@ win32 {
     }
 }
 macx { 
-    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
+    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.6.sdk
     CONFIG += x86
 
     # PPC architecture is not supported any more.
