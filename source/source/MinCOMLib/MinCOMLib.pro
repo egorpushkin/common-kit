@@ -15,13 +15,6 @@ win32 {
     }
 }
 macx { 
-    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.6.sdk
-    CONFIG += x86
-
-    # PPC architecture is not supported any more.
-    # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-    # CONFIG += x86 ppc
-
     CONFIG(release, debug|release) {
         OBJECTS_DIR = ../../compiled/macx/MinCOMLib/release
         DESTDIR = ../../lib/macx/release
@@ -31,7 +24,7 @@ macx {
         DESTDIR = ../../lib/macx/debug
     }
 }
-INCLUDEPATH = ../../../../boost146 \
+INCLUDEPATH = ../../../../boost \
     ../../include \
     ../../sdk/include
 PRECOMPILED_HEADER = Common/Common.h

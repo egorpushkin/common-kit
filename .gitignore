@@ -1,0 +1,8 @@
+# CommonKit
+source/compiled
+source/lib
+
+# QT
+Makefile
+.qmake.stash
+*.pro.user
