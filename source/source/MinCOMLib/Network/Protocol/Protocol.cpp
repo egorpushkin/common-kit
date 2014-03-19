@@ -89,7 +89,6 @@ namespace MinCOM
 			std::ostream stream( &connection_->GetOStreamBuf() );
 			message->Write(stream);
 			// Send the entire content of input stream. 
-			MC_LOG_STATEMENT("Attempting to write data to the connection.");
 			connection_->Write();
 		}
 		// Collect statistics.
@@ -192,7 +191,7 @@ namespace MinCOM
 		CoreMutexLock locker( CommonImpl< IProtocol >::GetLock() );
 
 		IMessagePtr message;
-		while ( message = MessageFromBuffer() )
+        while (( message = MessageFromBuffer() ))
 		{		
 			if ( SYNC == mode_ )
 			{

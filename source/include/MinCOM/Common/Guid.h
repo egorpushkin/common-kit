@@ -3,11 +3,34 @@
 
 namespace MinCOM
 {
+    
+#if defined(_MSC_VER)
+	typedef __int64 longlong;
+	typedef unsigned __int64 ulonglong;
+    typedef int int32;
+    typedef unsigned int uint32;
+    typedef __int64 int64;
+    typedef unsigned __uint64 uint64;
+#elif defined(__MINGW32__ ) // MinGW
+    typedef long long longlong;
+    typedef unsigned long long ulonglong;
+    typedef int int32;
+    typedef unsigned int uint32;
+    typedef long long int64;
+    typedef unsigned long long uint64;
+#elif defined(POSIX) // any Posix macro
+    typedef long long longlong;
+    typedef unsigned long long ulonglong;
+    typedef int int32;
+    typedef unsigned int uint32;
+    typedef long long int64;
+    typedef unsigned long long uint64;
+#endif
 
 	// Structure which represents Globally Unique Identifier (GUID)
 	typedef struct tagGuid
 	{
-		unsigned long data1_;
+        uint32 data1_;
 		unsigned short data2_;
 		unsigned short data3_;
 		unsigned char data4_[8];
@@ -70,7 +93,7 @@ namespace MinCOM
 
 	__inline bool operator < (RefGuid left, RefGuid right)
 	{
-		if ( memcmp(&left, &right, sizeof(sizeof(long) + sizeof(short) * 2 + sizeof(char) * 8)) < 0 )
+		if ( memcmp(&left, &right, sizeof(sizeof(uint32) + sizeof(short) * 2 + sizeof(char) * 8)) < 0 )
 			return true;
 		return false;
 	}

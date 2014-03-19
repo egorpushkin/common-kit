@@ -23,11 +23,11 @@ namespace MinCOM
 
 		typedef const Code_& CodeRef_;
 
-		typedef unsigned long Marker_;
+		typedef uint32 Marker_;
 
-		typedef size_t Size_;
+		typedef uint32 Size_;
 
-		typedef unsigned long Property_;
+		typedef uint32 Property_;
 
 		virtual Code_ GetCode() = 0;
 

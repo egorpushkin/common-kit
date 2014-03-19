@@ -24,6 +24,12 @@ macx {
         DESTDIR = ../../lib/macx/debug
     }
 }
+
+# Disable some harmless warnings
+QMAKE_CXXFLAGS_WARN_ON += -Wno-parentheses-equality
+QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
+QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-private-field
+
 INCLUDEPATH = ../../../../boost \
     ../../include \
     ../../sdk/include
@@ -50,6 +56,7 @@ HEADERS += Common/Common.h \
     Network/Core/DServerStub.h \
     Network/Core/DRawDataStub.h \
     Network/Core/TCPServer.h \
+    Network/Core/NetworkStats.h \
     Network/Protocol/DProtocolStub.h \
     Network/Protocol/Protocol.h \
     Log/LogStorage.h \
@@ -76,7 +83,7 @@ HEADERS += Common/Common.h \
     ../../include/MinCOM/Pointers/StdExtensions.h \
     ../../include/MinCOM/Pointers/DualRefCounter.h \
     ../../include/MinCOM/Pointers/BinaryOperators.h \
-    Network/Core/NetworkStats.h
+    ../../include/MinCOM/Network/Protocol/IMessage.h
 SOURCES += Common/GuidsInternal.cpp \
     Common/Guids.cpp \
     Common/Errors.cpp \

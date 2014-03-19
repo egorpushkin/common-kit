@@ -42,11 +42,11 @@ namespace MinCOM
 		 */
 		static std::istream& Read(std::istream& stream, std::string& value)
 		{
-			size_t dataSize = 0;
+            Size_ dataSize = 0;
 			Read(stream, dataSize);
 			
 			std::string::value_type * buffer = new std::string::value_type[dataSize];
-			stream.read(buffer, (std::streamsize)dataSize);			
+            stream.read(buffer, (Size_)dataSize);
 			std::string rvalue;
 			if ( '\x0' == buffer[dataSize - 1] )
 				rvalue = std::string(buffer);
@@ -64,9 +64,9 @@ namespace MinCOM
 		 */ 
 		static std::ostream& Write(std::ostream& stream, const std::string& value)
 		{
-			size_t dataSize = SizeOf( value );
+            Size_ dataSize = SizeOf( value );
 			Write(stream, dataSize);	
-			return stream.write(value.c_str(), (std::streamsize)dataSize);
+            return stream.write(value.c_str(), (Size_)dataSize);
 		}
 
 		/**  

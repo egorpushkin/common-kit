@@ -21,7 +21,7 @@ namespace MinCOM
 	typedef void* Handle;
 
 	/** . */
-	typedef long DispId;
+    typedef long DispId;
 
 	/** Preliminary declaration of Variant class. */
 	class CommonVariant;
