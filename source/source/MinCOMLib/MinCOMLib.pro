@@ -25,10 +25,12 @@ macx {
     }
 }
 
-# Disable some harmless warnings
-QMAKE_CXXFLAGS_WARN_ON += -Wno-parentheses-equality
-QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
-QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-private-field
+clang {
+    # Disable some harmless warnings
+    QMAKE_CXXFLAGS_WARN_ON += -Wno-parentheses-equality
+    QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
+    QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-private-field
+}
 
 INCLUDEPATH = ../../../../boost \
     ../../include \
