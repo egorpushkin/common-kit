@@ -36,8 +36,7 @@ namespace MinCOM
 #if defined(WIN32)
 			return ::InterlockedIncrement(&value);
 #elif defined(POSIX)
-            // TODO: Implement this in thread safe manner.
-            return ++value;
+            return __sync_add_and_fetch(&value, 1);
 #endif
 		}
 
@@ -46,8 +45,7 @@ namespace MinCOM
 #if defined(WIN32)
 			return ::InterlockedDecrement(&value);
 #elif defined(POSIX)
-            // TODO: Implement this in thread safe manner.
-            return --value;
+            return __sync_sub_and_fetch(&value, 1);
 #endif
 		}
 	};
