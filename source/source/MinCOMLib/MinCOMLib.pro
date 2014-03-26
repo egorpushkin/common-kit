@@ -13,6 +13,7 @@ win32 {
         OBJECTS_DIR = ../../compiled/mingw/MinCOMLib/debug
         DESTDIR = ../../lib/mingw/debug
     }
+    DEFINES += BOOST_ALL_NO_LIB
 }
 macx { 
     CONFIG(release, debug|release) {
@@ -32,9 +33,11 @@ clang {
     QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-private-field
 }
 
-INCLUDEPATH = ../../../../boost \
+INCLUDEPATH = \
+    ../../../../boost \
     ../../include \
-    ../../sdk/include
+    ../../sdk/include \
+    .
 PRECOMPILED_HEADER = Common/Common.h
 HEADERS += Common/Common.h \
     Commands/Commands.h \

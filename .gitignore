@@ -4,5 +4,6 @@ source/lib
 
 # QT
 Makefile
+Makefile.*
 .qmake.stash
 *.pro.user

@@ -8,7 +8,7 @@ namespace MinCOM
 		return 0;
 	}
 
-    int IThread::GetSelfId()
+    longlong IThread::GetSelfId()
     {
         return ::GetCurrentThreadId();
     }
